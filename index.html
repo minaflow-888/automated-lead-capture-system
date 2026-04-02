@@ -1,59 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Automated Lead Capture & Response System</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <header class="hero">
-      <h1>🚀 Automated Lead Capture & Response System</h1>
-      <p class="subtitle">
-        Transforming manual inquiries into a scalable, error-proof client pipeline.
-      </p>
-    </header>
+  <div class="page-shell">
+    <main class="container">
 
-    <section class="card">
-      <h2>📋 The Challenge</h2>
-      <ul>
-        <li>Lost leads due to delayed responses</li>
-        <li>Time wasted on manual data entry</li>
-        <li>Inconsistent data formats</li>
-        <li>No visibility on failures</li>
-      </ul>
-    </section>
+      <section class="hero">
+        <div class="eyebrow">Automation Case Study · Lead Operations</div>
+        <h1>Automated Lead Capture &amp; Response System</h1>
+        <p class="hero-copy">
+          A clean, scalable workflow that captures inbound leads, standardizes data,
+          alerts the team, and replies instantly—without relying on manual inbox handling.
+        </p>
 
-    <section class="card">
-      <h2>🔄 The Solution</h2>
-      <p>
-        We built a fully automated pipeline that ensures every lead is captured,
-        processed, and responded to instantly.
-      </p>
-    </section>
+        <div class="hero-actions">
+          <a href="#architecture" class="button button-primary">View Architecture</a>
+          <a href="#impact" class="button button-secondary">See Business Impact</a>
+        </div>
 
-    <section class="card">
-      <h2>📊 Visual Flow</h2>
-      <div class="diagram">
-        <div class="node orange">1. Webflow Trigger</div>
-        <div class="arrow"></div>
+        <div class="hero-metrics">
+          <div class="metric-card">
+            <span class="metric-value">&lt;10s</span>
+            <span class="metric-label">Response time</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value">30%</span>
+            <span class="metric-label">Lower wasted ops</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value">100%</span>
+            <span class="metric-label">Lead capture target</span>
+          </div>
+        </div>
+      </section>
 
-        <div class="node dark">2. Text Parser</div>
-        <div class="arrow"></div>
+      <section class="content-grid">
+        <article class="panel">
+          <div class="panel-index">01</div>
+          <h2>The Challenge</h2>
+          <p>
+            Manual inbox handling creates delays, inconsistent records, and silent failure points.
+            For small teams, that means missed revenue and no reliable system for fast lead response.
+          </p>
+          <ul class="clean-list">
+            <li>Lost leads due to delayed responses</li>
+            <li>Manual copy-paste into internal systems</li>
+            <li>Inconsistent formatting across records</li>
+            <li>No clear visibility when something breaks</li>
+          </ul>
+        </article>
 
-        <div class="node red">3. Email Filter</div>
-        <div class="arrow"></div>
+        <article class="panel">
+          <div class="panel-index">02</div>
+          <h2>The Solution</h2>
+          <p>
+            The workflow captures each submission, extracts and validates data, stores a clean record,
+            alerts the internal team, and sends an immediate response to the lead.
+          </p>
 
-        <div class="node blue">4. Google Sheets</div>
-        <div class="arrow"></div>
+          <div class="step-pills">
+            <span>Capture</span>
+            <span>Parse</span>
+            <span>Filter</span>
+            <span>Store</span>
+            <span>Alert</span>
+            <span>Reply</span>
+          </div>
+        </article>
+      </section>
 
-        <div class="node dark">5. Slack Alert</div>
-        <div class="arrow"></div>
+      <section class="panel wide-panel">
+        <div class="panel-index">03</div>
+        <div class="section-heading">
+          <h2>Architecture Principles</h2>
+          <p>
+            The system is designed to reduce unnecessary operations, improve data quality,
+            and surface failures before they affect the customer experience.
+          </p>
+        </div>
 
-        <div class="node dark">6. Auto-Reply</div>
-      </div>
-    </section>
+        <div class="principles-grid">
+          <div class="principle-card">
+            <h3>Budget Protection</h3>
+            <p>
+              Empty or invalid submissions are filtered early, which reduces avoidable automation steps
+              and protects operational budget.
+            </p>
+          </div>
+
+          <div class="principle-card">
+            <h3>Data Standardization</h3>
+            <p>
+              Lead data is cleaned before storage so the team works with consistent records instead of
+              messy variations.
+            </p>
+          </div>
+
+          <div class="principle-card">
+            <h3>Error Visibility</h3>
+            <p>
+              If a downstream step fails, the workflow pushes a technical alert so issues can be addressed fast.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel wide-panel" id="architecture">
+        <div class="panel-index">04</div>
+        <div class="section-heading">
+          <h2>System Architecture</h2>
+          <p>
+            This flow shows how lead data moves from submission to storage, internal notification,
+            customer response, and fallback error handling.
+          </p>
+        </div>
+
+        <div class="architecture-shell">
+          <div class="architecture-row architecture-top">
+            <div class="arch-node arch-trigger">1. Webflow Mailhook Trigger</div>
+            <div class="arch-arrow"></div>
+            <div class="arch-node arch-neutral">2. Text Parser: Extract Data</div>
+            <div class="arch-arrow"></div>
+            <div class="arch-node arch-decision">3. Filter: Email Not Empty?</div>
+          </div>
+
+          <div class="branch-headings">
+            <span>No</span>
+            <span>Yes</span>
+          </div>
+
+          <div class="architecture-branches">
+            <div class="branch branch-left">
+              <div class="vertical-line muted"></div>
+              <div class="arch-node arch-stop">Stop Flow: Saved Ops</div>
+            </div>
+
+            <div class="branch branch-right">
+              <div class="vertical-line"></div>
+              <div class="arch-node arch-storage">4. Google Sheets: Store Clean Lead</div>
+              <div class="vertical-line"></div>
+              <div class="arch-node arch-neutral">5. Slack: Team Alert</div>
+              <div class="vertical-line"></div>
+              <div class="arch-node arch-neutral">6. Auto-Reply Email</div>
+            </div>
+          </div>
+
+          <div class="error-section">
+            <div class="error-link error-link-one"></div>
+            <div class="error-link error-link-two"></div>
+            <div class="arch-node arch-error">Slack: #tech-errors</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-grid" id="impact">
+        <article class="panel">
+          <div class="panel-index">05</div>
+          <h2>Business Impact</h2>
+
+          <div class="impact-grid">
+            <div class="impact-item">
+              <span class="impact-kicker">Time saved</span>
+              <strong>~3.5 hours / month</strong>
+            </div>
+            <div class="impact-item">
+              <span class="impact-kicker">Cost reduction</span>
+              <strong>Up to 30%</strong>
+            </div>
+            <div class="impact-item">
+              <span class="impact-kicker">Response speed</span>
+              <strong>Under 10 seconds</strong>
+            </div>
+            <div class="impact-item">
+              <span class="impact-kicker">Reliability</span>
+              <strong>100% lead capture target</strong>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-index">06</div>
+          <h2>Tech Stack</h2>
+          <div class="stack-pills">
+            <span>Webflow</span>
+            <span>Make.com</span>
+            <span>Google Sheets</span>
+            <span>Slack</span>
+            <span>Email</span>
+            <span>Automation Logic</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel wide-panel">
+        <div class="panel-index">07</div>
+        <div class="section-heading">
+          <h2>Before vs After</h2>
+          <p>
+            The system replaces fragile inbox work with a structured pipeline that is easier to scale and monitor.
+          </p>
+        </div>
+
+        <div class="compare-grid">
+          <div class="compare-card compare-negative">
+            <h3>Before</h3>
+            <ul class="clean-list">
+              <li>Leads lost in inbox</li>
+              <li>Manual replies</li>
+              <li>Messy data</li>
+              <li>Silent failures</li>
+            </ul>
+          </div>
+
+          <div class="compare-card compare-positive">
+            <h3>After</h3>
+            <ul class="clean-list">
+              <li>Leads stored in Google Sheets</li>
+              <li>Instant auto-response</li>
+              <li>Clean standardized records</li>
+              <li>Slack error alerts</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-panel">
+        <div>
+          <div class="eyebrow">Next Step</div>
+          <h2>Need cleaner automation and faster response workflows?</h2>
+          <p>
+            This system was designed to reduce manual work, improve visibility, and help teams respond faster.
+          </p>
+        </div>
+
+        <a class="button button-primary" href="mailto:yourname@email.com">Contact Me</a>
+      </section>
+
+    </main>
   </div>
 </body>
 </html>
