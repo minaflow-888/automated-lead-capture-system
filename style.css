@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  background: #0f0f0f;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+.subtitle {
+  color: #aaa;
+}
+
+.card {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+/* DIAGRAM */
+.diagram {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.node {
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.orange { background: #f4a261; }
+.red { background: #e63946; }
+.blue { background: #457b9d; }
+.dark { background: #2a2a2a; }
+
+/* ARROW */
+.arrow {
+  width: 60px;
+  height: 2px;
+  background: #444;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✨ FLOW ANIMATION */
+.arrow::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: #00f5ff;
+  animation: flow 1s linear infinite;
+}
+
+@keyframes flow {
+  from { left: -20px; }
+  to { left: 60px; }
+}
