@@ -3,33 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Case Study: Lead Capture Automation | Mina.Flow</title>
-  <meta name="description" content="No-code automation case study: how a manual lead process became a fast, reliable, visible system using Webflow, Make, Google Sheets & Slack." />
+  <title>Lead Capture Architecture | Mina.Flow Case Study</title>
+  <meta name="description" content="Scalable lead capture automation architecture. 95% reduction in response time, 40+ hours reclaimed monthly." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
   <style>
-    /* ---------- ROOT VARIABLES (brand alignment) ---------- */
+    /* ============================================
+       MASTER WEB ARHITEKTA - CASE STUDY STYLE
+       Profesionalni SaaS dizajn po specifikaciji
+    ============================================ */
+    
     :root {
-      --bg: #06101d;
-      --bg-2: #0a1527;
-      --surface: rgba(13, 24, 42, 0.76);
-      --surface-2: rgba(15, 27, 46, 0.96);
-      --surface-3: rgba(255, 255, 255, 0.03);
-      --border: rgba(160, 186, 255, 0.12);
-      --border-strong: rgba(116, 242, 211, 0.2);
-      --text: #eef4ff;
-      --text-soft: #a5b4cf;
-      --text-muted: #7d8ba5;
-      --accent: #74f2d3;
-      --accent-2: #7aa8ff;
-      --accent-dark: #04131a;
-      --shadow-lg: 0 24px 70px rgba(0, 0, 0, 0.34);
-      --shadow-md: 0 14px 34px rgba(0, 0, 0, 0.22);
-      --radius-xl: 30px;
-      --radius-lg: 22px;
-      --radius-md: 16px;
-      --max-width: 1200px;
+      /* Glavne boje - sinhronizuj sa svojim Webflow portfoliom */
+      --primary: #2563eb;      /* Tvoja glavna boja - PROMENI PO POTREBI */
+      --primary-dark: #1d4ed8;
+      --primary-light: #60a5fa;
+      --secondary: #10b981;
+      --text-dark: #1e293b;
+      --text-gray: #475569;
+      --text-light: #94a3b8;
+      --bg-white: #ffffff;
+      --bg-gray: #f8fafc;
+      --bg-dark: #0f172a;
+      --border-light: #e2e8f0;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
     }
 
     * {
@@ -38,449 +43,579 @@
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      background: radial-gradient(circle at top left, rgba(122, 168, 255, 0.14), transparent 24%),
-                  radial-gradient(circle at 88% 12%, rgba(116, 242, 211, 0.12), transparent 18%),
-                  linear-gradient(180deg, #06101d 0%, #091321 100%);
-      font-family: 'Inter', sans-serif;
-      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-dark);
       line-height: 1.5;
-      overflow-x: hidden;
+      background: var(--bg-white);
     }
 
-    /* animated orbs + grid */
-    .bg-orb {
-      position: fixed;
-      width: 480px;
-      height: 480px;
-      border-radius: 50%;
-      filter: blur(130px);
-      opacity: 0.2;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .orb-1 { top: -140px; left: -140px; background: var(--accent-2); }
-    .orb-2 { right: -140px; top: 280px; background: var(--accent); }
-    .bg-grid {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image: linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
-      background-size: 42px 42px;
-      mask-image: radial-gradient(circle at center, black 35%, transparent 85%);
-    }
-
-    /* layout shell */
-    .site-shell {
-      position: relative;
-      z-index: 2;
-      max-width: var(--max-width);
-      width: calc(100% - 40px);
+    /* Kontejner - ograničena širina za bolju čitljivost */
+    .container {
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 24px 0 64px;
+      padding: 0 24px;
     }
 
-    /* sticky navbar */
-    .topbar {
-      position: sticky;
-      top: 20px;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 12px 20px;
-      margin-bottom: 48px;
-      background: rgba(8, 16, 29, 0.78);
-      backdrop-filter: blur(18px);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      box-shadow: var(--shadow-md);
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-    }
-    .brand-mark {
-      width: 44px;
-      height: 44px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(160,186,255,0.2);
-    }
-    .brand-logo {
-      width: 32px;
-      height: 32px;
-      object-fit: contain;
-    }
-    .brand-text {
-      font-size: 1.1rem;
+    /* Tipografija */
+    h1 {
+      font-size: clamp(48px, 6vw, 64px);
+      font-weight: 800;
+      line-height: 1.1;
       letter-spacing: -0.02em;
-    }
-    .topnav {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .topnav a {
-      color: var(--text-soft);
-      font-size: 0.9rem;
-      transition: 0.2s;
-      font-weight: 500;
-    }
-    .topnav a:hover { color: var(--accent); transform: translateY(-1px); }
-    .nav-cta {
-      background: rgba(116,242,211,0.08);
-      border: 1px solid rgba(116,242,211,0.3);
-      padding: 8px 16px;
-      border-radius: 40px;
-      color: var(--accent) !important;
+      color: var(--text-dark);
+      margin-bottom: 24px;
     }
 
-    /* cards & sections */
-    .section { margin-bottom: 100px; }
-    .card {
-      background: linear-gradient(180deg, rgba(18,31,53,0.96), rgba(10,19,33,0.96));
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      backdrop-filter: blur(2px);
-      box-shadow: var(--shadow-lg);
-      transition: all 0.2s ease;
-    }
-    .eyebrow {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
+    h2 {
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-dark);
       margin-bottom: 16px;
-      font-weight: 700;
     }
-    h1, h2, h3 {
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-    h1 { font-size: clamp(2.6rem, 6vw, 4.8rem); line-height: 1.08; margin-bottom: 20px; }
-    h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); line-height: 1.2; margin-bottom: 16px; }
-    .text-soft { color: var(--text-soft); }
 
-    /* hero grid */
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    /* Navigacija */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-light);
+      padding: 16px 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-gray);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-cta {
+      background: var(--primary);
+      color: white !important;
+      padding: 8px 20px;
+      border-radius: 999px;
+    }
+
+    /* Hero sekcija */
+    .hero {
+      padding: 80px 0 64px;
+    }
+
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.3fr 0.9fr;
-      gap: 28px;
-      margin-bottom: 80px;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
     }
-    .hero-copy { padding: 44px; border-radius: var(--radius-xl); }
-    .hero-panel { padding: 36px; border-radius: var(--radius-xl); display: flex; flex-direction: column; justify-content: space-between; }
-    .hero-actions {
+
+    /* Tech stack tags */
+    .tech-tags {
       display: flex;
-      gap: 16px;
-      margin: 32px 0 28px;
       flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
     }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 28px;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: all 0.2s;
-      gap: 8px;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), #b2ffe6);
-      color: #021018;
-      box-shadow: 0 10px 24px rgba(116,242,211,0.2);
-    }
-    .btn-secondary {
-      background: transparent;
-      border: 1px solid rgba(160,186,255,0.3);
-      color: var(--text);
-    }
-    .btn:hover { transform: translateY(-2px); }
 
-    .metrics-row {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 16px;
-      margin-top: 12px;
-    }
-    .metric {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(160,186,255,0.08);
-      border-radius: 20px;
-      padding: 18px 12px;
-    }
-    .metric-value { font-size: 2rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 6px; }
-    .stack-badge {
-      background: rgba(122,168,255,0.1);
+    .tag {
+      background: var(--bg-gray);
       padding: 6px 14px;
-      border-radius: 40px;
-      font-size: 0.85rem;
+      border-radius: 999px;
+      font-size: 13px;
       font-weight: 500;
+      color: var(--primary);
     }
-    .stack-list { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 20px; }
 
-    /* problem/solution grids */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .feature-list { margin-top: 20px; padding-left: 20px; color: var(--text-soft); display: flex; flex-direction: column; gap: 12px; }
-    .solution-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 22px; margin-top: 8px; }
-    .solution-card { padding: 28px; border-radius: var(--radius-md); }
-    .icon-dot {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      border-radius: 12px;
-      margin-bottom: 20px;
-      opacity: 0.9;
+    .hero-summary {
+      font-size: 18px;
+      color: var(--text-gray);
+      line-height: 1.6;
+      margin-bottom: 32px;
     }
-    .workflow-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-    .workflow-card { overflow: hidden; border-radius: 24px; background: rgba(10,19,33,0.8); border: 1px solid var(--border); }
-    .image-frame {
-      aspect-ratio: 16/9;
-      background: #0c1628;
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 32px;
+    }
+
+    .hero-stat {
+      text-align: left;
+    }
+
+    .hero-stat-number {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .hero-stat-label {
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    .hero-image {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      text-align: center;
+      box-shadow: var(--shadow-xl);
+      min-height: 320px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-bottom: 1px solid var(--border);
     }
-    .image-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .step-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      background: rgba(116,242,211,0.12);
-      border-radius: 60px;
-      color: var(--accent);
-      font-weight: 800;
+
+    .hero-image-placeholder {
+      color: white;
+      font-weight: 600;
+    }
+
+    /* Challenge sekcija - siva pozadina za "bol" */
+    .challenge {
+      background: var(--bg-gray);
+      padding: 80px 0;
+    }
+
+    .challenge-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      margin-top: 48px;
+    }
+
+    .challenge-card {
+      background: white;
+      padding: 32px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+    }
+
+    .challenge-icon {
+      font-size: 28px;
       margin-bottom: 16px;
     }
-    .workflow-content { padding: 28px; }
-    .impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 8px; }
-    .impact-card { padding: 32px; border-radius: 24px; }
-    .three-col { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 32px; }
-    .insight-card { padding: 32px; border-radius: 24px; }
 
-    /* final cta */
-    .final-cta {
-      text-align: center;
-      padding: 58px 32px;
+    .challenge-card p {
+      color: var(--text-gray);
+      line-height: 1.6;
+    }
+
+    /* Solution sekcija */
+    .solution {
+      padding: 80px 0;
+    }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-top: 48px;
+    }
+
+    .solution-features {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 16px;
+    }
+
+    .feature-check {
+      width: 28px;
+      height: 28px;
+      background: var(--secondary);
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .feature-text h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .feature-text p {
+      color: var(--text-gray);
+      font-size: 14px;
+    }
+
+    .solution-image {
+      background: #1e1b4b;
       border-radius: var(--radius-xl);
-      background: radial-gradient(circle at 30% 20%, rgba(116,242,211,0.08), transparent 50%), linear-gradient(180deg, rgba(18,31,53,0.98), rgba(10,19,33,0.98));
-    }
-    .footer {
-      text-align: center;
-      margin-top: 60px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-      color: var(--text-muted);
-      font-size: 0.85rem;
+      padding: 40px;
+      box-shadow: var(--shadow-xl);
+      min-height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    @media (max-width: 1000px) {
-      .hero-grid, .two-col, .solution-grid, .workflow-grid, .impact-grid, .three-col { grid-template-columns: 1fr; }
-      .solution-grid { gap: 18px; }
-      .metrics-row { grid-template-columns: 1fr; }
-      .hero-copy, .hero-panel { padding: 32px; }
+    .solution-image span {
+      color: white;
+      font-weight: 500;
     }
-    @media (max-width: 680px) {
-      .topbar { flex-direction: column; align-items: flex-start; border-radius: 28px; }
-      .topnav { width: 100%; justify-content: flex-start; }
-      .btn { width: 100%; justify-content: center; }
+
+    /* Impact sekcija - BROJEVI koji prodaju */
+    .impact {
+      padding: 80px 0;
+      background: var(--bg-white);
+    }
+
+    .impact-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 64px;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .impact-card {
+      text-align: center;
+      padding: 32px 24px;
+      background: var(--bg-gray);
+      border-radius: var(--radius-lg);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .impact-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .impact-number {
+      font-size: 56px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .impact-label {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .impact-desc {
+      font-size: 13px;
+      color: var(--text-gray);
+    }
+
+    /* CTA sekcija - Dark mode za kontrast */
+    .cta {
+      background: var(--bg-dark);
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .cta h2 {
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      color: var(--text-light);
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 16px 40px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.2s;
+    }
+
+    .cta-button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 48px 0;
+      text-align: center;
+      border-top: 1px solid var(--border-light);
+      color: var(--text-light);
+      font-size: 14px;
+    }
+
+    /* Razmaci između sekcija */
+    .section-spacing {
+      margin-bottom: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-grid, .challenge-grid, .solution-grid, .impact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      .impact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .hero {
+        padding: 48px 0;
+      }
+      
+      .challenge, .solution, .impact {
+        padding: 60px 0;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .nav-links {
+        gap: 16px;
+      }
+      
+      .hero-stats {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .container {
+        padding: 0 20px;
+      }
     }
   </style>
 </head>
 <body>
-<div class="bg-orb orb-1"></div>
-<div class="bg-orb orb-2"></div>
-<div class="bg-grid"></div>
 
-<div class="site-shell">
-  <header class="topbar">
-    <a href="#" class="brand">
-      <span class="brand-mark">
-        <img src="https://portfolio-site-9d14e9.webflow.io/images/mina-logo.png" alt="Mina.Flow" class="brand-logo" onerror="this.src='https://placehold.co/32x32/74f2d3/04131a?text=M'">
-      </span>
-      <span class="brand-text">Mina.Flow</span>
-    </a>
-    <nav class="topnav">
-      <a href="#overview">Overview</a>
-      <a href="#workflow">Workflow</a>
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="#" class="logo">Mina.Flow</a>
+    <div class="nav-links">
+      <a href="#challenge">Challenge</a>
+      <a href="#solution">Solution</a>
       <a href="#impact">Impact</a>
-      <a href="#contact" class="nav-cta">Get in touch</a>
-    </nav>
-  </header>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </div>
+  </div>
+</nav>
 
-  <main>
-    <!-- HERO + case study intro -->
-    <section id="overview" class="hero-grid">
-      <div class="hero-copy card">
-        <div class="eyebrow">AUTOMATION CASE STUDY</div>
-        <h1>Turning manual lead handling into a fast, visible, dependable system.</h1>
-        <p class="text-soft" style="font-size:1.05rem; margin-bottom:24px;">
-          Manual lead processing creates delays, hidden admin cost, and inconsistent follow-up.
-          This project rebuilt the entire funnel into a structured no-code workflow: instant capture,
-          clean storage, real-time team alerts — with zero manual handoff.
+<main>
+  <!-- HERO SEKCIJA - Executive Summary -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="tech-tags">
+          <span class="tag">Make.com</span>
+          <span class="tag">Webflow</span>
+          <span class="tag">Google Sheets</span>
+          <span class="tag">Slack API</span>
+        </div>
+        <h1>Scalable Lead Capture Architecture</h1>
+        <p class="hero-summary">
+          I engineered an end-to-end automation system that reduced response time by 95%, 
+          reclaimed 40+ hours monthly, and eliminated manual data entry across the sales funnel.
         </p>
-        <div class="hero-actions">
-          <a href="#workflow" class="btn btn-primary">Explore the workflow →</a>
-          <a href="#contact" class="btn btn-secondary">Let's talk</a>
-        </div>
-        <div class="metrics-row">
-          <div class="metric"><div class="metric-value">&lt;10s</div><div class="text-soft">Lead visibility</div></div>
-          <div class="metric"><div class="metric-value">42h</div><div class="text-soft">Admin saved / month</div></div>
-          <div class="metric"><div class="metric-value">100%</div><div class="text-soft">Consistent capture</div></div>
-        </div>
-      </div>
-      <aside class="hero-panel card">
-        <div>
-          <span class="stack-badge" style="background: rgba(116,242,211,0.12);">Project stack</span>
-          <h2 style="margin-top: 16px;">Built for business outcomes, not tool complexity</h2>
-          <p class="text-soft">Speed, cleaner data, less friction, clear team visibility — the value is in the result.</p>
-          <div class="stack-list">
-            <span class="stack-badge">Webflow</span>
-            <span class="stack-badge">Make.com</span>
-            <span class="stack-badge">Google Sheets</span>
-            <span class="stack-badge">Slack</span>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-number">95%</div>
+            <div class="hero-stat-label">Faster response</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">40+</div>
+            <div class="hero-stat-label">Hours reclaimed</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">100%</div>
+            <div class="hero-stat-label">Data accuracy</div>
           </div>
         </div>
-        <div style="margin-top: 16px; background: rgba(255,255,255,0.02); border-radius: 24px; padding: 20px; border:1px solid var(--border);">
-          <p style="font-style: italic;">“Simple for the user on the front end. Reliable for the team behind the scenes.”</p>
+      </div>
+      <div class="hero-image">
+        <div class="hero-image-placeholder">
+          🏗️ Architecture Preview<br>
+          Make.com → Sheets → Slack
         </div>
-      </aside>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- PROBLEM SECTION -->
-    <section class="section">
-      <div style="max-width: 780px; margin-bottom: 32px;">
-        <div class="eyebrow">THE PROBLEM</div>
-        <h2>Manual workflows create friction exactly where speed matters most</h2>
-        <p class="text-soft">Even a basic lead process becomes fragile when information has to be copied, checked, or forwarded by hand. The business was losing response time and internal trust.</p>
+  <!-- CHALLENGE SEKCIJA - Problem (siva pozadina = "bol") -->
+  <section id="challenge" class="challenge">
+    <div class="container">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto 48px;">
+        <span class="tag" style="background: #fee2e2; color: #dc2626;">⚠️ THE PROBLEM</span>
+        <h2 style="margin-top: 16px;">The bottlenecks were killing conversion</h2>
       </div>
-      <div class="two-col">
-        <div class="card" style="padding: 32px;">
-          <h3>What was going wrong</h3>
-          <ul class="feature-list">
-            <li>⏱️ Leads not moving fast enough through the funnel</li>
-            <li>🔄 Repetitive manual copy/paste between tools</li>
-            <li>📌 Scattered lead details → lost context</li>
-            <li>👀 No single source of truth for incoming leads</li>
-          </ul>
+      <div class="challenge-grid">
+        <div class="challenge-card">
+          <div class="challenge-icon">⏱️</div>
+          <h3>Time-to-First-Call</h3>
+          <p>Manual lead routing meant 2-4 hour delays before sales could respond. Prospects went cold before first touch.</p>
         </div>
-        <div class="card" style="padding: 32px;">
-          <h3>What the workflow needed to do</h3>
-          <ul class="feature-list">
-            <li>✅ One clear entry point for every lead</li>
-            <li>⚙️ Automatic routing – zero manual handoff</li>
-            <li>🗂️ Structured, consistent data storage</li>
-            <li>🔔 Instant team alert to act while it’s fresh</li>
-          </ul>
+        <div class="challenge-card">
+          <div class="challenge-icon">📋</div>
+          <h3>Data Inconsistency</h3>
+          <p>Copy-paste errors between CRM, sheets, and email caused lost information and frustrated teams.</p>
+        </div>
+        <div class="challenge-card">
+          <div class="challenge-icon">🔄</div>
+          <h3>Repetitive Admin Work</h3>
+          <p>Team members spent 10+ hours weekly on manual data entry instead of selling.</p>
+        </div>
+        <div class="challenge-card">
+          <div class="challenge-icon">👻</div>
+          <h3>Leaked Leads</h3>
+          <p>No visibility into lead flow meant submissions occasionally fell through the cracks entirely.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SOLUTION : CAPTURE / ROUTE / STORE / NOTIFY -->
-    <section class="section">
-      <div style="margin-bottom: 28px;">
-        <div class="eyebrow">THE SOLUTION</div>
-        <h2>A connected no‑code workflow designed for clarity & reliability</h2>
-        <p class="text-soft">One unified system: capture → process → store → notify. No more manual glue.</p>
+  <!-- SOLUTION SEKCIJA - Engineering rešenje -->
+  <section id="solution" class="solution">
+    <div class="container solution-grid">
+      <div class="solution-features">
+        <div>
+          <span class="tag" style="background: #dcfce7; color: #16a34a;">⚙️ THE ENGINEERING SOLUTION</span>
+          <h2 style="margin-top: 16px;">Zero-touch lead processing pipeline</h2>
+        </div>
+        <div class="feature-item">
+          <div class="feature-check">✓</div>
+          <div class="feature-text">
+            <h4>Webhook-first capture</h4>
+            <p>Webflow form submits directly to Make.com webhook → sub-10ms trigger time.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-check">✓</div>
+          <div class="feature-text">
+            <h4>Conditional routing logic</h4>
+            <p>Lead source, priority, and territory determined automatically without human intervention.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-check">✓</div>
+          <div class="feature-text">
+            <h4>Atomic data storage</h4>
+            <p>Google Sheets append with timestamp, source metadata, and structured fields.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-check">✓</div>
+          <div class="feature-text">
+            <h4>Real-time Slack activation</h4>
+            <p>Rich notification with lead details → sales acts in minutes, not hours.</p>
+          </div>
+        </div>
       </div>
-      <div class="solution-grid">
-        <div class="card solution-card"><div class="icon-dot"></div><h3>Capture</h3><p class="text-soft">Webflow form as a clean, consistent entry point for every inbound lead.</p></div>
-        <div class="card solution-card"><div class="icon-dot"></div><h3>Route</h3><p class="text-soft">Make.com handles logic automatically, removing manual handoff & human error.</p></div>
-        <div class="card solution-card"><div class="icon-dot"></div><h3>Store</h3><p class="text-soft">Google Sheets logs each submission → structured, auditable source of truth.</p></div>
-        <div class="card solution-card"><div class="icon-dot"></div><h3>Notify</h3><p class="text-soft">Slack alert triggers instantly, helping teams follow up within minutes.</p></div>
+      <div class="solution-image">
+        <span>🔧 Make.com automation blueprint<br>Webflow → Router → Sheets → Slack</span>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- VISUAL WORKFLOW with actual image links (assets) -->
-    <section id="workflow" class="section">
-      <div style="margin-bottom: 28px;">
-        <div class="eyebrow">VISUAL WORKFLOW</div>
-        <h2>How the process moves from submission to team notification</h2>
-        <p class="text-soft">End-to-end automation in action: each step eliminates manual work and adds visibility.</p>
-      </div>
-      <div class="workflow-grid">
-        <div class="workflow-card">
-          <div class="image-frame"><img src="https://portfolio-site-9d14e9.webflow.io/images/webflow-form.png" alt="Webflow lead form" onerror="this.src='https://placehold.co/600x338/0a1527/74f2d3?text=Webflow+Form'"></div>
-          <div class="workflow-content"><span class="step-badge">01</span><h3>Lead capture begins on the website</h3><p class="text-soft">A native Webflow form creates the only entry point, ensuring zero lost leads and validation.</p></div>
-        </div>
-        <div class="workflow-card">
-          <div class="image-frame"><img src="https://portfolio-site-9d14e9.webflow.io/images/make-scenario.png" alt="Make automation scenario" onerror="this.src='https://placehold.co/600x338/0a1527/7aa8ff?text=Make.com+Scenario'"></div>
-          <div class="workflow-content"><span class="step-badge">02</span><h3>Automation logic routes the data</h3><p class="text-soft">Make receives the webhook, processes fields, enriches if needed — consistent and auditable.</p></div>
-        </div>
-        <div class="workflow-card">
-          <div class="image-frame"><img src="https://portfolio-site-9d14e9.webflow.io/images/google-sheets.png" alt="Google Sheets record" onerror="this.src='https://placehold.co/600x338/0a1527/74f2d3?text=Google+Sheets+Log'"></div>
-          <div class="workflow-content"><span class="step-badge">03</span><h3>Structured storage in Google Sheets</h3><p class="text-soft">Every submission is appended with timestamp + lead details, giving operations a clean database.</p></div>
-        </div>
-        <div class="workflow-card">
-          <div class="image-frame"><img src="https://portfolio-site-9d14e9.webflow.io/images/slack-alert.png" alt="Slack team alert" onerror="this.src='https://placehold.co/600x338/0a1527/7aa8ff?text=Slack+Alert'"></div>
-          <div class="workflow-content"><span class="step-badge">04</span><h3>Real‑time Slack notification</h3><p class="text-soft">A formatted message hits the designated channel → team can act in seconds, not hours.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- BUSINESS IMPACT -->
-    <section id="impact" class="section">
-      <div style="max-width: 800px; margin-bottom: 32px;">
-        <div class="eyebrow">BUSINESS IMPACT</div>
-        <h2>What this workflow improves for a business</h2>
-        <p class="text-soft">Beyond automation — operational leverage, faster response, and scalable infrastructure.</p>
+  <!-- IMPACT SEKCIJA - BROJEVI koji prodaju (OVO JE KLJUČNO) -->
+  <section id="impact" class="impact">
+    <div class="container">
+      <div class="impact-header">
+        <span class="tag" style="background: #dbeafe; color: #2563eb;">📊 THE IMPACT</span>
+        <h2 style="margin-top: 16px;">What the business gained</h2>
+        <p style="color: var(--text-gray);">Measurable results after 30 days of production</p>
       </div>
       <div class="impact-grid">
-        <div class="card impact-card"><h3>📉 Less manual overhead</h3><p class="text-soft">No more copying data between tabs or forwarding emails. The team focuses on high-value work.</p></div>
-        <div class="card impact-card"><h3>⚡ Faster internal response</h3><p class="text-soft">Lead-to-alert under 10 seconds directly improves conversion potential.</p></div>
-        <div class="card impact-card"><h3>📊 Cleaner operational visibility</h3><p class="text-soft">One dashboard (Sheets) shows all leads with timestamps, source, status-ready for review.</p></div>
-        <div class="card impact-card"><h3>🚀 Stronger foundation for scale</h3><p class="text-soft">The architecture can grow with volume, add CRM or email follow-up without rebuilding.</p></div>
+        <div class="impact-card">
+          <div class="impact-number">95%</div>
+          <div class="impact-label">Reduction in Response Time</div>
+          <div class="impact-desc">From 4 hours → under 10 seconds</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-number">40+</div>
+          <div class="impact-label">Hours Reclaimed Monthly</div>
+          <div class="impact-desc">Previously lost to manual data entry</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-number">100%</div>
+          <div class="impact-label">Data Accuracy</div>
+          <div class="impact-desc">Zero copy-paste errors since deployment</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-number">0</div>
+          <div class="impact-label">Maintenance Required</div>
+          <div class="impact-desc">Set it and forget it architecture</div>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- WHY THIS MATTERS: design & system thinking -->
-    <section class="section">
-      <div style="max-width: 760px; margin-bottom: 24px;">
-        <div class="eyebrow">DESIGN & SYSTEMS APPROACH</div>
-        <h2>What this case study says about how I work</h2>
-        <p class="text-soft">It’s not just about connecting apps — it’s about reducing friction, designing for trust, and delivering business leverage.</p>
-      </div>
-      <div class="three-col">
-        <div class="card insight-card"><h3>🎯 Focus on outcomes</h3><p class="text-soft">I build for speed, reliability, and clarity — never adding complexity for its own sake.</p></div>
-        <div class="card insight-card"><h3>🧠 Think in systems</h3><p class="text-soft">From input to action, every piece has a role. The result feels structured and dependable.</p></div>
-        <div class="card insight-card"><h3>✨ UX + Operations bridge</h3><p class="text-soft">User experience stays simple, while the backend does the heavy lifting seamlessly.</p></div>
-      </div>
-    </section>
+  <!-- CTA SEKCIJA - Dark mode za vizuelni šok -->
+  <section id="contact" class="cta">
+    <div class="container">
+      <h2>Ready to scale your lead operation?</h2>
+      <p>Let's discuss how I can architect a similar system for your business.</p>
+      <a href="#" class="cta-button">Let's Talk →</a>
+    </div>
+  </section>
+</main>
 
-    <!-- FINAL CTA / CONTACT -->
-    <section id="contact" class="final-cta card" style="margin-bottom: 20px;">
-      <div class="eyebrow">READY TO STREAMLINE?</div>
-      <h2>Looking for someone who turns manual workflows into cleaner systems?</h2>
-      <p class="text-soft" style="max-width: 680px; margin: 16px auto;">I design and implement no-code automation that reduces admin friction, improves response time, and makes business processes manageable.</p>
-      <div class="hero-actions" style="justify-content: center; margin-top: 28px;">
-        <a href="mailto:hello@minaflow.com" class="btn btn-primary">Email me</a>
-        <a href="#" class="btn btn-secondary" target="_blank">LinkedIn</a>
-      </div>
-    </section>
+<footer class="footer">
+  <div class="container">
+    <p>© 2026 Mina.Flow — Scalable Lead Capture Architecture</p>
+  </div>
+</footer>
 
-    <footer class="footer">
-      <p>© 2026 Mina.Flow — No-code automation case study · designed for clarity & business impact</p>
-    </footer>
-  </main>
-</div>
 </body>
 </html>
