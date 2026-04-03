@@ -70,7 +70,14 @@
       display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
     }
     .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
-    .logo-img { width: 40px; height: 40px; border-radius: 11px; object-fit: cover; border: 1px solid var(--bv); }
+    .logo-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, #8b5cf6, #a855f7);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 20px; color: white;
+      box-shadow: 0 4px 12px rgba(139,92,246,0.3);
+    }
     .logo-name { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 700; font-size: 1.75rem; line-height: 1; color: #fff; }
     .nav-links { display: flex; align-items: center; gap: 1.8rem; flex-wrap: wrap; }
     .nav-links a { color: var(--muted2); text-decoration: none; font-size: .85rem; font-weight: 500; transition: color .2s; }
@@ -295,8 +302,7 @@
 <nav>
   <div class="nav-inner">
     <a href="https://portfolio-site-9d14e9.webflow.io/" class="logo">
-      <img src="assets/mina-logo.png" alt="Mina JK" class="logo-img"
-           onerror="this.src='https://placehold.co/40x40/8b5cf6/white?text=M'">
+      <div class="logo-icon">M</div>
       <span class="logo-name">Mina</span>
     </a>
     <div class="nav-links">
