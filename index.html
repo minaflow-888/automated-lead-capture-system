@@ -17,65 +17,71 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="page-glow page-glow-1"></div>
-  <div class="page-glow page-glow-2"></div>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-grid"></div>
 
   <div class="site-shell">
     <header class="topbar">
       <a href="#" class="brand">
-        <img src="mina-logo.png" alt="Mina.Flow logo" class="brand-logo" />
-        <span>Mina.Flow</span>
+        <span class="brand-mark">
+          <img src="mina-logo.png" alt="Mina.Flow logo" class="brand-logo" />
+        </span>
+        <span class="brand-text">Mina.Flow</span>
       </a>
 
       <nav class="topnav">
         <a href="#overview">Overview</a>
         <a href="#workflow">Workflow</a>
         <a href="#impact">Impact</a>
-        <a href="#contact" class="nav-cta">Contact</a>
+        <a href="#contact" class="nav-cta">Get in touch</a>
       </nav>
     </header>
 
     <main>
       <section class="hero" id="overview">
-        <div class="hero-copy">
+        <div class="hero-copy card">
           <p class="eyebrow">AUTOMATION CASE STUDY</p>
-          <h1>Turning a messy lead intake process into a fast, structured workflow.</h1>
+          <h1>Turning manual lead handling into a fast, visible, and dependable system.</h1>
           <p class="hero-text">
-            This project was built to solve a common operational problem:
-            incoming leads were being handled manually, which slowed down response times,
-            increased admin work, and made the process less reliable.
-            I redesigned it into a no-code workflow that captures new leads instantly,
-            stores them cleanly, and alerts the team in real time.
+            This project was designed to solve a simple but costly operational issue:
+            incoming leads were being handled manually, which created delays, repetitive admin work,
+            and inconsistent visibility for the team.
+            I rebuilt the process into a structured no-code workflow that captures submissions instantly,
+            stores them clearly, and notifies the team in real time.
           </p>
 
           <div class="hero-actions">
-            <a href="#workflow" class="btn btn-primary">See how it works</a>
-            <a href="#contact" class="btn btn-secondary">Get in touch</a>
+            <a href="#workflow" class="btn btn-primary">See the workflow</a>
+            <a href="#contact" class="btn btn-secondary">Contact me</a>
           </div>
 
-          <div class="hero-proof">
-            <div class="proof-item">
-              <span class="proof-value">&lt; 10s</span>
-              <span class="proof-label">Response visibility</span>
+          <div class="hero-metrics">
+            <div class="metric-card">
+              <span class="metric-value">&lt; 10s</span>
+              <span class="metric-label">Lead visibility</span>
             </div>
-            <div class="proof-item">
-              <span class="proof-value">42h</span>
-              <span class="proof-label">Admin time saved monthly</span>
+            <div class="metric-card">
+              <span class="metric-value">42h</span>
+              <span class="metric-label">Admin time saved monthly</span>
             </div>
-            <div class="proof-item">
-              <span class="proof-value">100%</span>
-              <span class="proof-label">Consistent lead capture</span>
+            <div class="metric-card">
+              <span class="metric-value">100%</span>
+              <span class="metric-label">Consistent lead capture</span>
             </div>
           </div>
         </div>
 
-        <aside class="hero-panel">
-          <div class="panel-badge">Project stack</div>
-          <h2>Built for clarity, not complexity</h2>
-          <p>
-            The tools support the workflow, but the real value is operational:
-            less manual handling, faster team awareness, and cleaner lead data.
-          </p>
+        <aside class="hero-panel card">
+          <div class="hero-panel-top">
+            <span class="panel-badge">Project stack</span>
+            <h2>Built for business outcomes, not tool complexity</h2>
+            <p>
+              The value of this workflow is not the number of tools involved.
+              The value is what the business gets back: speed, cleaner data,
+              less manual friction, and clearer team visibility.
+            </p>
+          </div>
 
           <div class="stack-list">
             <span>Webflow</span>
@@ -84,41 +90,40 @@
             <span>Slack</span>
           </div>
 
-          <div class="panel-note">
-            A simple front end for the user.
-            A dependable process behind the scenes.
+          <div class="hero-quote">
+            <p>Simple for the user on the front end. Reliable for the team behind the scenes.</p>
           </div>
         </aside>
       </section>
 
       <section class="section">
         <div class="section-heading narrow">
-          <p class="eyebrow">THE CONTEXT</p>
-          <h2>What problem needed to be solved?</h2>
+          <p class="eyebrow">THE PROBLEM</p>
+          <h2>Manual workflows create friction where speed matters most</h2>
           <p>
-            When lead handling depends on manual steps, the business loses speed exactly where speed matters most.
-            Even small delays create friction for the team and increase the chance of inconsistent records.
+            When lead handling depends on manual steps, businesses lose time exactly when they should be moving fast.
+            Even a basic process becomes fragile when information has to be copied, checked, or forwarded by hand.
           </p>
         </div>
 
         <div class="two-col-grid">
-          <article class="card soft-card">
-            <h3>The problem</h3>
+          <article class="card info-card">
+            <h3>What was going wrong</h3>
             <ul class="feature-list">
-              <li>Leads were not moving through the process fast enough</li>
-              <li>Manual handling created repetitive admin work</li>
+              <li>Leads were not moving through the process quickly enough</li>
+              <li>Manual handoff created repetitive low-value admin work</li>
               <li>Important details could become scattered between tools</li>
-              <li>The team lacked one clean, reliable lead record</li>
+              <li>The team lacked one clean real-time view of incoming leads</li>
             </ul>
           </article>
 
-          <article class="card soft-card">
-            <h3>The goal</h3>
+          <article class="card info-card">
+            <h3>What the workflow needed to do</h3>
             <ul class="feature-list">
               <li>Capture every lead through one clear entry point</li>
-              <li>Route submissions automatically without manual copying</li>
-              <li>Store the data in a structured format</li>
-              <li>Notify the team immediately so follow-up can start faster</li>
+              <li>Route the submission automatically without manual copying</li>
+              <li>Store the data in a structured and consistent format</li>
+              <li>Alert the team immediately so follow-up can start faster</li>
             </ul>
           </article>
         </div>
@@ -127,11 +132,10 @@
       <section class="section">
         <div class="section-heading">
           <p class="eyebrow">THE SOLUTION</p>
-          <h2>A connected workflow designed around business outcomes</h2>
+          <h2>A connected no-code workflow designed for clarity and reliability</h2>
           <p>
-            Instead of treating the process as a set of disconnected tools,
-            I designed it as one system with a clear flow:
-            collect the lead, process the data, store it cleanly, and notify the team right away.
+            Instead of treating the process as separate tools, I designed it as one connected system:
+            capture the lead, process the data, store it cleanly, and notify the team instantly.
           </p>
         </div>
 
@@ -140,7 +144,7 @@
             <span class="icon-dot"></span>
             <h3>Capture</h3>
             <p>
-              A Webflow form collects lead information through a simple and consistent front-end experience.
+              A Webflow form creates a clean, consistent entry point for every incoming lead.
             </p>
           </article>
 
@@ -148,7 +152,7 @@
             <span class="icon-dot"></span>
             <h3>Route</h3>
             <p>
-              Make handles the submission logic automatically, removing unnecessary manual steps.
+              Make handles the workflow logic automatically, removing manual handoff from the process.
             </p>
           </article>
 
@@ -156,7 +160,7 @@
             <span class="icon-dot"></span>
             <h3>Store</h3>
             <p>
-              Google Sheets acts as a structured source of truth for incoming lead data.
+              Google Sheets keeps submissions in one structured record for visibility and review.
             </p>
           </article>
 
@@ -164,7 +168,7 @@
             <span class="icon-dot"></span>
             <h3>Notify</h3>
             <p>
-              Slack alerts give the team immediate visibility so follow-up can happen without delay.
+              Slack alerts give the team immediate awareness, so no lead sits unnoticed.
             </p>
           </article>
         </div>
@@ -173,15 +177,15 @@
       <section class="section" id="workflow">
         <div class="section-heading">
           <p class="eyebrow">VISUAL WORKFLOW</p>
-          <h2>How the process works from form submission to team alert</h2>
+          <h2>How the process moves from form submission to team notification</h2>
           <p>
-            These screenshots show the workflow in the order it happens.
-            The goal is not just automation for its own sake, but a process that is easier to trust and easier to scale.
+            These screenshots show the workflow in the actual order it happens.
+            The goal is not just automation for its own sake, but a process that feels easier to trust and easier to scale.
           </p>
         </div>
 
         <div class="workflow-grid">
-          <article class="workflow-card">
+          <article class="workflow-card card">
             <div class="image-frame">
               <img src="webflow-form.png" alt="Webflow lead capture form" />
             </div>
@@ -189,38 +193,38 @@
               <span class="step">01</span>
               <h3>Lead capture begins on the website</h3>
               <p>
-                The process starts with a Webflow form that gives the business one clean entry point for incoming leads.
+                The workflow starts with a Webflow form that gives the business one clear and reliable entry point for incoming leads.
               </p>
             </div>
           </article>
 
-          <article class="workflow-card">
+          <article class="workflow-card card">
             <div class="image-frame">
               <img src="make-scenario.png" alt="Make automation scenario" />
             </div>
             <div class="workflow-content">
               <span class="step">02</span>
-              <h3>Automation logic processes the submission</h3>
+              <h3>Automation logic handles the routing</h3>
               <p>
-                Make receives the form data and handles the routing logic automatically, reducing manual intervention.
+                Make receives the submission and processes it automatically, reducing manual work and keeping the logic consistent.
               </p>
             </div>
           </article>
 
-          <article class="workflow-card">
+          <article class="workflow-card card">
             <div class="image-frame">
-              <img src="google-sheets.png" alt="Google Sheets structured lead record" />
+              <img src="google-sheets.png" alt="Google Sheets lead record" />
             </div>
             <div class="workflow-content">
               <span class="step">03</span>
-              <h3>Lead data is stored in one structured record</h3>
+              <h3>Data is stored in one structured record</h3>
               <p>
-                The submission is logged in Google Sheets, creating a consistent source of truth for tracking and review.
+                Every submission is logged in Google Sheets to create a clean source of truth for tracking and review.
               </p>
             </div>
           </article>
 
-          <article class="workflow-card">
+          <article class="workflow-card card">
             <div class="image-frame">
               <img src="slack-alert.png" alt="Slack team notification" />
             </div>
@@ -228,7 +232,7 @@
               <span class="step">04</span>
               <h3>The team gets immediate visibility</h3>
               <p>
-                A Slack notification alerts the team right away, helping them act faster while the lead is still fresh.
+                A Slack notification alerts the team right away, helping them act while the lead is still fresh.
               </p>
             </div>
           </article>
@@ -250,16 +254,16 @@
           </article>
 
           <article class="card impact-card">
-            <h3>Faster team response</h3>
+            <h3>Faster internal response</h3>
             <p>
-              New leads become visible almost immediately, which helps teams respond while interest is still high.
+              New leads become visible almost immediately, which helps teams respond faster and more confidently.
             </p>
           </article>
 
           <article class="card impact-card">
             <h3>Cleaner operational visibility</h3>
             <p>
-              One structured flow makes it easier to monitor submissions and maintain consistency across the process.
+              One structured flow makes the process easier to monitor and keeps incoming data more consistent.
             </p>
           </article>
 
@@ -274,12 +278,12 @@
 
       <section class="section">
         <div class="section-heading narrow">
-          <p class="eyebrow">WHY THIS MATTERS</p>
-          <h2>What this case study shows about how I work</h2>
+          <p class="eyebrow">WHY THIS CASE STUDY MATTERS</p>
+          <h2>What this project says about how I work</h2>
           <p>
-            This project is about more than connecting apps.
-            It shows that I look at friction inside a workflow, simplify the process,
-            and design a system that is easier for a business to use, understand, and trust.
+            This project is not just about connecting apps.
+            It shows that I look at friction inside a workflow, simplify what does not need to be manual,
+            and design systems that are easier for businesses to use and trust.
           </p>
         </div>
 
@@ -287,21 +291,21 @@
           <article class="card insight-card">
             <h3>I focus on outcomes</h3>
             <p>
-              I build around speed, clarity, and reliability rather than adding technical complexity for its own sake.
+              I build around speed, visibility, and reliability instead of adding technical complexity for its own sake.
             </p>
           </article>
 
           <article class="card insight-card">
             <h3>I think in systems</h3>
             <p>
-              A good workflow should feel structured, dependable, and easy to follow from input to action.
+              A strong workflow should feel structured, dependable, and clear from input to action.
             </p>
           </article>
 
           <article class="card insight-card">
             <h3>I connect UX and operations</h3>
             <p>
-              The front end should feel simple for the user, while the backend quietly does the heavy lifting.
+              The user experience should stay simple while the backend quietly handles the heavy lifting.
             </p>
           </article>
         </div>
@@ -312,8 +316,8 @@
           <p class="eyebrow">LET'S CONNECT</p>
           <h2>Looking for someone who can turn manual workflows into cleaner systems?</h2>
           <p>
-            I build no-code automation solutions that reduce friction,
-            improve response speed, and make business processes easier to manage.
+            I build no-code automation solutions that reduce friction, improve response speed,
+            and make business processes easier to manage.
           </p>
 
           <div class="hero-actions center-actions">
