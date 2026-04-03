@@ -3,15 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>automated-lead-capture-system/assets/mina-logo.png | Automated Lead Capture System - Case Study</title>
+  <title>Mina.Flow | Automated Lead Capture System - Case Study</title>
   <meta name="description" content="Automated lead capture system that reduced response time to under 10 seconds, saved 3.5+ hours monthly, and achieved 100% lead capture reliability." />
   
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
-  
-  <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   
   <style>
@@ -26,34 +23,15 @@
       background: linear-gradient(135deg, #0a0a1a 0%, #12102a 50%, #1a1535 100%);
       color: #ffffff;
       line-height: 1.5;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
-                        radial-gradient(1px 1px at 80px 150px, #a855f7, rgba(0,0,0,0));
-      background-size: 200px 200px, 150px 150px;
-      background-repeat: repeat;
-      opacity: 0.1;
-      pointer-events: none;
-      z-index: 0;
     }
 
     .container {
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 32px;
-      position: relative;
-      z-index: 1;
     }
 
-    /* ===== NAVIGACIJA ===== */
+    /* Navigacija */
     .navbar {
       padding: 24px 0;
       border-bottom: 1px solid rgba(139, 92, 246, 0.2);
@@ -115,7 +93,7 @@
       color: white !important;
     }
 
-    /* ===== HERO ===== */
+    /* Hero */
     .hero {
       padding: 80px 0 60px;
     }
@@ -157,10 +135,6 @@
       flex-wrap: wrap;
     }
 
-    .stat-item {
-      text-align: left;
-    }
-
     .stat-number {
       font-size: 42px;
       font-weight: 800;
@@ -174,7 +148,7 @@
       margin-top: 6px;
     }
 
-    /* ===== METADATA CARD ===== */
+    /* Metadata */
     .metadata-card {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.08);
@@ -207,12 +181,7 @@
       margin-bottom: 6px;
     }
 
-    .metadata-value {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    /* ===== RACI MATRIX ===== */
+    /* RACI */
     .raci-section {
       background: rgba(0,0,0,0.2);
       border-radius: 24px;
@@ -239,7 +208,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    /* ===== DIJAGRAM TOKA SA SLIKAMA ===== */
+    /* Flowchart */
     .flowchart-diagram {
       background: linear-gradient(135deg, #0f0c1f, #120e28);
       border-radius: 32px;
@@ -263,13 +232,6 @@
       padding: 24px 20px;
       text-align: center;
       min-width: 160px;
-      transition: all 0.3s;
-    }
-
-    .flow-step:hover {
-      transform: translateY(-5px);
-      background: rgba(139, 92, 246, 0.2);
-      border-color: #8b5cf6;
     }
 
     .step-icon {
@@ -283,17 +245,12 @@
       margin-bottom: 6px;
     }
 
-    .step-desc {
-      font-size: 11px;
-      color: #a5a0c0;
-    }
-
     .arrow {
       font-size: 28px;
       color: #8b5cf6;
     }
 
-    /* ===== SEKCIONA SA SLIKAMA (PROOF) ===== */
+    /* Proof grid - slike */
     .proof-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -306,20 +263,12 @@
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 24px;
       overflow: hidden;
-      transition: all 0.3s;
-    }
-
-    .proof-card:hover {
-      transform: translateY(-5px);
-      border-color: #8b5cf6;
-      box-shadow: 0 20px 40px -15px rgba(139, 92, 246, 0.3);
     }
 
     .proof-img {
       width: 100%;
       height: 240px;
       object-fit: cover;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .proof-content {
@@ -332,18 +281,7 @@
       margin-bottom: 6px;
     }
 
-    .proof-desc {
-      font-size: 12px;
-      color: #a5a0c0;
-    }
-
-    @media (max-width: 900px) {
-      .proof-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* ===== OSTALI STILOVI ===== */
+    /* Sekcije */
     .section {
       padding: 60px 0;
     }
@@ -371,36 +309,20 @@
       margin-bottom: 16px;
     }
 
-    .grid-2 {
+    .grid-2, .grid-3, .grid-4 {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
       gap: 24px;
     }
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
 
     .card {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.06);
       border-radius: 24px;
       padding: 32px;
-      transition: all 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(139, 92, 246, 0.4);
-      background: rgba(139, 92, 246, 0.05);
     }
 
     .card-icon {
@@ -416,10 +338,10 @@
 
     .card p {
       color: #a5a0c0;
-      line-height: 1.6;
       font-size: 14px;
     }
 
+    /* Compare */
     .compare-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -433,19 +355,8 @@
       padding: 32px;
     }
 
-    .compare-card.before {
-      border-left: 4px solid #ef4444;
-    }
-
-    .compare-card.after {
-      border-left: 4px solid #10b981;
-    }
-
-    .compare-title {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
+    .compare-card.before { border-left: 4px solid #ef4444; }
+    .compare-card.after { border-left: 4px solid #10b981; }
 
     .compare-list {
       list-style: none;
@@ -457,9 +368,9 @@
       gap: 12px;
       padding: 10px 0;
       color: #a5a0c0;
-      font-size: 14px;
     }
 
+    /* Tech stack */
     .tech-stack {
       display: flex;
       flex-wrap: wrap;
@@ -479,13 +390,13 @@
       font-weight: 600;
     }
 
+    /* CTA */
     .cta {
       text-align: center;
       background: linear-gradient(135deg, #1a1535, #0f0c1f);
       border-radius: 32px;
       padding: 64px 48px;
       margin: 48px 0;
-      border: 1px solid rgba(139, 92, 246, 0.3);
     }
 
     .cta-buttons {
@@ -496,29 +407,25 @@
       margin-top: 32px;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, #8b5cf6, #a855f7);
+    .btn-primary, .btn-secondary {
       padding: 14px 32px;
       border-radius: 999px;
       text-decoration: none;
-      color: white;
       font-weight: 600;
       display: inline-flex;
       align-items: center;
       gap: 10px;
     }
 
+    .btn-primary {
+      background: linear-gradient(135deg, #8b5cf6, #a855f7);
+      color: white;
+    }
+
     .btn-secondary {
       background: transparent;
       border: 1px solid rgba(139, 92, 246, 0.5);
-      padding: 14px 32px;
-      border-radius: 999px;
-      text-decoration: none;
       color: white;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
     }
 
     .footer {
@@ -530,16 +437,14 @@
     }
 
     @media (max-width: 900px) {
-      .grid-2, .grid-3, .grid-4, .compare-grid {
+      .grid-2, .grid-3, .grid-4, .compare-grid, .proof-grid, .metadata-grid {
         grid-template-columns: 1fr;
       }
       h1 { font-size: 40px; }
       h2 { font-size: 28px; }
-      .container { padding: 0 20px; }
-      .flowchart-diagram { padding: 24px; }
       .flow-steps { flex-direction: column; }
       .arrow { transform: rotate(90deg); }
-      .metadata-grid, .raci-table { grid-template-columns: 1fr; gap: 12px; }
+      .container { padding: 0 20px; }
     }
   </style>
 </head>
@@ -548,7 +453,7 @@
 <nav class="navbar">
   <div class="container nav-inner">
     <a href="#" class="logo">
-      <img src="automated-lead-capture-system/assets/mina-logo.png" alt="Mina.Flow logo" class="logo-img" onerror="this.src='https://placehold.co/44x44/8b5cf6/white?text=M'">
+      <img src="assets/mina-logo.png" alt="Mina.Flow logo" class="logo-img" onerror="this.src='https://placehold.co/44x44/8b5cf6/white?text=M'">
       <span>Mina.Flow</span>
     </a>
     <div class="nav-links">
@@ -563,7 +468,6 @@
 </nav>
 
 <main>
-  <!-- HERO -->
   <section class="hero">
     <div class="container">
       <div class="hero-badge">
@@ -573,54 +477,50 @@
       <h1>Automated Lead Capture<br>& Response System</h1>
       <p class="hero-subtitle">Transforming manual inquiries into a scalable, error-proof client pipeline.</p>
       <div class="hero-stats">
-        <div class="stat-item"><div class="stat-number">&lt;10s</div><div class="stat-label">Response Time</div></div>
-        <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Lead Capture</div></div>
-        <div class="stat-item"><div class="stat-number">30%</div><div class="stat-label">Cost Reduction</div></div>
+        <div><div class="stat-number">&lt;10s</div><div class="stat-label">Response Time</div></div>
+        <div><div class="stat-number">100%</div><div class="stat-label">Lead Capture</div></div>
+        <div><div class="stat-number">30%</div><div class="stat-label">Cost Reduction</div></div>
       </div>
     </div>
   </section>
 
-  <!-- METADATA + RACI -->
   <div class="container">
     <div class="metadata-card">
       <div class="metadata-grid">
         <div class="metadata-item"><div class="metadata-icon"><i class="fas fa-code-branch"></i></div><div class="metadata-label">Version</div><div class="metadata-value">v2.0</div></div>
-        <div class="metadata-item"><div class="metadata-icon"><i class="fas fa-user-cog"></i></div><div class="metadata-label">Owner</div><div class="metadata-value">No-Code Automation Specialist</div></div>
-        <div class="metadata-item"><div class="metadata-icon"><i class="fas fa-users"></i></div><div class="metadata-label">Custodian</div><div class="metadata-value">Sales & Operations Team</div></div>
-        <div class="metadata-item"><div class="metadata-icon"><i class="fas fa-pen-fancy"></i></div><div class="metadata-label">Technical Writer</div><div class="metadata-value">Mina.Flow</div></div>
+        <div class="metadata-item"><div class="metadata-icon"><i class="fas fa-user-cog"></i></div><div class="metadata-label">Owner</div><div class="metadata-value">No-Code Specialist</div></div>
+        <div class="metadata-item"><div class="metadata-icon"><i class="fas fa-users"></i></div><div class="metadata-label">Custodian</div><div class="metadata-value">Sales & Operations</div></div>
+        <div class="metadata-item"><div class="metadata-icon"><i class="fas fa-pen-fancy"></i></div><div class="metadata-label">Author</div><div class="metadata-value">Mina.Flow</div></div>
       </div>
     </div>
 
     <div class="raci-section">
-      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;"><i class="fas fa-table-list" style="color: #8b5cf6; font-size: 24px;"></i><h3 style="margin:0;">RACI Matrix</h3></div>
+      <h3><i class="fas fa-table-list" style="color: #8b5cf6;"></i> RACI Matrix</h3>
       <div class="raci-table">
         <div class="raci-header">Role</div><div class="raci-header">Responsibility</div>
-        <div class="raci-role"><i class="fas fa-cogs" style="color:#8b5cf6; width:24px;"></i> Responsible (R)</div><div class="raci-person">Automation Specialist — Builds and maintains the system</div>
-        <div class="raci-role"><i class="fas fa-chart-line" style="color:#f59e0b; width:24px;"></i> Accountable (A)</div><div class="raci-person">Sales Manager — Ensures leads are followed up on</div>
-        <div class="raci-role"><i class="fas fa-headset" style="color:#10b981; width:24px;"></i> Consulted (C)</div><div class="raci-person">Customer Service Team — Defines auto-reply message</div>
-        <div class="raci-role"><i class="fas fa-chart-simple" style="color:#ec4899; width:24px;"></i> Informed (I)</div><div class="raci-person">Business Owner — Receives weekly ROI reports</div>
+        <div class="raci-role"><i class="fas fa-cogs"></i> Responsible (R)</div><div class="raci-person">Automation Specialist — Builds and maintains system</div>
+        <div class="raci-role"><i class="fas fa-chart-line"></i> Accountable (A)</div><div class="raci-person">Sales Manager — Ensures leads are followed up</div>
+        <div class="raci-role"><i class="fas fa-headset"></i> Consulted (C)</div><div class="raci-person">Customer Service — Defines auto-reply</div>
+        <div class="raci-role"><i class="fas fa-chart-simple"></i> Informed (I)</div><div class="raci-person">Business Owner — Receives weekly ROI reports</div>
       </div>
     </div>
   </div>
 
-  <!-- CHALLENGE -->
   <section id="challenge" class="section">
     <div class="container">
       <div class="section-header">
         <span class="section-tag"><i class="fas fa-exclamation-triangle"></i> The Challenge</span>
         <h2>No lead left behind</h2>
-        <p>Slow response times = lost revenue. Manual processes = single point of failure.</p>
       </div>
       <div class="grid-2">
         <div class="card"><div class="card-icon"><i class="fas fa-hourglass-half"></i></div><h3>Lost leads</h3><p>Delayed responses cause prospects to go cold before first contact.</p></div>
-        <div class="card"><div class="card-icon"><i class="fas fa-keyboard"></i></div><h3>Manual data entry</h3><p>Hours wasted copying data between tools instead of selling.</p></div>
-        <div class="card"><div class="card-icon"><i class="fas fa-bug"></i></div><h3>Inconsistent data</h3><p>Copy-paste errors lead to duplicate records and lost information.</p></div>
-        <div class="card"><div class="card-icon"><i class="fas fa-eye-slash"></i></div><h3>No visibility</h3><p>Silent failures mean leads fall through cracks unnoticed.</p></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-keyboard"></i></div><h3>Manual data entry</h3><p>Hours wasted copying data between tools.</p></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-bug"></i></div><h3>Inconsistent data</h3><p>Copy-paste errors lead to duplicate records.</p></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-eye-slash"></i></div><h3>No visibility</h3><p>Silent failures mean leads fall through cracks.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- DIJAGRAM TOKA PROCESA -->
   <section id="process" class="section">
     <div class="container">
       <div class="section-header">
@@ -629,21 +529,20 @@
       </div>
       <div class="flowchart-diagram">
         <div class="flow-steps">
-          <div class="flow-step"><div class="step-icon"><i class="fas fa-globe"></i></div><div class="step-title">Capture</div><div class="step-desc">Webflow form</div></div>
+          <div class="flow-step"><div class="step-icon"><i class="fas fa-globe"></i></div><div class="step-title">Capture</div></div>
           <div class="arrow"><i class="fas fa-arrow-right"></i></div>
-          <div class="flow-step"><div class="step-icon"><i class="fas fa-filter"></i></div><div class="step-title">Parse & Filter</div><div class="step-desc">Remove spam</div></div>
+          <div class="flow-step"><div class="step-icon"><i class="fas fa-filter"></i></div><div class="step-title">Parse & Filter</div></div>
           <div class="arrow"><i class="fas fa-arrow-right"></i></div>
-          <div class="flow-step"><div class="step-icon"><i class="fas fa-database"></i></div><div class="step-title">Store</div><div class="step-desc">Google Sheets</div></div>
+          <div class="flow-step"><div class="step-icon"><i class="fas fa-database"></i></div><div class="step-title">Store</div></div>
           <div class="arrow"><i class="fas fa-arrow-right"></i></div>
-          <div class="flow-step"><div class="step-icon"><i class="fas fa-bell"></i></div><div class="step-title">Alert</div><div class="step-desc">Slack notification</div></div>
+          <div class="flow-step"><div class="step-icon"><i class="fas fa-bell"></i></div><div class="step-title">Alert</div></div>
           <div class="arrow"><i class="fas fa-arrow-right"></i></div>
-          <div class="flow-step"><div class="step-icon"><i class="fas fa-envelope"></i></div><div class="step-title">Engage</div><div class="step-desc">Auto-reply email</div></div>
+          <div class="flow-step"><div class="step-icon"><i class="fas fa-envelope"></i></div><div class="step-title">Engage</div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- VIZUELNI DOKAZ - TVOJE SLIKE! -->
   <section id="proof" class="section">
     <div class="container">
       <div class="section-header">
@@ -652,43 +551,14 @@
         <p>Real screenshots from the actual automation workflow I built</p>
       </div>
       <div class="proof-grid">
-        <!-- Webflow Form -->
-        <div class="proof-card">
-          <img src="automated-lead-capture-system/assets/webflow-form.png" alt="Webflow lead capture form" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Webflow+Form'">
-          <div class="proof-content">
-            <div class="proof-title"><i class="fas fa-globe"></i> Step 1: Lead Capture</div>
-            <div class="proof-desc">Webflow form - clean entry point for every lead</div>
-          </div>
-        </div>
-        <!-- Make.com Scenario -->
-        <div class="proof-card">
-          <img src="automated-lead-capture-system/assets/make-scenario.png" alt="Make.com automation scenario" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Make.com+Scenario'">
-          <div class="proof-content">
-            <div class="proof-title"><i class="fas fa-code-branch"></i> Step 2: Automation Logic</div>
-            <div class="proof-desc">Make.com handles routing and processing</div>
-          </div>
-        </div>
-        <!-- Google Sheets -->
-        <div class="proof-card">
-          <img src="automated-lead-capture-system/assets/google-sheets.png" alt="Google Sheets lead database" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Google+Sheets'">
-          <div class="proof-content">
-            <div class="proof-title"><i class="fas fa-database"></i> Step 3: Structured Storage</div>
-            <div class="proof-desc">Google Sheets - clean, searchable lead database</div>
-          </div>
-        </div>
-        <!-- Slack Alert -->
-        <div class="proof-card">
-          <img src="automated-lead-capture-system/assets/slack-alert.png" alt="Slack team notification" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Slack+Alert'">
-          <div class="proof-content">
-            <div class="proof-title"><i class="fab fa-slack"></i> Step 4: Real-time Alert</div>
-            <div class="proof-desc">Slack notification - team acts in seconds</div>
-          </div>
-        </div>
+        <div class="proof-card"><img src="assets/webflow-form.png" alt="Webflow form" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Webflow+Form'"><div class="proof-content"><div class="proof-title"><i class="fas fa-globe"></i> Step 1: Lead Capture</div></div></div>
+        <div class="proof-card"><img src="assets/make-scenario.png" alt="Make.com scenario" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Make.com+Scenario'"><div class="proof-content"><div class="proof-title"><i class="fas fa-code-branch"></i> Step 2: Automation Logic</div></div></div>
+        <div class="proof-card"><img src="assets/google-sheets.png" alt="Google Sheets" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Google+Sheets'"><div class="proof-content"><div class="proof-title"><i class="fas fa-database"></i> Step 3: Structured Storage</div></div></div>
+        <div class="proof-card"><img src="assets/slack-alert.png" alt="Slack alert" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Slack+Alert'"><div class="proof-content"><div class="proof-title"><i class="fab fa-slack"></i> Step 4: Real-time Alert</div></div></div>
       </div>
     </div>
   </section>
 
-  <!-- SOLUTION ARCHITECTURE -->
   <section id="solution" class="section">
     <div class="container">
       <div class="section-header">
@@ -696,41 +566,33 @@
         <h2>Self-healing system architecture</h2>
       </div>
       <div class="grid-3">
-        <div class="card"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Budget Protection Routing</h3><p>Early filtering removes empty/spam submissions. Saves up to 30% of automation costs.</p></div>
-        <div class="card"><div class="card-icon"><i class="fas fa-dice-d6"></i></div><h3>Data Standardization</h3><p>Emails formatted consistently. Prevents duplicate CRM records.</p></div>
-        <div class="card"><div class="card-icon"><i class="fas fa-heartbeat"></i></div><h3>Error Handling</h3><p>Failures detected instantly. Alerts sent to Slack (#tech-errors). Team reacts before client notices.</p></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Budget Protection</h3><p>Early filtering removes spam. Saves up to 30% of automation costs.</p></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-dice-d6"></i></div><h3>Data Standardization</h3><p>Emails formatted consistently. Prevents duplicate records.</p></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-heartbeat"></i></div><h3>Error Handling</h3><p>Failures detected instantly. Alerts sent to Slack (#tech-errors).</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ROI & IMPACT -->
   <section id="roi" class="section">
     <div class="container">
       <div class="section-header">
         <span class="section-tag"><i class="fas fa-chart-line"></i> Business Impact (ROI)</span>
-        <h2>Measurable results, real savings</h2>
-        <p>Based on 40 leads per month</p>
+        <h2>Measurable results</h2>
       </div>
       <div class="grid-4">
-        <div class="card" style="text-align: center;"><div class="card-icon"><i class="fas fa-clock"></i></div><div class="stat-number">3.5h</div><div class="stat-label">Time saved monthly</div></div>
-        <div class="card" style="text-align: center;"><div class="card-icon"><i class="fas fa-coins"></i></div><div class="stat-number">30%</div><div class="stat-label">Cost reduction</div></div>
-        <div class="card" style="text-align: center;"><div class="card-icon"><i class="fas fa-bolt"></i></div><div class="stat-number">&lt;10s</div><div class="stat-label">Response time</div></div>
-        <div class="card" style="text-align: center;"><div class="card-icon"><i class="fas fa-shield"></i></div><div class="stat-number">100%</div><div class="stat-label">Lead capture</div></div>
+        <div class="card" style="text-align:center"><div class="stat-number">3.5h</div><div class="stat-label">Time saved/month</div></div>
+        <div class="card" style="text-align:center"><div class="stat-number">30%</div><div class="stat-label">Cost reduction</div></div>
+        <div class="card" style="text-align:center"><div class="stat-number">&lt;10s</div><div class="stat-label">Response time</div></div>
+        <div class="card" style="text-align:center"><div class="stat-number">100%</div><div class="stat-label">Lead capture</div></div>
       </div>
 
-      <!-- Before vs After -->
       <div class="compare-grid">
-        <div class="compare-card before"><div class="compare-title"><i class="fas fa-times-circle" style="color:#ef4444;"></i> Before</div>
-          <ul class="compare-list"><li><i class="fas fa-inbox" style="color:#ef4444;"></i> Leads lost in inbox</li><li><i class="fas fa-pen"></i> Manual replies</li><li><i class="fas fa-brush"></i> Messy data</li><li><i class="fas fa-skull"></i> Silent failures</li></ul>
-        </div>
-        <div class="compare-card after"><div class="compare-title"><i class="fas fa-check-circle" style="color:#10b981;"></i> After</div>
-          <ul class="compare-list"><li><i class="fas fa-database" style="color:#10b981;"></i> Leads stored in Google Sheets</li><li><i class="fas fa-robot"></i> Instant auto-response</li><li><i class="fas fa-chart-line"></i> Clean standardized data</li><li><i class="fas fa-bell"></i> Slack error alerts</li></ul>
-        </div>
+        <div class="compare-card before"><div class="compare-title"><i class="fas fa-times-circle"></i> Before</div><ul class="compare-list"><li><i class="fas fa-inbox"></i> Leads lost in inbox</li><li><i class="fas fa-pen"></i> Manual replies</li><li><i class="fas fa-brush"></i> Messy data</li></ul></div>
+        <div class="compare-card after"><div class="compare-title"><i class="fas fa-check-circle"></i> After</div><ul class="compare-list"><li><i class="fas fa-database"></i> Leads in Google Sheets</li><li><i class="fas fa-robot"></i> Auto-response</li><li><i class="fas fa-chart-line"></i> Clean data</li></ul></div>
       </div>
     </div>
   </section>
 
-  <!-- TECH STACK -->
   <section class="section">
     <div class="container">
       <div class="section-header">
@@ -738,25 +600,23 @@
         <h2>Tools that power the automation</h2>
       </div>
       <div class="tech-stack">
-        <div class="tech-item"><i class="fab fa-webflow"></i> Webflow → Lead capture</div>
-        <div class="tech-item"><i class="fas fa-code-branch"></i> Make.com → Automation engine</div>
-        <div class="tech-item"><i class="fas fa-table"></i> Google Sheets → Database</div>
-        <div class="tech-item"><i class="fab fa-slack"></i> Slack → Notifications</div>
-        <div class="tech-item"><i class="fas fa-envelope"></i> Email (SMTP) → Client communication</div>
+        <div class="tech-item"><i class="fab fa-webflow"></i> Webflow</div>
+        <div class="tech-item"><i class="fas fa-code-branch"></i> Make.com</div>
+        <div class="tech-item"><i class="fas fa-table"></i> Google Sheets</div>
+        <div class="tech-item"><i class="fab fa-slack"></i> Slack</div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
   <section id="contact" class="section">
     <div class="container">
       <div class="cta">
-        <i class="fas fa-rocket" style="font-size: 48px; color: #8b5cf6; margin-bottom: 20px;"></i>
+        <i class="fas fa-rocket" style="font-size: 48px; color: #8b5cf6;"></i>
         <h2>Ready to automate your workflows?</h2>
-        <p>Let's eliminate manual work and build a system that scales with your business.</p>
+        <p>Let's eliminate manual work and build a system that scales.</p>
         <div class="cta-buttons">
-          <a href="#" class="btn-primary"><i class="fab fa-linkedin"></i> Let's connect on LinkedIn</a>
-          <a href="#" class="btn-secondary"><i class="fas fa-envelope"></i> yourname@email.com</a>
+          <a href="#" class="btn-primary"><i class="fab fa-linkedin"></i> Connect on LinkedIn</a>
+          <a href="#" class="btn-secondary"><i class="fas fa-envelope"></i> hello@minaflow.com</a>
         </div>
       </div>
     </div>
@@ -765,7 +625,7 @@
 
 <footer class="footer">
   <div class="container">
-    <p>© 2026 Mina.Flow — Automated Lead Capture & Response System v2.0 | Built by [Your Name]</p>
+    <p>© 2026 Mina.Flow — Automated Lead Capture & Response System v2.0</p>
   </div>
 </footer>
 
