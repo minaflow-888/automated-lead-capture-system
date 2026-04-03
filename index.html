@@ -1,504 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Automated Lead Capture & Response System — Case Study</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mina | Automated Lead Capture System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="sticky-header">
-        <div class="header-container">
-            <div class="logo">Mina.</div>
-            <a href="#contact" class="cta-button-small">Let's Talk</a>
+    <nav class="sticky-nav">
+        <div class="container nav-flex">
+            <div class="logo">MINA<span>.FLOW</span></div>
+            <a href="#contact" class="btn-nav">Start a Project</a>
         </div>
-    </header>
+    </nav>
 
-    <header class="hero">
-        <div class="glow-top"></div>
-        <div class="glow-bot"></div>
-    <div class="hero-eyebrow">Case Study · Lead Operations</div>
+    <main>
+        <section class="hero">
+            <div class="badge">Success Story: Lead Operations</div>
+            <h1>Automated Lead <br><span class="gradient-text">Capture Engine.</span></h1>
+            <p class="hero-subtext">Pretvaranje haotičnih inboxa u inteligentan sistem koji obrađuje podatke u realnom vremenu — bez greške, bez kašnjenja.</p>
+        </section>
 
-    <h1>
-      Automated Lead Capture<br>
-      &amp; <em>Response System</em>
-    </h1>
-
-    <p class="hero-sub">
-      A fully automated pipeline that captures every inbound lead, standardizes the data,
-      stores it instantly, and replies to the client — all in under 10 seconds.
-    </p>
-
-    <div class="hero-ctas">
-      <a href="#impact" class="btn-primary">View Business Impact ↓</a>
-      <a href="#architecture" class="btn-ghost">See Architecture →</a>
-    </div>
-
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-val">&lt;10s</div>
-        <div class="stat-lbl">Response time</div>
-      </div>
-      <div class="stat">
-        <div class="stat-val">30%</div>
-        <div class="stat-lbl">Lower ops cost</div>
-      </div>
-      <div class="stat">
-        <div class="stat-val">100%</div>
-        <div class="stat-lbl">Lead capture</div>
-      </div>
-    </div>
-  </header>
-
-  <!-- 01 CHALLENGE -->
-  <section id="challenge">
-    <div class="inner">
-      <div class="sec-label reveal">
-        <span class="sec-num">01</span> The Challenge
-      </div>
-      <h2 class="reveal d1">Manual inboxes are<br>a silent revenue leak.</h2>
-      <p class="lead reveal d2">
-        For small and medium businesses, slow response times directly cost revenue.
-        Every manual step is a potential failure point — and most failures happen invisibly.
-      </p>
-
-      <div class="ch-grid">
-        <ul class="pain-list reveal d2">
-          <li>Leads lost or buried in inbox with no tracking</li>
-          <li>Manual copy-paste into spreadsheets wastes hours</li>
-          <li>Inconsistent data formats break downstream tools</li>
-          <li>Silent failures — nobody knows when something breaks</li>
-        </ul>
-
-        <div class="ch-quote reveal d3">
-          <blockquote>
-            From <em>messy inbox logic</em> to a scalable,
-            self-healing automation system.
-          </blockquote>
-          <div class="transform-row">
-            <span class="pill pill-red">Before: Fragile &amp; Manual</span>
-            <span style="color:#64748b">→</span>
-            <span class="pill pill-purple">After: Automated &amp; Reliable</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 02 SOLUTION -->
-  <section id="solution">
-    <div class="inner">
-      <div class="sec-label reveal">
-        <span class="sec-num">02</span> The Solution
-      </div>
-      <h2 class="reveal d1">A 5-step pipeline that<br>never misses a lead.</h2>
-      <p class="lead reveal d2">
-        The workflow triggers the moment a form is submitted and completes the full cycle —
-        capture, store, notify, reply — without any human input.
-      </p>
-
-      <div class="steps">
-        <div class="step reveal d1">
-          <div class="step-icon">📥</div>
-          <div class="step-body">
-            <div class="step-no">Step 01</div>
-            <div class="step-title">Capture</div>
-            <div class="step-desc">Webflow form submission triggers the workflow instantly via webhook.</div>
-          </div>
-          <span class="badge badge-v">Trigger</span>
-        </div>
-
-        <div class="step reveal d2">
-          <div class="step-icon">🔍</div>
-          <div class="step-body">
-            <div class="step-no">Step 02</div>
-            <div class="step-title">Parse &amp; Filter</div>
-            <div class="step-desc">Extract clean data, validate required fields, remove spam before it burns ops budget.</div>
-          </div>
-          <span class="badge badge-s">Logic</span>
-        </div>
-
-        <div class="step reveal d3">
-          <div class="step-icon">🗄️</div>
-          <div class="step-body">
-            <div class="step-no">Step 03</div>
-            <div class="step-title">Store</div>
-            <div class="step-desc">Standardized lead record is written to Google Sheets — no duplicates, no messy formats.</div>
-          </div>
-          <span class="badge badge-v">CRM</span>
-        </div>
-
-        <div class="step reveal d1">
-          <div class="step-icon">🔔</div>
-          <div class="step-body">
-            <div class="step-no">Step 04</div>
-            <div class="step-title">Alert</div>
-            <div class="step-desc">Sales team gets a Slack notification with full lead details the moment it's captured.</div>
-          </div>
-          <span class="badge badge-s">Notify</span>
-        </div>
-
-        <div class="step reveal d2">
-          <div class="step-icon">✉️</div>
-          <div class="step-body">
-            <div class="step-no">Step 05</div>
-            <div class="step-title">Engage</div>
-            <div class="step-desc">A personalized auto-reply email goes to the lead in under 10 seconds.</div>
-          </div>
-          <span class="badge badge-v">Response</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 03 ARCHITECTURE -->
-  <section id="architecture">
-    <div class="inner">
-      <div class="sec-label reveal">
-        <span class="sec-num">03</span> Architecture
-      </div>
-      <h2 class="reveal d1">Smart logic built for<br>reliability &amp; scale.</h2>
-      <p class="lead reveal d2">
-        Three engineering principles keep the system fast, cost-efficient,
-        and self-healing — even when something goes wrong.
-      </p>
-
-      <div class="arch-grid">
-        <div class="arch-cards reveal d2">
-          <div class="arch-card">
-            <div class="arch-icon">🛡️</div>
-            <h3>Budget Protection</h3>
-            <p>Spam and empty submissions are filtered at the first step — before consuming any operations. Saves up to 30% of monthly automation costs.</p>
-          </div>
-
-          <div class="arch-card">
-            <div class="arch-icon">✦</div>
-            <h3>Data Standardization</h3>
-            <p>Emails and fields are normalized before storage. Prevents duplicate records and keeps the CRM clean from day one.</p>
-          </div>
-
-          <div class="arch-card">
-            <div class="arch-icon">⚡</div>
-            <h3>Error Visibility</h3>
-            <p>If any step fails, an alert fires instantly to a dedicated Slack channel — so the team reacts before the lead notices anything went wrong.</p>
-          </div>
-        </div>
-
-        <div class="flow-box reveal d3">
-          <div class="flow-label">Make.com — Visual Workflow</div>
-
-          <div class="flow-node">
-            <div class="fn">
-              <span>🌐</span>
-              <span>Webflow Mailhook Trigger</span>
-              <span class="fn-tool">Webflow</span>
+        <section class="bento-grid">
+            <div class="bento-item main-stat">
+                <span class="label">Response Time</span>
+                <div class="value">&lt;10s</div>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 98%;"></div>
+                </div>
+                <p class="desc">Smanjeno sa prosečnih 15 minuta na skoro trenutni odgovor.</p>
             </div>
-          </div>
 
-          <div class="flow-arr"><div class="flow-arr-line"></div><div class="flow-arr-head"></div></div>
-
-          <div class="flow-node">
-            <div class="fn">
-              <span>⚙️</span>
-              <span>Text Parser: Extract Data</span>
-              <span class="fn-tool">Make.com</span>
+            <div class="bento-item">
+                <span class="label">Time Saved</span>
+                <div class="value">42h</div>
+                <p class="desc">Mesečno oslobođeno vreme od manuelnog unosa.</p>
             </div>
-          </div>
 
-          <div class="flow-arr"><div class="flow-arr-line"></div><div class="flow-arr-head"></div></div>
-
-          <div class="flow-node">
-            <div class="fn fn-red">
-              <span>🔀</span>
-              <span>Filter: Email Not Empty?</span>
-              <span class="fn-tool r">Gate</span>
+            <div class="bento-item">
+                <span class="label">Reliability</span>
+                <div class="value">100%</div>
+                <p class="desc">Nula izgubljenih leadova u poslednjih 6 meseci.</p>
             </div>
-          </div>
 
-          <div class="flow-branch">
-            <div class="branch-stop">✕ No → Stop (Saved Ops)</div>
-            <div class="branch-yes">✓ Yes → Continue</div>
-          </div>
-
-          <div class="flow-node">
-            <div class="fn">
-              <span>📊</span>
-              <span>Store Clean Lead Record</span>
-              <span class="fn-tool">Google Sheets</span>
+            <div class="bento-item wide">
+                <span class="label">Visual Architecture</span>
+                <div class="workflow-visual">
+                    <div class="node">Webflow</div>
+                    <div class="connector"><span></span></div>
+                    <div class="node active">Make.com</div>
+                    <div class="connector"><span></span></div>
+                    <div class="node">Slack / CRM</div>
+                </div>
             </div>
-          </div>
+        </section>
 
-          <div class="flow-arr"><div class="flow-arr-line"></div><div class="flow-arr-head"></div></div>
-
-          <div class="flow-node">
-            <div class="fn">
-              <span>💬</span>
-              <span>Slack: Team Alert</span>
-              <span class="fn-tool">Slack</span>
+        <section class="details">
+            <div class="content-row">
+                <div class="text-block">
+                    <h2>The Challenge</h2>
+                    <p>Za SMB kompanije, spora reakcija na upit znači direktan gubitak novca. Manuelno kopiranje podataka u tabele je kreiralo usko grlo i česte greške u formatiranju.</p>
+                </div>
+                <div class="text-block">
+                    <h2>The Solution</h2>
+                    <p>Konstruisan je end-to-end "lead-to-sheet" pajplajn. Webhook sa Webflow-a pokreće Make.com scenario koji čisti podatke, vrši validaciju, skladišti ih u Google Sheets i šalje personalizovani Slack alert prodajnom timu.</p>
+                </div>
             </div>
-          </div>
 
-          <div class="flow-arr"><div class="flow-arr-line"></div><div class="flow-arr-head"></div></div>
-
-          <div class="flow-node">
-            <div class="fn fn-purp">
-              <span>✉️</span>
-              <span>Auto-Reply Email to Lead</span>
-              <span class="fn-tool v">SMTP</span>
+            <div class="image-gallery">
+                <div class="img-card">
+                    <img src="make-scenario.png" alt="Automation Workflow">
+                    <p>Engine: Make.com kompleksna logika sa error-handlingom.</p>
+                </div>
+                <div class="img-card">
+                    <img src="lead-capture-automation-flow.jpg" alt="Interface View">
+                    <p>Output: Strukturirani podaci spremni za prodaju.</p>
+                </div>
             </div>
-          </div>
+        </section>
+    </main>
 
-          <div class="flow-err">
-            <span class="badge badge-r" style="font-size:0.65rem;padding:0.25rem 0.6rem;">Error Handler</span>
-            Any failure → Slack alert to #tech-errors
-          </div>
+    <section id="contact" class="footer-cta">
+        <div class="glow-effect"></div>
+        <h2>Spremni za automatizaciju?</h2>
+        <p>Hajde da izgradimo sistem koji radi dok vi spavate.</p>
+        <div class="cta-actions">
+            <a href="mailto:your@email.com" class="btn-primary">tvoj.email@gmail.com</a>
+            <a href="#" class="btn-secondary">View LinkedIn</a>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 04 VISUAL PROOF -->
-  <section id="proof">
-    <div class="inner">
-      <div class="sec-label reveal">
-        <span class="sec-num">04</span> Visual Proof
-      </div>
-      <h2 class="reveal d1">From form submission to captured lead.</h2>
-      <p class="lead reveal d2">
-        These screenshots show the real workflow in action: the Webflow form, the Make.com scenario,
-        the stored Google Sheets record, and the Slack team alert.
-      </p>
-
-      <div class="proof-grid reveal d2">
-        <article class="proof-card proof-card-wide">
-          <img src="assets/make-scenario.png" alt="Make.com workflow scenario" class="proof-img">
-          <div class="proof-copy">
-            <div class="proof-kicker">Automation Engine</div>
-            <h3>Make.com scenario</h3>
-            <p>
-              The workflow starts from a Webflow webhook, parses the input,
-              writes a clean lead into Google Sheets, then alerts Slack and sends the email reply.
-            </p>
-          </div>
-        </article>
-
-        <article class="proof-card">
-          <img src="assets/webflow-form.png" alt="Webflow contact form submission" class="proof-img">
-          <div class="proof-copy">
-            <div class="proof-kicker">Lead Input</div>
-            <h3>Webflow form</h3>
-            <p>
-              A simple front-end contact form captures the lead and starts the automation immediately.
-            </p>
-          </div>
-        </article>
-
-        <article class="proof-card">
-          <img src="assets/google-sheets.png" alt="Google Sheets lead record" class="proof-img">
-          <div class="proof-copy">
-            <div class="proof-kicker">Stored Record</div>
-            <h3>Google Sheets entry</h3>
-            <p>
-              The submission is stored instantly with timestamp, contact details, message, and source.
-            </p>
-          </div>
-        </article>
-
-        <article class="proof-card">
-          <img src="assets/slack-alert.png" alt="Slack lead alert message" class="proof-img">
-          <div class="proof-copy">
-            <div class="proof-kicker">Team Visibility</div>
-            <h3>Slack alert</h3>
-            <p>
-              The team receives a real-time lead notification as soon as the record is saved.
-            </p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- 05 IMPACT -->
-  <section id="impact">
-    <div class="inner">
-      <div class="sec-label reveal">
-        <span class="sec-num">05</span> Business Impact
-      </div>
-      <h2 class="reveal d1">Measurable ROI from day one.</h2>
-      <p class="lead reveal d2">
-        Estimated results for a team processing 40 inbound leads per month —
-        with zero additional infrastructure.
-      </p>
-
-      <div class="impact-grid reveal d2">
-        <div class="impact-card">
-          <div class="impact-ico">⏱️</div>
-          <div class="impact-num">3.5 <span>hrs</span></div>
-          <div class="impact-desc">Saved per month on manual entry and email replies</div>
-        </div>
-
-        <div class="impact-card">
-          <div class="impact-ico">💰</div>
-          <div class="impact-num"><span>↓</span>30%</div>
-          <div class="impact-desc">Reduction in automation ops costs via early spam filtering</div>
-        </div>
-
-        <div class="impact-card">
-          <div class="impact-ico">⚡</div>
-          <div class="impact-num">&lt;10 <span>sec</span></div>
-          <div class="impact-desc">From form submission to lead receiving a personal response</div>
-        </div>
-
-        <div class="impact-card">
-          <div class="impact-ico">🎯</div>
-          <div class="impact-num">100 <span>%</span></div>
-          <div class="impact-desc">Lead capture reliability — no lead falls through the cracks</div>
-        </div>
-      </div>
-
-      <div class="impact-note reveal d3">
-        <span>📌</span>
-        <span>Based on 40 leads/month. Results scale with volume — higher traffic means proportionally greater time and cost savings.</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 06 BEFORE / AFTER -->
-  <section id="comparison">
-    <div class="inner">
-      <div class="sec-label reveal">
-        <span class="sec-num">06</span> Before vs After
-      </div>
-      <h2 class="reveal d1">The transformation is<br>structural, not cosmetic.</h2>
-      <p class="lead reveal d2">
-        This system doesn't just speed things up — it removes entire categories of risk
-        and manual work from the process permanently.
-      </p>
-
-      <div class="ba-grid reveal d2">
-        <div class="ba-before">
-          <div class="ba-head">❌ Before — Fragile Process</div>
-          <ul class="ba-items">
-            <li>Leads lost or buried in inbox</li>
-            <li>Manual replies — slow and inconsistent</li>
-            <li>Messy, unformatted data in spreadsheets</li>
-            <li>Silent failures with zero visibility</li>
-          </ul>
-        </div>
-
-        <div class="ba-after">
-          <div class="ba-head">✓ After — Reliable Pipeline</div>
-          <ul class="ba-items">
-            <li>Every lead stored instantly in Google Sheets</li>
-            <li>Personalized auto-response in under 10 seconds</li>
-            <li>Clean, standardized data every single time</li>
-            <li>Slack alerts surface failures immediately</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 07 TECH STACK -->
-  <section id="stack">
-    <div class="inner">
-      <div class="sec-label reveal">
-        <span class="sec-num">07</span> Tech Stack
-      </div>
-      <h2 class="reveal d1">Tools chosen for reliability,<br>not complexity.</h2>
-      <p class="lead reveal d2">
-        Every tool was selected as best-in-class for its role.
-        No-code where possible, dependable where it matters.
-      </p>
-
-      <div class="stack-grid reveal d2">
-        <div class="stack-card">
-          <div class="stack-ico">🌐</div>
-          <div>
-            <div class="stack-name">Webflow</div>
-            <div class="stack-role">Lead capture via native forms &amp; webhook trigger</div>
-          </div>
-        </div>
-
-        <div class="stack-card">
-          <div class="stack-ico">⚡</div>
-          <div>
-            <div class="stack-name">Make.com</div>
-            <div class="stack-role">Automation engine — orchestrates the entire workflow</div>
-          </div>
-        </div>
-
-        <div class="stack-card">
-          <div class="stack-ico">📊</div>
-          <div>
-            <div class="stack-name">Google Sheets</div>
-            <div class="stack-role">CRM database — clean lead records, always up to date</div>
-          </div>
-        </div>
-
-        <div class="stack-card">
-          <div class="stack-ico">💬</div>
-          <div>
-            <div class="stack-name">Slack</div>
-            <div class="stack-role">Real-time team alerts &amp; dedicated error channel</div>
-          </div>
-        </div>
-
-        <div class="stack-card">
-          <div class="stack-ico">✉️</div>
-          <div>
-            <div class="stack-name">Email (SMTP)</div>
-            <div class="stack-role">Personalized auto-reply to every incoming lead</div>
-          </div>
-        </div>
-
-        <div class="stack-card" style="border-style:dashed;opacity:0.55;">
-          <div class="stack-ico">🔌</div>
-          <div>
-            <div class="stack-name">Expandable</div>
-            <div class="stack-role">HubSpot, Notion, calendar booking, SMS — ready to plug in</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-section" id="contact">
-    <div class="cta-inner">
-      <div class="cta-badge reveal">Ready to automate?</div>
-      <h2 class="reveal d1">Let's build your<br>lead pipeline.</h2>
-      <p class="reveal d2">
-        Stop losing leads to manual work and slow replies.
-        Let's design a system that runs itself.
-      </p>
-      <div class="cta-btns reveal d3">
-        <a href="https://linkedin.com/in/YOUR-LINKEDIN" class="btn-cta">Connect on LinkedIn →</a>
-        <a href="mailto:YOUR@EMAIL.COM" class="btn-outline">your@email.com</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <span>© 2025 Mina. Automation Case Study.</span>
-    <span>Make.com · Webflow · Google Sheets · Slack</span>
-  </footer>
-
-  <!-- SCROLL REVEAL -->
-  <script>
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
+    <footer class="footer-simple">
+        <p>&copy; 2026 Mina.Flow • Master Web Architect Portfolio</p>
+    </footer>
 
 </body>
 </html>
