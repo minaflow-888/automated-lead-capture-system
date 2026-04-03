@@ -69,13 +69,23 @@
       max-width: 1160px; margin: 0 auto; padding: 1.1rem 2rem;
       display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
     }
-    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
-    .logo-img {
-      width: 40px; height: 40px; border-radius: 12px; object-fit: cover;
-      background: linear-gradient(135deg, #8b5cf6, #a855f7);
-      box-shadow: 0 4px 12px rgba(139,92,246,0.3);
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
     }
-    .logo-name { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 700; font-size: 1.75rem; line-height: 1; color: #fff; }
+    /* SAMO TEKST LOGO - bez ikone, bez slike */
+    .logo-text {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 1.75rem;
+      line-height: 1;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
     .nav-links { display: flex; align-items: center; gap: 1.8rem; flex-wrap: wrap; }
     .nav-links a { color: var(--muted2); text-decoration: none; font-size: .85rem; font-weight: 500; transition: color .2s; }
     .nav-links a:hover { color: var(--purple-lt); }
@@ -299,8 +309,7 @@
 <nav>
   <div class="nav-inner">
     <a href="https://portfolio-site-9d14e9.webflow.io/" class="logo">
-      <img src="assets/mina-logo.png" alt="Mina JK" class="logo-img" onerror="this.src='https://placehold.co/40x40/8b5cf6/white?text=M'">
-      <span class="logo-name">Mina</span>
+      <span class="logo-text">Mina</span>
     </a>
     <div class="nav-links">
       <a href="#challenge">Challenge</a>
