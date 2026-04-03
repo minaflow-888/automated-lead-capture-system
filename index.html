@@ -3,749 +3,543 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lead Capture Architecture | Mina.Flow Case Study</title>
-  <meta name="description" content="Scalable lead capture automation architecture. 95% reduction in response time, 40+ hours reclaimed monthly." />
+  <title>Mina.Flow | Automated Lead Capture System - Case Study</title>
+  <meta name="description" content="Automated lead capture system that reduced response time to under 10 seconds, saved 3.5+ hours monthly, and achieved 100% lead capture reliability." />
+  
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
   <style>
-    :root {
-      --bg: #070510;
-      --bg-soft: #0d0a1a;
-      --surface: rgba(16, 12, 32, 0.78);
-      --surface-strong: rgba(19, 14, 38, 0.96);
-      --surface-light: rgba(255, 255, 255, 0.04);
-      --border: rgba(197, 174, 255, 0.12);
-      --border-strong: rgba(189, 126, 255, 0.28);
-      --text: #f8f6ff;
-      --text-soft: #c5bfd8;
-      --text-muted: #9c95b3;
-      --primary: #8b5cf6;
-      --primary-2: #a855f7;
-      --primary-3: #6366f1;
-      --pink: #ec4899;
-      --white: #ffffff;
-      --shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.18);
-      --shadow-md: 0 18px 40px rgba(0, 0, 0, 0.25);
-      --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.38);
-      --radius-sm: 12px;
-      --radius-md: 18px;
-      --radius-lg: 28px;
-      --radius-xl: 36px;
-      --max: 1200px;
-    }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0a0a1a 0%, #12102a 50%, #1a1535 100%);
+      color: #ffffff;
       line-height: 1.5;
-      background:
-        radial-gradient(circle at 20% 0%, rgba(168, 85, 247, 0.18), transparent 22%),
-        radial-gradient(circle at 80% 8%, rgba(99, 102, 241, 0.18), transparent 20%),
-        radial-gradient(circle at 50% 45%, rgba(236, 72, 153, 0.08), transparent 20%),
-        linear-gradient(180deg, #06040d 0%, #0a0714 38%, #070510 100%);
       overflow-x: hidden;
     }
 
     body::before {
-      content: "";
+      content: '';
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                        radial-gradient(1px 1px at 80px 150px, #a855f7, rgba(0,0,0,0));
+      background-size: 200px 200px, 150px 150px;
+      background-repeat: repeat;
+      opacity: 0.1;
       pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: radial-gradient(circle at center, black 35%, transparent 80%);
       z-index: 0;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
     .container {
-      width: min(var(--max), calc(100% - 32px));
+      max-width: 1280px;
       margin: 0 auto;
+      padding: 0 32px;
       position: relative;
       z-index: 1;
     }
 
-    h1 {
-      font-size: clamp(40px, 6vw, 64px);
-      font-weight: 800;
-      line-height: 1.03;
-      letter-spacing: -0.04em;
-      color: var(--white);
-      margin-bottom: 22px;
-      max-width: 11ch;
-    }
-
-    h2 {
-      font-size: clamp(28px, 4vw, 40px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--white);
-      margin-bottom: 14px;
-      line-height: 1.1;
-    }
-
-    h3 {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 8px;
-      letter-spacing: -0.02em;
-    }
-
-    p {
-      color: var(--text-soft);
-    }
-
-    .section-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 18px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: #d7ccff;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      backdrop-filter: blur(10px);
-    }
-
-    .card {
-      background:
-        linear-gradient(180deg, rgba(24, 18, 44, 0.96), rgba(12, 9, 24, 0.96));
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-md);
-      border-radius: var(--radius-lg);
-      backdrop-filter: blur(12px);
-    }
-
+    /* ===== NAVIGACIJA ===== */
     .navbar {
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+      background: rgba(10, 10, 26, 0.8);
+      backdrop-filter: blur(12px);
       position: sticky;
-      top: 16px;
+      top: 0;
       z-index: 100;
-      padding-top: 18px;
     }
 
     .nav-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
       gap: 20px;
-      padding: 14px 18px;
-      background: rgba(10, 8, 20, 0.72);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      backdrop-filter: blur(18px);
-      box-shadow: var(--shadow-sm);
     }
 
     .logo {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 12px;
-      font-size: 18px;
+      font-size: 22px;
       font-weight: 800;
-      color: var(--white);
+      text-decoration: none;
+      color: white;
     }
 
-    .logo-mark {
-      width: 42px;
-      height: 42px;
+    .logo-img {
+      width: 44px;
+      height: 44px;
       border-radius: 14px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-      border: 1px solid rgba(255,255,255,0.1);
-      overflow: hidden;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
-    }
-
-    .logo-mark img {
-      width: 30px;
-      height: 30px;
-      object-fit: contain;
+      object-fit: cover;
     }
 
     .nav-links {
       display: flex;
-      gap: 18px;
+      gap: 32px;
       align-items: center;
       flex-wrap: wrap;
     }
 
     .nav-links a {
-      color: var(--text-soft);
+      color: #c5bfd8;
+      text-decoration: none;
       font-weight: 500;
       font-size: 14px;
-      transition: color 0.2s ease, transform 0.2s ease;
+      transition: color 0.2s;
     }
 
     .nav-links a:hover {
-      color: var(--white);
-      transform: translateY(-1px);
+      color: #8b5cf6;
     }
 
     .nav-cta {
-      padding: 10px 16px;
+      background: linear-gradient(135deg, #8b5cf6, #a855f7);
+      padding: 10px 24px;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
       color: white !important;
-      box-shadow: 0 10px 24px rgba(139, 92, 246, 0.3);
     }
 
+    /* ===== HERO ===== */
     .hero {
-      padding: 54px 0 44px;
+      padding: 80px 0 60px;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 24px;
-      align-items: stretch;
-    }
-
-    .hero-copy {
-      padding: 42px;
-      min-height: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-copy::after {
-      content: "";
-      position: absolute;
-      width: 280px;
-      height: 280px;
-      right: -100px;
-      top: -100px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(168, 85, 247, 0.2), transparent 70%);
-      pointer-events: none;
-    }
-
-    .tech-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .tag {
-      background: rgba(255,255,255,0.05);
-      padding: 8px 14px;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      padding: 6px 16px;
       border-radius: 999px;
       font-size: 12px;
       font-weight: 600;
-      color: #ddd4ff;
-      border: 1px solid rgba(255,255,255,0.08);
+      color: #a855f7;
+      margin-bottom: 24px;
     }
 
-    .hero-summary {
+    h1 {
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #ffffff, #c5bfd8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
       font-size: 18px;
-      color: var(--text-soft);
-      line-height: 1.7;
-      margin-bottom: 28px;
-      max-width: 58ch;
+      color: #a5a0c0;
+      max-width: 600px;
+      margin-bottom: 40px;
     }
 
     .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 28px;
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
     }
 
-    .hero-stat {
-      padding: 18px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
+    .stat-item {
+      text-align: left;
     }
 
-    .hero-stat-number {
-      font-size: 28px;
+    .stat-number {
+      font-size: 42px;
       font-weight: 800;
-      color: var(--white);
-      letter-spacing: -0.04em;
-      margin-bottom: 6px;
+      color: #8b5cf6;
+      line-height: 1;
     }
 
-    .hero-stat-label {
+    .stat-label {
       font-size: 13px;
-      color: var(--text-muted);
+      color: #a5a0c0;
+      margin-top: 6px;
     }
 
-    .hero-visual {
-      padding: 20px;
-      display: grid;
-      grid-template-rows: auto auto;
-      gap: 16px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-visual::before {
-      content: "";
-      position: absolute;
-      inset: auto auto -120px -80px;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(236, 72, 153, 0.18), transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-main-image {
+    /* ===== METADATA CARD ===== */
+    .metadata-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: var(--shadow-lg);
-      background: #120d22;
-      min-height: 300px;
-    }
-
-    .hero-main-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .hero-mini-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .hero-mini-card {
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: #120d22;
-      min-height: 150px;
-    }
-
-    .hero-mini-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .section {
-      padding: 28px 0 42px;
-    }
-
-    .section-heading {
-      max-width: 720px;
-      margin: 0 auto 34px;
-      text-align: center;
-    }
-
-    .section-heading p {
-      font-size: 16px;
-      line-height: 1.7;
-    }
-
-    .challenge {
-      padding-top: 12px;
-    }
-
-    .challenge-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin-top: 10px;
-    }
-
-    .challenge-card {
       padding: 28px;
-      min-height: 100%;
-      position: relative;
+      margin: 40px 0;
     }
 
-    .challenge-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-      pointer-events: none;
-    }
-
-    .challenge-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      font-size: 24px;
-      margin-bottom: 18px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-    }
-
-    .challenge-card p {
-      line-height: 1.7;
-      color: var(--text-soft);
-    }
-
-    .solution {
-      padding-top: 24px;
-    }
-
-    .solution-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      align-items: stretch;
-    }
-
-    .solution-features {
-      padding: 34px;
-    }
-
-    .solution-features > div:first-child {
-      margin-bottom: 10px;
-    }
-
-    .feature-item {
-      display: flex;
-      gap: 16px;
-      padding: 18px 0;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .feature-item:first-of-type {
-      border-top: none;
-    }
-
-    .feature-check {
-      width: 30px;
-      height: 30px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 15px;
-      flex-shrink: 0;
-      margin-top: 2px;
-      box-shadow: 0 10px 20px rgba(139, 92, 246, 0.25);
-    }
-
-    .feature-text h4 {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: var(--white);
-      letter-spacing: -0.02em;
-    }
-
-    .feature-text p {
-      color: var(--text-soft);
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    .solution-image {
-      padding: 20px;
-      display: grid;
-      gap: 14px;
-      align-content: start;
-    }
-
-    .solution-image-large,
-    .solution-image-small {
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: #120d22;
-    }
-
-    .solution-image-large {
-      min-height: 300px;
-    }
-
-    .solution-image-small {
-      min-height: 180px;
-    }
-
-    .solution-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .impact {
-      padding-top: 32px;
-    }
-
-    .impact-header {
-      text-align: center;
-      max-width: 640px;
-      margin: 0 auto 38px;
-    }
-
-    .impact-header p {
-      color: var(--text-soft);
-      font-size: 16px;
-    }
-
-    .impact-grid {
+    .metadata-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+      gap: 24px;
     }
 
-    .impact-card {
-      padding: 28px 22px;
+    .metadata-item {
       text-align: center;
-      position: relative;
-      overflow: hidden;
     }
 
-    .impact-card::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--primary-2), transparent);
-      opacity: 0.7;
-    }
-
-    .impact-number {
-      font-size: 52px;
-      font-weight: 800;
-      color: var(--white);
-      line-height: 1;
+    .metadata-icon {
+      font-size: 28px;
+      color: #8b5cf6;
       margin-bottom: 12px;
-      letter-spacing: -0.05em;
     }
 
-    .impact-label {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 8px;
-      line-height: 1.4;
-    }
-
-    .impact-desc {
-      font-size: 13px;
-      color: var(--text-soft);
-      line-height: 1.6;
-    }
-
-    .visual-proof {
-      padding-top: 20px;
-      padding-bottom: 48px;
-    }
-
-    .visual-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .visual-card {
-      overflow: hidden;
-      position: relative;
-    }
-
-    .visual-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      min-height: 280px;
-    }
-
-    .visual-card-caption {
-      position: absolute;
-      left: 18px;
-      bottom: 18px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(10, 8, 20, 0.72);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
+    .metadata-label {
+      font-size: 11px;
       text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #a5a0c0;
+      margin-bottom: 6px;
     }
 
-    .cta {
-      padding: 54px 0 80px;
+    .metadata-value {
+      font-size: 14px;
+      font-weight: 600;
     }
 
-    .cta-box {
+    /* ===== RACI MATRIX ===== */
+    .raci-section {
+      background: rgba(0,0,0,0.2);
+      border-radius: 24px;
+      padding: 32px;
+      margin: 40px 0;
+    }
+
+    .raci-table {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .raci-header {
+      font-weight: 700;
+      color: #8b5cf6;
+      padding: 12px;
+      border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+    }
+
+    .raci-role, .raci-person {
+      padding: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* ===== DIJAGRAM TOKA SA SLIKAMA ===== */
+    .flowchart-diagram {
+      background: linear-gradient(135deg, #0f0c1f, #120e28);
+      border-radius: 32px;
+      padding: 48px;
+      margin: 48px 0;
+      border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+
+    .flow-steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .flow-step {
+      background: rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 20px;
+      padding: 24px 20px;
       text-align: center;
-      padding: 56px 28px;
-      position: relative;
-      overflow: hidden;
-      border-radius: 34px;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.18), transparent 35%),
-        linear-gradient(180deg, rgba(18, 13, 35, 0.98), rgba(8, 6, 18, 0.98));
-      border: 1px solid rgba(197, 174, 255, 0.16);
-      box-shadow: var(--shadow-lg);
+      min-width: 160px;
+      transition: all 0.3s;
     }
 
-    .cta-box::before {
-      content: "";
-      position: absolute;
-      width: 280px;
-      height: 280px;
-      left: -80px;
-      top: -80px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.18), transparent 70%);
-      pointer-events: none;
+    .flow-step:hover {
+      transform: translateY(-5px);
+      background: rgba(139, 92, 246, 0.2);
+      border-color: #8b5cf6;
     }
 
-    .cta h2 {
-      color: white;
+    .step-icon {
+      font-size: 36px;
+      color: #8b5cf6;
       margin-bottom: 16px;
     }
 
-    .cta p {
-      color: var(--text-soft);
-      max-width: 560px;
-      margin: 0 auto 30px;
-      line-height: 1.7;
+    .step-title {
+      font-weight: 700;
+      margin-bottom: 6px;
     }
 
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      color: white;
-      padding: 16px 34px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 16px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 16px 34px rgba(139, 92, 246, 0.32);
-      position: relative;
-      z-index: 1;
+    .step-desc {
+      font-size: 11px;
+      color: #a5a0c0;
     }
 
-    .cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 20px 36px rgba(139, 92, 246, 0.36);
+    .arrow {
+      font-size: 28px;
+      color: #8b5cf6;
     }
 
-    .footer {
-      padding: 12px 0 42px;
+    /* ===== SEKCIONA SA SLIKAMA (PROOF) ===== */
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin: 48px 0;
+    }
+
+    .proof-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .proof-card:hover {
+      transform: translateY(-5px);
+      border-color: #8b5cf6;
+      box-shadow: 0 20px 40px -15px rgba(139, 92, 246, 0.3);
+    }
+
+    .proof-img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .proof-content {
+      padding: 20px;
       text-align: center;
-      color: var(--text-muted);
+    }
+
+    .proof-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .proof-desc {
+      font-size: 12px;
+      color: #a5a0c0;
+    }
+
+    @media (max-width: 900px) {
+      .proof-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== OSTALI STILOVI ===== */
+    .section {
+      padding: 60px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 48px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(139, 92, 246, 0.15);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #a855f7;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 24px;
+      padding: 32px;
+      transition: all 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(139, 92, 246, 0.4);
+      background: rgba(139, 92, 246, 0.05);
+    }
+
+    .card-icon {
+      font-size: 40px;
+      color: #8b5cf6;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #a5a0c0;
+      line-height: 1.6;
       font-size: 14px;
     }
 
-    .footer .container {
-      padding-top: 18px;
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 32px 0;
+    }
+
+    .compare-card {
+      background: rgba(255,255,255,0.04);
+      border-radius: 24px;
+      padding: 32px;
+    }
+
+    .compare-card.before {
+      border-left: 4px solid #ef4444;
+    }
+
+    .compare-card.after {
+      border-left: 4px solid #10b981;
+    }
+
+    .compare-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .compare-list {
+      list-style: none;
+    }
+
+    .compare-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      color: #a5a0c0;
+      font-size: 14px;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin: 32px 0;
+    }
+
+    .tech-item {
+      background: rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      border-radius: 999px;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+
+    .cta {
+      text-align: center;
+      background: linear-gradient(135deg, #1a1535, #0f0c1f);
+      border-radius: 32px;
+      padding: 64px 48px;
+      margin: 48px 0;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #8b5cf6, #a855f7);
+      padding: 14px 32px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(139, 92, 246, 0.5);
+      padding: 14px 32px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 40px 0;
       border-top: 1px solid rgba(255,255,255,0.06);
+      color: #a5a0c0;
+      font-size: 13px;
     }
 
-    @media (max-width: 980px) {
-      .hero-grid,
-      .challenge-grid,
-      .solution-grid,
-      .impact-grid,
-      .visual-grid {
+    @media (max-width: 900px) {
+      .grid-2, .grid-3, .grid-4, .compare-grid {
         grid-template-columns: 1fr;
       }
-
-      .hero-stats {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        max-width: 100%;
-      }
-
-      .hero-copy,
-      .hero-visual,
-      .solution-features,
-      .solution-image,
-      .challenge-card,
-      .impact-card {
-        padding-left: 24px;
-        padding-right: 24px;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .container {
-        width: min(var(--max), calc(100% - 20px));
-      }
-
-      .nav-inner {
-        border-radius: 28px;
-        padding: 16px;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        width: 100%;
-        gap: 12px;
-      }
-
-      .hero {
-        padding-top: 30px;
-      }
-
-      .hero-copy,
-      .hero-visual,
-      .solution-features,
-      .solution-image,
-      .challenge-card,
-      .impact-card,
-      .cta-box {
-        padding: 22px;
-      }
-
-      .hero-mini-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-box {
-        padding-top: 42px;
-        padding-bottom: 42px;
-      }
+      h1 { font-size: 40px; }
+      h2 { font-size: 28px; }
+      .container { padding: 0 20px; }
+      .flowchart-diagram { padding: 24px; }
+      .flow-steps { flex-direction: column; }
+      .arrow { transform: rotate(90deg); }
+      .metadata-grid, .raci-table { grid-template-columns: 1fr; gap: 12px; }
     }
   </style>
 </head>
@@ -754,234 +548,216 @@
 <nav class="navbar">
   <div class="container nav-inner">
     <a href="#" class="logo">
-      <span class="logo-mark">
-        <img src="mina-logo.png" alt="Mina.Flow logo" />
-      </span>
+      <img src="automated-lead-capture-system/assets/mina-logo.png" alt="Mina.Flow logo" class="logo-img" onerror="this.src='https://placehold.co/44x44/8b5cf6/white?text=M'">
       <span>Mina.Flow</span>
     </a>
-
     <div class="nav-links">
       <a href="#challenge">Challenge</a>
       <a href="#solution">Solution</a>
-      <a href="#impact">Impact</a>
+      <a href="#process">Process</a>
+      <a href="#proof">Proof</a>
+      <a href="#roi">ROI</a>
       <a href="#contact" class="nav-cta">Contact</a>
     </div>
   </div>
 </nav>
 
 <main>
+  <!-- HERO -->
   <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-copy card">
-        <div class="tech-tags">
-          <span class="tag">Make.com</span>
-          <span class="tag">Webflow</span>
-          <span class="tag">Google Sheets</span>
-          <span class="tag">Slack API</span>
-        </div>
-
-        <h1>Scalable Lead Capture Architecture</h1>
-
-        <p class="hero-summary">
-          I engineered an end-to-end automation system that reduced response time by 95%, 
-          reclaimed 40+ hours monthly, and eliminated manual data entry across the sales funnel.
-        </p>
-
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <div class="hero-stat-number">95%</div>
-            <div class="hero-stat-label">Faster response</div>
-          </div>
-
-          <div class="hero-stat">
-            <div class="hero-stat-number">40+</div>
-            <div class="hero-stat-label">Hours reclaimed</div>
-          </div>
-
-          <div class="hero-stat">
-            <div class="hero-stat-number">100%</div>
-            <div class="hero-stat-label">Data accuracy</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-visual card">
-        <div class="hero-main-image">
-          <img src="make-scenario.png" alt="Architecture preview showing Make.com automation blueprint" />
-        </div>
-
-        <div class="hero-mini-grid">
-          <div class="hero-mini-card">
-            <img src="webflow-form.png" alt="Webflow lead capture form" />
-          </div>
-          <div class="hero-mini-card">
-            <img src="slack-alert.png" alt="Slack alert showing instant lead notification" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="challenge" class="challenge section">
     <div class="container">
-      <div class="section-heading">
-        <span class="section-label">⚠ The Problem</span>
-        <h2>The bottlenecks were killing conversion</h2>
+      <div class="hero-badge">
+        <i class="fas fa-rocket"></i> 
+        <span>v2.0 · Sales & Architecture Alignment</span>
       </div>
-
-      <div class="challenge-grid">
-        <div class="challenge-card card">
-          <div class="challenge-icon">⏱️</div>
-          <h3>Time-to-First-Call</h3>
-          <p>Manual lead routing meant 2-4 hour delays before sales could respond. Prospects went cold before first touch.</p>
-        </div>
-
-        <div class="challenge-card card">
-          <div class="challenge-icon">📋</div>
-          <h3>Data Inconsistency</h3>
-          <p>Copy-paste errors between CRM, sheets, and email caused lost information and frustrated teams.</p>
-        </div>
-
-        <div class="challenge-card card">
-          <div class="challenge-icon">🔄</div>
-          <h3>Repetitive Admin Work</h3>
-          <p>Team members spent 10+ hours weekly on manual data entry instead of selling.</p>
-        </div>
-
-        <div class="challenge-card card">
-          <div class="challenge-icon">👻</div>
-          <h3>Leaked Leads</h3>
-          <p>No visibility into lead flow meant submissions occasionally fell through the cracks entirely.</p>
-        </div>
+      <h1>Automated Lead Capture<br>& Response System</h1>
+      <p class="hero-subtitle">Transforming manual inquiries into a scalable, error-proof client pipeline.</p>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-number">&lt;10s</div><div class="stat-label">Response Time</div></div>
+        <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Lead Capture</div></div>
+        <div class="stat-item"><div class="stat-number">30%</div><div class="stat-label">Cost Reduction</div></div>
       </div>
     </div>
   </section>
 
-  <section id="solution" class="solution section">
-    <div class="container solution-grid">
-      <div class="solution-features card">
-        <div>
-          <span class="section-label">⚙ The Engineering Solution</span>
-          <h2>Zero-touch lead processing pipeline</h2>
-        </div>
-
-        <div class="feature-item">
-          <div class="feature-check">✓</div>
-          <div class="feature-text">
-            <h4>Webhook-first capture</h4>
-            <p>Webflow form submits directly to Make.com webhook → sub-10ms trigger time.</p>
-          </div>
-        </div>
-
-        <div class="feature-item">
-          <div class="feature-check">✓</div>
-          <div class="feature-text">
-            <h4>Conditional routing logic</h4>
-            <p>Lead source, priority, and territory determined automatically without human intervention.</p>
-          </div>
-        </div>
-
-        <div class="feature-item">
-          <div class="feature-check">✓</div>
-          <div class="feature-text">
-            <h4>Atomic data storage</h4>
-            <p>Google Sheets append with timestamp, source metadata, and structured fields.</p>
-          </div>
-        </div>
-
-        <div class="feature-item">
-          <div class="feature-check">✓</div>
-          <div class="feature-text">
-            <h4>Real-time Slack activation</h4>
-            <p>Rich notification with lead details → sales acts in minutes, not hours.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="solution-image card">
-        <div class="solution-image-large">
-          <img src="make-scenario.png" alt="Make.com automation blueprint showing workflow routing" />
-        </div>
-        <div class="solution-image-small">
-          <img src="google-sheets.png" alt="Google Sheets structured data storage for lead capture" />
-        </div>
+  <!-- METADATA + RACI -->
+  <div class="container">
+    <div class="metadata-card">
+      <div class="metadata-grid">
+        <div class="metadata-item"><div class="metadata-icon"><i class="fas fa-code-branch"></i></div><div class="metadata-label">Version</div><div class="metadata-value">v2.0</div></div>
+        <div class="metadata-item"><div class="metadata-icon"><i class="fas fa-user-cog"></i></div><div class="metadata-label">Owner</div><div class="metadata-value">No-Code Automation Specialist</div></div>
+        <div class="metadata-item"><div class="metadata-icon"><i class="fas fa-users"></i></div><div class="metadata-label">Custodian</div><div class="metadata-value">Sales & Operations Team</div></div>
+        <div class="metadata-item"><div class="metadata-icon"><i class="fas fa-pen-fancy"></i></div><div class="metadata-label">Technical Writer</div><div class="metadata-value">Mina.Flow</div></div>
       </div>
     </div>
-  </section>
 
-  <section id="impact" class="impact section">
+    <div class="raci-section">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;"><i class="fas fa-table-list" style="color: #8b5cf6; font-size: 24px;"></i><h3 style="margin:0;">RACI Matrix</h3></div>
+      <div class="raci-table">
+        <div class="raci-header">Role</div><div class="raci-header">Responsibility</div>
+        <div class="raci-role"><i class="fas fa-cogs" style="color:#8b5cf6; width:24px;"></i> Responsible (R)</div><div class="raci-person">Automation Specialist — Builds and maintains the system</div>
+        <div class="raci-role"><i class="fas fa-chart-line" style="color:#f59e0b; width:24px;"></i> Accountable (A)</div><div class="raci-person">Sales Manager — Ensures leads are followed up on</div>
+        <div class="raci-role"><i class="fas fa-headset" style="color:#10b981; width:24px;"></i> Consulted (C)</div><div class="raci-person">Customer Service Team — Defines auto-reply message</div>
+        <div class="raci-role"><i class="fas fa-chart-simple" style="color:#ec4899; width:24px;"></i> Informed (I)</div><div class="raci-person">Business Owner — Receives weekly ROI reports</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHALLENGE -->
+  <section id="challenge" class="section">
     <div class="container">
-      <div class="impact-header">
-        <span class="section-label">📊 The Impact</span>
-        <h2>What the business gained</h2>
-        <p>Measurable results after 30 days of production</p>
+      <div class="section-header">
+        <span class="section-tag"><i class="fas fa-exclamation-triangle"></i> The Challenge</span>
+        <h2>No lead left behind</h2>
+        <p>Slow response times = lost revenue. Manual processes = single point of failure.</p>
       </div>
+      <div class="grid-2">
+        <div class="card"><div class="card-icon"><i class="fas fa-hourglass-half"></i></div><h3>Lost leads</h3><p>Delayed responses cause prospects to go cold before first contact.</p></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-keyboard"></i></div><h3>Manual data entry</h3><p>Hours wasted copying data between tools instead of selling.</p></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-bug"></i></div><h3>Inconsistent data</h3><p>Copy-paste errors lead to duplicate records and lost information.</p></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-eye-slash"></i></div><h3>No visibility</h3><p>Silent failures mean leads fall through cracks unnoticed.</p></div>
+      </div>
+    </div>
+  </section>
 
-      <div class="impact-grid">
-        <div class="impact-card card">
-          <div class="impact-number">95%</div>
-          <div class="impact-label">Reduction in Response Time</div>
-          <div class="impact-desc">From 4 hours → under 10 seconds</div>
-        </div>
-
-        <div class="impact-card card">
-          <div class="impact-number">40+</div>
-          <div class="impact-label">Hours Reclaimed Monthly</div>
-          <div class="impact-desc">Previously lost to manual data entry</div>
-        </div>
-
-        <div class="impact-card card">
-          <div class="impact-number">100%</div>
-          <div class="impact-label">Data Accuracy</div>
-          <div class="impact-desc">Zero copy-paste errors since deployment</div>
-        </div>
-
-        <div class="impact-card card">
-          <div class="impact-number">0</div>
-          <div class="impact-label">Maintenance Required</div>
-          <div class="impact-desc">Set it and forget it architecture</div>
+  <!-- DIJAGRAM TOKA PROCESA -->
+  <section id="process" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag"><i class="fas fa-diagram-project"></i> Automated Workflow</span>
+        <h2>From capture to response in under 10 seconds</h2>
+      </div>
+      <div class="flowchart-diagram">
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-icon"><i class="fas fa-globe"></i></div><div class="step-title">Capture</div><div class="step-desc">Webflow form</div></div>
+          <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+          <div class="flow-step"><div class="step-icon"><i class="fas fa-filter"></i></div><div class="step-title">Parse & Filter</div><div class="step-desc">Remove spam</div></div>
+          <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+          <div class="flow-step"><div class="step-icon"><i class="fas fa-database"></i></div><div class="step-title">Store</div><div class="step-desc">Google Sheets</div></div>
+          <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+          <div class="flow-step"><div class="step-icon"><i class="fas fa-bell"></i></div><div class="step-title">Alert</div><div class="step-desc">Slack notification</div></div>
+          <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+          <div class="flow-step"><div class="step-icon"><i class="fas fa-envelope"></i></div><div class="step-title">Engage</div><div class="step-desc">Auto-reply email</div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="visual-proof section">
+  <!-- VIZUELNI DOKAZ - TVOJE SLIKE! -->
+  <section id="proof" class="section">
     <div class="container">
-      <div class="section-heading">
-        <span class="section-label">Visual Proof</span>
-        <h2>The workflow in action</h2>
+      <div class="section-header">
+        <span class="section-tag"><i class="fas fa-image"></i> Visual Proof</span>
+        <h2>See the system in action</h2>
+        <p>Real screenshots from the actual automation workflow I built</p>
       </div>
-
-      <div class="visual-grid">
-        <div class="visual-card card">
-          <img src="webflow-form.png" alt="Webflow form used for lead collection" />
-          <div class="visual-card-caption">Lead Capture</div>
+      <div class="proof-grid">
+        <!-- Webflow Form -->
+        <div class="proof-card">
+          <img src="automated-lead-capture-system/assets/webflow-form.png" alt="Webflow lead capture form" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Webflow+Form'">
+          <div class="proof-content">
+            <div class="proof-title"><i class="fas fa-globe"></i> Step 1: Lead Capture</div>
+            <div class="proof-desc">Webflow form - clean entry point for every lead</div>
+          </div>
         </div>
-
-        <div class="visual-card card">
-          <img src="make-scenario.png" alt="Make.com scenario used to automate routing" />
-          <div class="visual-card-caption">Automation Logic</div>
+        <!-- Make.com Scenario -->
+        <div class="proof-card">
+          <img src="automated-lead-capture-system/assets/make-scenario.png" alt="Make.com automation scenario" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Make.com+Scenario'">
+          <div class="proof-content">
+            <div class="proof-title"><i class="fas fa-code-branch"></i> Step 2: Automation Logic</div>
+            <div class="proof-desc">Make.com handles routing and processing</div>
+          </div>
         </div>
-
-        <div class="visual-card card">
-          <img src="google-sheets.png" alt="Google Sheets dashboard storing lead data" />
-          <div class="visual-card-caption">Structured Storage</div>
+        <!-- Google Sheets -->
+        <div class="proof-card">
+          <img src="automated-lead-capture-system/assets/google-sheets.png" alt="Google Sheets lead database" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Google+Sheets'">
+          <div class="proof-content">
+            <div class="proof-title"><i class="fas fa-database"></i> Step 3: Structured Storage</div>
+            <div class="proof-desc">Google Sheets - clean, searchable lead database</div>
+          </div>
         </div>
-
-        <div class="visual-card card">
-          <img src="slack-alert.png" alt="Slack alert notifying the sales team in real time" />
-          <div class="visual-card-caption">Real-Time Alerts</div>
+        <!-- Slack Alert -->
+        <div class="proof-card">
+          <img src="automated-lead-capture-system/assets/slack-alert.png" alt="Slack team notification" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Slack+Alert'">
+          <div class="proof-content">
+            <div class="proof-title"><i class="fab fa-slack"></i> Step 4: Real-time Alert</div>
+            <div class="proof-desc">Slack notification - team acts in seconds</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="cta">
+  <!-- SOLUTION ARCHITECTURE -->
+  <section id="solution" class="section">
     <div class="container">
-      <div class="cta-box">
-        <h2>Ready to scale your lead operation?</h2>
-        <p>Let's discuss how I can architect a similar system for your business.</p>
-        <a href="#" class="cta-button">Let's Talk →</a>
+      <div class="section-header">
+        <span class="section-tag"><i class="fas fa-microchip"></i> Smart Automation Logic</span>
+        <h2>Self-healing system architecture</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Budget Protection Routing</h3><p>Early filtering removes empty/spam submissions. Saves up to 30% of automation costs.</p></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-dice-d6"></i></div><h3>Data Standardization</h3><p>Emails formatted consistently. Prevents duplicate CRM records.</p></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-heartbeat"></i></div><h3>Error Handling</h3><p>Failures detected instantly. Alerts sent to Slack (#tech-errors). Team reacts before client notices.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI & IMPACT -->
+  <section id="roi" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag"><i class="fas fa-chart-line"></i> Business Impact (ROI)</span>
+        <h2>Measurable results, real savings</h2>
+        <p>Based on 40 leads per month</p>
+      </div>
+      <div class="grid-4">
+        <div class="card" style="text-align: center;"><div class="card-icon"><i class="fas fa-clock"></i></div><div class="stat-number">3.5h</div><div class="stat-label">Time saved monthly</div></div>
+        <div class="card" style="text-align: center;"><div class="card-icon"><i class="fas fa-coins"></i></div><div class="stat-number">30%</div><div class="stat-label">Cost reduction</div></div>
+        <div class="card" style="text-align: center;"><div class="card-icon"><i class="fas fa-bolt"></i></div><div class="stat-number">&lt;10s</div><div class="stat-label">Response time</div></div>
+        <div class="card" style="text-align: center;"><div class="card-icon"><i class="fas fa-shield"></i></div><div class="stat-number">100%</div><div class="stat-label">Lead capture</div></div>
+      </div>
+
+      <!-- Before vs After -->
+      <div class="compare-grid">
+        <div class="compare-card before"><div class="compare-title"><i class="fas fa-times-circle" style="color:#ef4444;"></i> Before</div>
+          <ul class="compare-list"><li><i class="fas fa-inbox" style="color:#ef4444;"></i> Leads lost in inbox</li><li><i class="fas fa-pen"></i> Manual replies</li><li><i class="fas fa-brush"></i> Messy data</li><li><i class="fas fa-skull"></i> Silent failures</li></ul>
+        </div>
+        <div class="compare-card after"><div class="compare-title"><i class="fas fa-check-circle" style="color:#10b981;"></i> After</div>
+          <ul class="compare-list"><li><i class="fas fa-database" style="color:#10b981;"></i> Leads stored in Google Sheets</li><li><i class="fas fa-robot"></i> Instant auto-response</li><li><i class="fas fa-chart-line"></i> Clean standardized data</li><li><i class="fas fa-bell"></i> Slack error alerts</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag"><i class="fas fa-layer-group"></i> Tech Stack</span>
+        <h2>Tools that power the automation</h2>
+      </div>
+      <div class="tech-stack">
+        <div class="tech-item"><i class="fab fa-webflow"></i> Webflow → Lead capture</div>
+        <div class="tech-item"><i class="fas fa-code-branch"></i> Make.com → Automation engine</div>
+        <div class="tech-item"><i class="fas fa-table"></i> Google Sheets → Database</div>
+        <div class="tech-item"><i class="fab fa-slack"></i> Slack → Notifications</div>
+        <div class="tech-item"><i class="fas fa-envelope"></i> Email (SMTP) → Client communication</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="cta">
+        <i class="fas fa-rocket" style="font-size: 48px; color: #8b5cf6; margin-bottom: 20px;"></i>
+        <h2>Ready to automate your workflows?</h2>
+        <p>Let's eliminate manual work and build a system that scales with your business.</p>
+        <div class="cta-buttons">
+          <a href="#" class="btn-primary"><i class="fab fa-linkedin"></i> Let's connect on LinkedIn</a>
+          <a href="#" class="btn-secondary"><i class="fas fa-envelope"></i> yourname@email.com</a>
+        </div>
       </div>
     </div>
   </section>
@@ -989,7 +765,7 @@
 
 <footer class="footer">
   <div class="container">
-    <p>© 2026 Mina.Flow — Scalable Lead Capture Architecture</p>
+    <p>© 2026 Mina.Flow — Automated Lead Capture & Response System v2.0 | Built by [Your Name]</p>
   </div>
 </footer>
 
