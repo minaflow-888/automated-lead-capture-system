@@ -3,334 +3,484 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lead Capture Automation Case Study | Mina.Flow</title>
-  <meta
-    name="description"
-    content="A no-code automation case study showing how a manual lead handling process was turned into a faster, cleaner, and more reliable system using Webflow, Make, Google Sheets, and Slack."
-  />
+  <title>Case Study: Lead Capture Automation | Mina.Flow</title>
+  <meta name="description" content="No-code automation case study: how a manual lead process became a fast, reliable, visible system using Webflow, Make, Google Sheets & Slack." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ---------- ROOT VARIABLES (brand alignment) ---------- */
+    :root {
+      --bg: #06101d;
+      --bg-2: #0a1527;
+      --surface: rgba(13, 24, 42, 0.76);
+      --surface-2: rgba(15, 27, 46, 0.96);
+      --surface-3: rgba(255, 255, 255, 0.03);
+      --border: rgba(160, 186, 255, 0.12);
+      --border-strong: rgba(116, 242, 211, 0.2);
+      --text: #eef4ff;
+      --text-soft: #a5b4cf;
+      --text-muted: #7d8ba5;
+      --accent: #74f2d3;
+      --accent-2: #7aa8ff;
+      --accent-dark: #04131a;
+      --shadow-lg: 0 24px 70px rgba(0, 0, 0, 0.34);
+      --shadow-md: 0 14px 34px rgba(0, 0, 0, 0.22);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max-width: 1200px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: radial-gradient(circle at top left, rgba(122, 168, 255, 0.14), transparent 24%),
+                  radial-gradient(circle at 88% 12%, rgba(116, 242, 211, 0.12), transparent 18%),
+                  linear-gradient(180deg, #06101d 0%, #091321 100%);
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* animated orbs + grid */
+    .bg-orb {
+      position: fixed;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      filter: blur(130px);
+      opacity: 0.2;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .orb-1 { top: -140px; left: -140px; background: var(--accent-2); }
+    .orb-2 { right: -140px; top: 280px; background: var(--accent); }
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at center, black 35%, transparent 85%);
+    }
+
+    /* layout shell */
+    .site-shell {
+      position: relative;
+      z-index: 2;
+      max-width: var(--max-width);
+      width: calc(100% - 40px);
+      margin: 0 auto;
+      padding: 24px 0 64px;
+    }
+
+    /* sticky navbar */
+    .topbar {
+      position: sticky;
+      top: 20px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 12px 20px;
+      margin-bottom: 48px;
+      background: rgba(8, 16, 29, 0.78);
+      backdrop-filter: blur(18px);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      box-shadow: var(--shadow-md);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+    }
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(160,186,255,0.2);
+    }
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+    .brand-text {
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+    .topnav {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .topnav a {
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      transition: 0.2s;
+      font-weight: 500;
+    }
+    .topnav a:hover { color: var(--accent); transform: translateY(-1px); }
+    .nav-cta {
+      background: rgba(116,242,211,0.08);
+      border: 1px solid rgba(116,242,211,0.3);
+      padding: 8px 16px;
+      border-radius: 40px;
+      color: var(--accent) !important;
+    }
+
+    /* cards & sections */
+    .section { margin-bottom: 100px; }
+    .card {
+      background: linear-gradient(180deg, rgba(18,31,53,0.96), rgba(10,19,33,0.96));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(2px);
+      box-shadow: var(--shadow-lg);
+      transition: all 0.2s ease;
+    }
+    .eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+    h1, h2, h3 {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    h1 { font-size: clamp(2.6rem, 6vw, 4.8rem); line-height: 1.08; margin-bottom: 20px; }
+    h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); line-height: 1.2; margin-bottom: 16px; }
+    .text-soft { color: var(--text-soft); }
+
+    /* hero grid */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 28px;
+      margin-bottom: 80px;
+    }
+    .hero-copy { padding: 44px; border-radius: var(--radius-xl); }
+    .hero-panel { padding: 36px; border-radius: var(--radius-xl); display: flex; flex-direction: column; justify-content: space-between; }
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      margin: 32px 0 28px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 28px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      gap: 8px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #b2ffe6);
+      color: #021018;
+      box-shadow: 0 10px 24px rgba(116,242,211,0.2);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(160,186,255,0.3);
+      color: var(--text);
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .metric {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(160,186,255,0.08);
+      border-radius: 20px;
+      padding: 18px 12px;
+    }
+    .metric-value { font-size: 2rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 6px; }
+    .stack-badge {
+      background: rgba(122,168,255,0.1);
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .stack-list { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 20px; }
+
+    /* problem/solution grids */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .feature-list { margin-top: 20px; padding-left: 20px; color: var(--text-soft); display: flex; flex-direction: column; gap: 12px; }
+    .solution-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 22px; margin-top: 8px; }
+    .solution-card { padding: 28px; border-radius: var(--radius-md); }
+    .icon-dot {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-radius: 12px;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+    .workflow-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .workflow-card { overflow: hidden; border-radius: 24px; background: rgba(10,19,33,0.8); border: 1px solid var(--border); }
+    .image-frame {
+      aspect-ratio: 16/9;
+      background: #0c1628;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .image-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(116,242,211,0.12);
+      border-radius: 60px;
+      color: var(--accent);
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .workflow-content { padding: 28px; }
+    .impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 8px; }
+    .impact-card { padding: 32px; border-radius: 24px; }
+    .three-col { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 32px; }
+    .insight-card { padding: 32px; border-radius: 24px; }
+
+    /* final cta */
+    .final-cta {
+      text-align: center;
+      padding: 58px 32px;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at 30% 20%, rgba(116,242,211,0.08), transparent 50%), linear-gradient(180deg, rgba(18,31,53,0.98), rgba(10,19,33,0.98));
+    }
+    .footer {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 1000px) {
+      .hero-grid, .two-col, .solution-grid, .workflow-grid, .impact-grid, .three-col { grid-template-columns: 1fr; }
+      .solution-grid { gap: 18px; }
+      .metrics-row { grid-template-columns: 1fr; }
+      .hero-copy, .hero-panel { padding: 32px; }
+    }
+    @media (max-width: 680px) {
+      .topbar { flex-direction: column; align-items: flex-start; border-radius: 28px; }
+      .topnav { width: 100%; justify-content: flex-start; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
 </head>
 <body>
-  <div class="bg-orb orb-1"></div>
-  <div class="bg-orb orb-2"></div>
-  <div class="bg-grid"></div>
+<div class="bg-orb orb-1"></div>
+<div class="bg-orb orb-2"></div>
+<div class="bg-grid"></div>
 
-  <div class="site-shell">
-    <header class="topbar">
-      <a href="#" class="brand">
-        <span class="brand-mark">
-          <img src="mina-logo.png" alt="Mina.Flow logo" class="brand-logo" />
-        </span>
-        <span class="brand-text">Mina.Flow</span>
-      </a>
+<div class="site-shell">
+  <header class="topbar">
+    <a href="#" class="brand">
+      <span class="brand-mark">
+        <img src="https://portfolio-site-9d14e9.webflow.io/images/mina-logo.png" alt="Mina.Flow" class="brand-logo" onerror="this.src='https://placehold.co/32x32/74f2d3/04131a?text=M'">
+      </span>
+      <span class="brand-text">Mina.Flow</span>
+    </a>
+    <nav class="topnav">
+      <a href="#overview">Overview</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#impact">Impact</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </nav>
+  </header>
 
-      <nav class="topnav">
-        <a href="#overview">Overview</a>
-        <a href="#workflow">Workflow</a>
-        <a href="#impact">Impact</a>
-        <a href="#contact" class="nav-cta">Get in touch</a>
-      </nav>
-    </header>
-
-    <main>
-      <section class="hero" id="overview">
-        <div class="hero-copy card">
-          <p class="eyebrow">AUTOMATION CASE STUDY</p>
-          <h1>Turning manual lead handling into a fast, visible, and dependable system.</h1>
-          <p class="hero-text">
-            This project was designed to solve a simple but costly operational issue:
-            incoming leads were being handled manually, which created delays, repetitive admin work,
-            and inconsistent visibility for the team.
-            I rebuilt the process into a structured no-code workflow that captures submissions instantly,
-            stores them clearly, and notifies the team in real time.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#workflow" class="btn btn-primary">See the workflow</a>
-            <a href="#contact" class="btn btn-secondary">Contact me</a>
-          </div>
-
-          <div class="hero-metrics">
-            <div class="metric-card">
-              <span class="metric-value">&lt; 10s</span>
-              <span class="metric-label">Lead visibility</span>
-            </div>
-            <div class="metric-card">
-              <span class="metric-value">42h</span>
-              <span class="metric-label">Admin time saved monthly</span>
-            </div>
-            <div class="metric-card">
-              <span class="metric-value">100%</span>
-              <span class="metric-label">Consistent lead capture</span>
-            </div>
-          </div>
+  <main>
+    <!-- HERO + case study intro -->
+    <section id="overview" class="hero-grid">
+      <div class="hero-copy card">
+        <div class="eyebrow">AUTOMATION CASE STUDY</div>
+        <h1>Turning manual lead handling into a fast, visible, dependable system.</h1>
+        <p class="text-soft" style="font-size:1.05rem; margin-bottom:24px;">
+          Manual lead processing creates delays, hidden admin cost, and inconsistent follow-up.
+          This project rebuilt the entire funnel into a structured no-code workflow: instant capture,
+          clean storage, real-time team alerts — with zero manual handoff.
+        </p>
+        <div class="hero-actions">
+          <a href="#workflow" class="btn btn-primary">Explore the workflow →</a>
+          <a href="#contact" class="btn btn-secondary">Let's talk</a>
         </div>
-
-        <aside class="hero-panel card">
-          <div class="hero-panel-top">
-            <span class="panel-badge">Project stack</span>
-            <h2>Built for business outcomes, not tool complexity</h2>
-            <p>
-              The value of this workflow is not the number of tools involved.
-              The value is what the business gets back: speed, cleaner data,
-              less manual friction, and clearer team visibility.
-            </p>
-          </div>
-
+        <div class="metrics-row">
+          <div class="metric"><div class="metric-value">&lt;10s</div><div class="text-soft">Lead visibility</div></div>
+          <div class="metric"><div class="metric-value">42h</div><div class="text-soft">Admin saved / month</div></div>
+          <div class="metric"><div class="metric-value">100%</div><div class="text-soft">Consistent capture</div></div>
+        </div>
+      </div>
+      <aside class="hero-panel card">
+        <div>
+          <span class="stack-badge" style="background: rgba(116,242,211,0.12);">Project stack</span>
+          <h2 style="margin-top: 16px;">Built for business outcomes, not tool complexity</h2>
+          <p class="text-soft">Speed, cleaner data, less friction, clear team visibility — the value is in the result.</p>
           <div class="stack-list">
-            <span>Webflow</span>
-            <span>Make</span>
-            <span>Google Sheets</span>
-            <span>Slack</span>
-          </div>
-
-          <div class="hero-quote">
-            <p>Simple for the user on the front end. Reliable for the team behind the scenes.</p>
-          </div>
-        </aside>
-      </section>
-
-      <section class="section">
-        <div class="section-heading narrow">
-          <p class="eyebrow">THE PROBLEM</p>
-          <h2>Manual workflows create friction where speed matters most</h2>
-          <p>
-            When lead handling depends on manual steps, businesses lose time exactly when they should be moving fast.
-            Even a basic process becomes fragile when information has to be copied, checked, or forwarded by hand.
-          </p>
-        </div>
-
-        <div class="two-col-grid">
-          <article class="card info-card">
-            <h3>What was going wrong</h3>
-            <ul class="feature-list">
-              <li>Leads were not moving through the process quickly enough</li>
-              <li>Manual handoff created repetitive low-value admin work</li>
-              <li>Important details could become scattered between tools</li>
-              <li>The team lacked one clean real-time view of incoming leads</li>
-            </ul>
-          </article>
-
-          <article class="card info-card">
-            <h3>What the workflow needed to do</h3>
-            <ul class="feature-list">
-              <li>Capture every lead through one clear entry point</li>
-              <li>Route the submission automatically without manual copying</li>
-              <li>Store the data in a structured and consistent format</li>
-              <li>Alert the team immediately so follow-up can start faster</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <p class="eyebrow">THE SOLUTION</p>
-          <h2>A connected no-code workflow designed for clarity and reliability</h2>
-          <p>
-            Instead of treating the process as separate tools, I designed it as one connected system:
-            capture the lead, process the data, store it cleanly, and notify the team instantly.
-          </p>
-        </div>
-
-        <div class="solution-grid">
-          <article class="card solution-card">
-            <span class="icon-dot"></span>
-            <h3>Capture</h3>
-            <p>
-              A Webflow form creates a clean, consistent entry point for every incoming lead.
-            </p>
-          </article>
-
-          <article class="card solution-card">
-            <span class="icon-dot"></span>
-            <h3>Route</h3>
-            <p>
-              Make handles the workflow logic automatically, removing manual handoff from the process.
-            </p>
-          </article>
-
-          <article class="card solution-card">
-            <span class="icon-dot"></span>
-            <h3>Store</h3>
-            <p>
-              Google Sheets keeps submissions in one structured record for visibility and review.
-            </p>
-          </article>
-
-          <article class="card solution-card">
-            <span class="icon-dot"></span>
-            <h3>Notify</h3>
-            <p>
-              Slack alerts give the team immediate awareness, so no lead sits unnoticed.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="workflow">
-        <div class="section-heading">
-          <p class="eyebrow">VISUAL WORKFLOW</p>
-          <h2>How the process moves from form submission to team notification</h2>
-          <p>
-            These screenshots show the workflow in the actual order it happens.
-            The goal is not just automation for its own sake, but a process that feels easier to trust and easier to scale.
-          </p>
-        </div>
-
-        <div class="workflow-grid">
-          <article class="workflow-card card">
-            <div class="image-frame">
-              <img src="webflow-form.png" alt="Webflow lead capture form" />
-            </div>
-            <div class="workflow-content">
-              <span class="step">01</span>
-              <h3>Lead capture begins on the website</h3>
-              <p>
-                The workflow starts with a Webflow form that gives the business one clear and reliable entry point for incoming leads.
-              </p>
-            </div>
-          </article>
-
-          <article class="workflow-card card">
-            <div class="image-frame">
-              <img src="make-scenario.png" alt="Make automation scenario" />
-            </div>
-            <div class="workflow-content">
-              <span class="step">02</span>
-              <h3>Automation logic handles the routing</h3>
-              <p>
-                Make receives the submission and processes it automatically, reducing manual work and keeping the logic consistent.
-              </p>
-            </div>
-          </article>
-
-          <article class="workflow-card card">
-            <div class="image-frame">
-              <img src="google-sheets.png" alt="Google Sheets lead record" />
-            </div>
-            <div class="workflow-content">
-              <span class="step">03</span>
-              <h3>Data is stored in one structured record</h3>
-              <p>
-                Every submission is logged in Google Sheets to create a clean source of truth for tracking and review.
-              </p>
-            </div>
-          </article>
-
-          <article class="workflow-card card">
-            <div class="image-frame">
-              <img src="slack-alert.png" alt="Slack team notification" />
-            </div>
-            <div class="workflow-content">
-              <span class="step">04</span>
-              <h3>The team gets immediate visibility</h3>
-              <p>
-                A Slack notification alerts the team right away, helping them act while the lead is still fresh.
-              </p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="impact">
-        <div class="section-heading narrow">
-          <p class="eyebrow">BUSINESS IMPACT</p>
-          <h2>What this workflow improves for a business</h2>
-        </div>
-
-        <div class="impact-grid">
-          <article class="card impact-card">
-            <h3>Less manual overhead</h3>
-            <p>
-              Repetitive admin work is reduced because data no longer needs to be moved by hand between tools.
-            </p>
-          </article>
-
-          <article class="card impact-card">
-            <h3>Faster internal response</h3>
-            <p>
-              New leads become visible almost immediately, which helps teams respond faster and more confidently.
-            </p>
-          </article>
-
-          <article class="card impact-card">
-            <h3>Cleaner operational visibility</h3>
-            <p>
-              One structured flow makes the process easier to monitor and keeps incoming data more consistent.
-            </p>
-          </article>
-
-          <article class="card impact-card">
-            <h3>A stronger foundation for scale</h3>
-            <p>
-              A reliable workflow is easier to grow with than a process built on manual workarounds and scattered information.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading narrow">
-          <p class="eyebrow">WHY THIS CASE STUDY MATTERS</p>
-          <h2>What this project says about how I work</h2>
-          <p>
-            This project is not just about connecting apps.
-            It shows that I look at friction inside a workflow, simplify what does not need to be manual,
-            and design systems that are easier for businesses to use and trust.
-          </p>
-        </div>
-
-        <div class="three-col-grid">
-          <article class="card insight-card">
-            <h3>I focus on outcomes</h3>
-            <p>
-              I build around speed, visibility, and reliability instead of adding technical complexity for its own sake.
-            </p>
-          </article>
-
-          <article class="card insight-card">
-            <h3>I think in systems</h3>
-            <p>
-              A strong workflow should feel structured, dependable, and clear from input to action.
-            </p>
-          </article>
-
-          <article class="card insight-card">
-            <h3>I connect UX and operations</h3>
-            <p>
-              The user experience should stay simple while the backend quietly handles the heavy lifting.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section final-cta-section" id="contact">
-        <div class="final-cta card">
-          <p class="eyebrow">LET'S CONNECT</p>
-          <h2>Looking for someone who can turn manual workflows into cleaner systems?</h2>
-          <p>
-            I build no-code automation solutions that reduce friction, improve response speed,
-            and make business processes easier to manage.
-          </p>
-
-          <div class="hero-actions center-actions">
-            <a href="mailto:your-email@example.com" class="btn btn-primary">Email me</a>
-            <a href="https://www.linkedin.com/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <span class="stack-badge">Webflow</span>
+            <span class="stack-badge">Make.com</span>
+            <span class="stack-badge">Google Sheets</span>
+            <span class="stack-badge">Slack</span>
           </div>
         </div>
-      </section>
-    </main>
+        <div style="margin-top: 16px; background: rgba(255,255,255,0.02); border-radius: 24px; padding: 20px; border:1px solid var(--border);">
+          <p style="font-style: italic;">“Simple for the user on the front end. Reliable for the team behind the scenes.”</p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- PROBLEM SECTION -->
+    <section class="section">
+      <div style="max-width: 780px; margin-bottom: 32px;">
+        <div class="eyebrow">THE PROBLEM</div>
+        <h2>Manual workflows create friction exactly where speed matters most</h2>
+        <p class="text-soft">Even a basic lead process becomes fragile when information has to be copied, checked, or forwarded by hand. The business was losing response time and internal trust.</p>
+      </div>
+      <div class="two-col">
+        <div class="card" style="padding: 32px;">
+          <h3>What was going wrong</h3>
+          <ul class="feature-list">
+            <li>⏱️ Leads not moving fast enough through the funnel</li>
+            <li>🔄 Repetitive manual copy/paste between tools</li>
+            <li>📌 Scattered lead details → lost context</li>
+            <li>👀 No single source of truth for incoming leads</li>
+          </ul>
+        </div>
+        <div class="card" style="padding: 32px;">
+          <h3>What the workflow needed to do</h3>
+          <ul class="feature-list">
+            <li>✅ One clear entry point for every lead</li>
+            <li>⚙️ Automatic routing – zero manual handoff</li>
+            <li>🗂️ Structured, consistent data storage</li>
+            <li>🔔 Instant team alert to act while it’s fresh</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUTION : CAPTURE / ROUTE / STORE / NOTIFY -->
+    <section class="section">
+      <div style="margin-bottom: 28px;">
+        <div class="eyebrow">THE SOLUTION</div>
+        <h2>A connected no‑code workflow designed for clarity & reliability</h2>
+        <p class="text-soft">One unified system: capture → process → store → notify. No more manual glue.</p>
+      </div>
+      <div class="solution-grid">
+        <div class="card solution-card"><div class="icon-dot"></div><h3>Capture</h3><p class="text-soft">Webflow form as a clean, consistent entry point for every inbound lead.</p></div>
+        <div class="card solution-card"><div class="icon-dot"></div><h3>Route</h3><p class="text-soft">Make.com handles logic automatically, removing manual handoff & human error.</p></div>
+        <div class="card solution-card"><div class="icon-dot"></div><h3>Store</h3><p class="text-soft">Google Sheets logs each submission → structured, auditable source of truth.</p></div>
+        <div class="card solution-card"><div class="icon-dot"></div><h3>Notify</h3><p class="text-soft">Slack alert triggers instantly, helping teams follow up within minutes.</p></div>
+      </div>
+    </section>
+
+    <!-- VISUAL WORKFLOW with actual image links (assets) -->
+    <section id="workflow" class="section">
+      <div style="margin-bottom: 28px;">
+        <div class="eyebrow">VISUAL WORKFLOW</div>
+        <h2>How the process moves from submission to team notification</h2>
+        <p class="text-soft">End-to-end automation in action: each step eliminates manual work and adds visibility.</p>
+      </div>
+      <div class="workflow-grid">
+        <div class="workflow-card">
+          <div class="image-frame"><img src="https://portfolio-site-9d14e9.webflow.io/images/webflow-form.png" alt="Webflow lead form" onerror="this.src='https://placehold.co/600x338/0a1527/74f2d3?text=Webflow+Form'"></div>
+          <div class="workflow-content"><span class="step-badge">01</span><h3>Lead capture begins on the website</h3><p class="text-soft">A native Webflow form creates the only entry point, ensuring zero lost leads and validation.</p></div>
+        </div>
+        <div class="workflow-card">
+          <div class="image-frame"><img src="https://portfolio-site-9d14e9.webflow.io/images/make-scenario.png" alt="Make automation scenario" onerror="this.src='https://placehold.co/600x338/0a1527/7aa8ff?text=Make.com+Scenario'"></div>
+          <div class="workflow-content"><span class="step-badge">02</span><h3>Automation logic routes the data</h3><p class="text-soft">Make receives the webhook, processes fields, enriches if needed — consistent and auditable.</p></div>
+        </div>
+        <div class="workflow-card">
+          <div class="image-frame"><img src="https://portfolio-site-9d14e9.webflow.io/images/google-sheets.png" alt="Google Sheets record" onerror="this.src='https://placehold.co/600x338/0a1527/74f2d3?text=Google+Sheets+Log'"></div>
+          <div class="workflow-content"><span class="step-badge">03</span><h3>Structured storage in Google Sheets</h3><p class="text-soft">Every submission is appended with timestamp + lead details, giving operations a clean database.</p></div>
+        </div>
+        <div class="workflow-card">
+          <div class="image-frame"><img src="https://portfolio-site-9d14e9.webflow.io/images/slack-alert.png" alt="Slack team alert" onerror="this.src='https://placehold.co/600x338/0a1527/7aa8ff?text=Slack+Alert'"></div>
+          <div class="workflow-content"><span class="step-badge">04</span><h3>Real‑time Slack notification</h3><p class="text-soft">A formatted message hits the designated channel → team can act in seconds, not hours.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUSINESS IMPACT -->
+    <section id="impact" class="section">
+      <div style="max-width: 800px; margin-bottom: 32px;">
+        <div class="eyebrow">BUSINESS IMPACT</div>
+        <h2>What this workflow improves for a business</h2>
+        <p class="text-soft">Beyond automation — operational leverage, faster response, and scalable infrastructure.</p>
+      </div>
+      <div class="impact-grid">
+        <div class="card impact-card"><h3>📉 Less manual overhead</h3><p class="text-soft">No more copying data between tabs or forwarding emails. The team focuses on high-value work.</p></div>
+        <div class="card impact-card"><h3>⚡ Faster internal response</h3><p class="text-soft">Lead-to-alert under 10 seconds directly improves conversion potential.</p></div>
+        <div class="card impact-card"><h3>📊 Cleaner operational visibility</h3><p class="text-soft">One dashboard (Sheets) shows all leads with timestamps, source, status-ready for review.</p></div>
+        <div class="card impact-card"><h3>🚀 Stronger foundation for scale</h3><p class="text-soft">The architecture can grow with volume, add CRM or email follow-up without rebuilding.</p></div>
+      </div>
+    </section>
+
+    <!-- WHY THIS MATTERS: design & system thinking -->
+    <section class="section">
+      <div style="max-width: 760px; margin-bottom: 24px;">
+        <div class="eyebrow">DESIGN & SYSTEMS APPROACH</div>
+        <h2>What this case study says about how I work</h2>
+        <p class="text-soft">It’s not just about connecting apps — it’s about reducing friction, designing for trust, and delivering business leverage.</p>
+      </div>
+      <div class="three-col">
+        <div class="card insight-card"><h3>🎯 Focus on outcomes</h3><p class="text-soft">I build for speed, reliability, and clarity — never adding complexity for its own sake.</p></div>
+        <div class="card insight-card"><h3>🧠 Think in systems</h3><p class="text-soft">From input to action, every piece has a role. The result feels structured and dependable.</p></div>
+        <div class="card insight-card"><h3>✨ UX + Operations bridge</h3><p class="text-soft">User experience stays simple, while the backend does the heavy lifting seamlessly.</p></div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA / CONTACT -->
+    <section id="contact" class="final-cta card" style="margin-bottom: 20px;">
+      <div class="eyebrow">READY TO STREAMLINE?</div>
+      <h2>Looking for someone who turns manual workflows into cleaner systems?</h2>
+      <p class="text-soft" style="max-width: 680px; margin: 16px auto;">I design and implement no-code automation that reduces admin friction, improves response time, and makes business processes manageable.</p>
+      <div class="hero-actions" style="justify-content: center; margin-top: 28px;">
+        <a href="mailto:hello@minaflow.com" class="btn btn-primary">Email me</a>
+        <a href="#" class="btn btn-secondary" target="_blank">LinkedIn</a>
+      </div>
+    </section>
 
     <footer class="footer">
-      <p>© 2026 Mina.Flow — No-code automation case study</p>
+      <p>© 2026 Mina.Flow — No-code automation case study · designed for clarity & business impact</p>
     </footer>
-  </div>
+  </main>
+</div>
 </body>
 </html>
