@@ -10,7 +10,9 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">Mina</a>
+    <a href="#" class="nav-logo" aria-label="Mina Home">
+      <img src="assets/mina-logo.png" alt="Mina logo" class="nav-logo-img">
+    </a>
     <span class="nav-badge">Automation Case Study</span>
   </nav>
 
@@ -166,7 +168,6 @@
       </p>
 
       <div class="arch-grid">
-        <!-- Principles -->
         <div class="arch-cards reveal d2">
           <div class="arch-card">
             <div class="arch-icon">🛡️</div>
@@ -187,7 +188,6 @@
           </div>
         </div>
 
-        <!-- Flow diagram -->
         <div class="flow-box reveal d3">
           <div class="flow-label">Make.com — Visual Workflow</div>
 
@@ -261,11 +261,72 @@
     </div>
   </section>
 
-  <!-- 04 IMPACT -->
+  <!-- 04 VISUAL PROOF -->
+  <section id="proof">
+    <div class="inner">
+      <div class="sec-label reveal">
+        <span class="sec-num">04</span> Visual Proof
+      </div>
+      <h2 class="reveal d1">From form submission to captured lead.</h2>
+      <p class="lead reveal d2">
+        These screenshots show the real workflow in action: the Webflow form, the Make.com scenario,
+        the stored Google Sheets record, and the Slack team alert.
+      </p>
+
+      <div class="proof-grid reveal d2">
+        <article class="proof-card proof-card-wide">
+          <img src="assets/make-scenario.png" alt="Make.com workflow scenario" class="proof-img">
+          <div class="proof-copy">
+            <div class="proof-kicker">Automation Engine</div>
+            <h3>Make.com scenario</h3>
+            <p>
+              The workflow starts from a Webflow webhook, parses the input,
+              writes a clean lead into Google Sheets, then alerts Slack and sends the email reply.
+            </p>
+          </div>
+        </article>
+
+        <article class="proof-card">
+          <img src="assets/webflow-form.png" alt="Webflow contact form submission" class="proof-img">
+          <div class="proof-copy">
+            <div class="proof-kicker">Lead Input</div>
+            <h3>Webflow form</h3>
+            <p>
+              A simple front-end contact form captures the lead and starts the automation immediately.
+            </p>
+          </div>
+        </article>
+
+        <article class="proof-card">
+          <img src="assets/google-sheets.png" alt="Google Sheets lead record" class="proof-img">
+          <div class="proof-copy">
+            <div class="proof-kicker">Stored Record</div>
+            <h3>Google Sheets entry</h3>
+            <p>
+              The submission is stored instantly with timestamp, contact details, message, and source.
+            </p>
+          </div>
+        </article>
+
+        <article class="proof-card">
+          <img src="assets/slack-alert.png" alt="Slack lead alert message" class="proof-img">
+          <div class="proof-copy">
+            <div class="proof-kicker">Team Visibility</div>
+            <h3>Slack alert</h3>
+            <p>
+              The team receives a real-time lead notification as soon as the record is saved.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 IMPACT -->
   <section id="impact">
     <div class="inner">
       <div class="sec-label reveal">
-        <span class="sec-num">04</span> Business Impact
+        <span class="sec-num">05</span> Business Impact
       </div>
       <h2 class="reveal d1">Measurable ROI from day one.</h2>
       <p class="lead reveal d2">
@@ -306,11 +367,11 @@
     </div>
   </section>
 
-  <!-- 05 BEFORE / AFTER -->
+  <!-- 06 BEFORE / AFTER -->
   <section id="comparison">
     <div class="inner">
       <div class="sec-label reveal">
-        <span class="sec-num">05</span> Before vs After
+        <span class="sec-num">06</span> Before vs After
       </div>
       <h2 class="reveal d1">The transformation is<br>structural, not cosmetic.</h2>
       <p class="lead reveal d2">
@@ -342,11 +403,11 @@
     </div>
   </section>
 
-  <!-- 06 TECH STACK -->
+  <!-- 07 TECH STACK -->
   <section id="stack">
     <div class="inner">
       <div class="sec-label reveal">
-        <span class="sec-num">06</span> Tech Stack
+        <span class="sec-num">07</span> Tech Stack
       </div>
       <h2 class="reveal d1">Tools chosen for reliability,<br>not complexity.</h2>
       <p class="lead reveal d2">
@@ -416,7 +477,6 @@
         Let's design a system that runs itself.
       </p>
       <div class="cta-btns reveal d3">
-        <!-- UPDATE these two links with your real LinkedIn and email -->
         <a href="https://linkedin.com/in/YOUR-LINKEDIN" class="btn-cta">Connect on LinkedIn →</a>
         <a href="mailto:YOUR@EMAIL.COM" class="btn-outline">your@email.com</a>
       </div>
