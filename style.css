@@ -1,17 +1,17 @@
 :root {
-  --bg: #07111f;
+  --bg: #06101d;
   --bg-2: #0a1527;
-  --surface: rgba(13, 24, 42, 0.78);
-  --surface-2: rgba(18, 31, 53, 0.96);
+  --surface: rgba(13, 24, 42, 0.76);
+  --surface-2: rgba(15, 27, 46, 0.96);
   --surface-3: rgba(255, 255, 255, 0.03);
-  --border: rgba(158, 184, 255, 0.12);
-  --border-strong: rgba(116, 242, 211, 0.18);
+  --border: rgba(160, 186, 255, 0.12);
+  --border-strong: rgba(116, 242, 211, 0.2);
   --text: #eef4ff;
   --text-soft: #a5b4cf;
   --text-muted: #7d8ba5;
   --accent: #74f2d3;
   --accent-2: #7aa8ff;
-  --accent-dark: #06141a;
+  --accent-dark: #04131a;
   --shadow-lg: 0 24px 70px rgba(0, 0, 0, 0.34);
   --shadow-md: 0 14px 34px rgba(0, 0, 0, 0.22);
   --radius-xl: 30px;
@@ -35,7 +35,7 @@ body {
   line-height: 1.6;
   background:
     radial-gradient(circle at top left, rgba(122, 168, 255, 0.14), transparent 24%),
-    radial-gradient(circle at 90% 10%, rgba(116, 242, 211, 0.10), transparent 18%),
+    radial-gradient(circle at 88% 12%, rgba(116, 242, 211, 0.12), transparent 18%),
     linear-gradient(180deg, #06101d 0%, #091321 100%);
   position: relative;
   overflow-x: hidden;
@@ -51,27 +51,39 @@ a {
   text-decoration: none;
 }
 
-.page-glow {
+.bg-orb {
   position: fixed;
   width: 420px;
   height: 420px;
   border-radius: 50%;
   filter: blur(120px);
-  opacity: 0.14;
+  opacity: 0.16;
   pointer-events: none;
   z-index: 0;
 }
 
-.page-glow-1 {
+.orb-1 {
   top: -120px;
   left: -120px;
   background: var(--accent-2);
 }
 
-.page-glow-2 {
+.orb-2 {
   right: -140px;
-  top: 260px;
+  top: 280px;
   background: var(--accent);
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(circle at center, black 35%, transparent 85%);
 }
 
 .site-shell {
@@ -85,14 +97,14 @@ a {
 .topbar {
   position: sticky;
   top: 16px;
-  z-index: 50;
+  z-index: 60;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
   padding: 14px 18px;
   margin-bottom: 34px;
-  background: rgba(8, 16, 29, 0.76);
+  background: rgba(8, 16, 29, 0.78);
   border: 1px solid var(--border);
   border-radius: 999px;
   backdrop-filter: blur(18px);
@@ -107,12 +119,28 @@ a {
   letter-spacing: -0.02em;
 }
 
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(160, 186, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
 .brand-logo {
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.03);
+}
+
+.brand-text {
+  color: var(--text);
+  font-size: 1rem;
 }
 
 .topnav {
@@ -136,26 +164,29 @@ a {
 .nav-cta {
   padding: 10px 14px;
   border-radius: 999px;
-  background: rgba(116, 242, 211, 0.10);
+  background: rgba(116, 242, 211, 0.1);
   border: 1px solid rgba(116, 242, 211, 0.24);
   color: var(--text);
 }
 
-.hero {
-  display: grid;
-  grid-template-columns: 1.3fr 0.78fr;
-  gap: 22px;
-  align-items: stretch;
+.section {
   margin-bottom: 88px;
 }
 
-.card,
-.hero-copy,
-.hero-panel,
-.workflow-card {
-  background: linear-gradient(180deg, rgba(15, 25, 43, 0.96), rgba(10, 19, 33, 0.96));
+.card {
+  background:
+    linear-gradient(180deg, rgba(18, 31, 53, 0.98), rgba(10, 19, 33, 0.98));
   border: 1px solid var(--border);
   box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-lg);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.28fr 0.8fr;
+  gap: 22px;
+  align-items: stretch;
+  margin-bottom: 88px;
 }
 
 .hero-copy {
@@ -168,7 +199,7 @@ a {
   border-radius: var(--radius-xl);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .eyebrow {
@@ -184,8 +215,8 @@ a {
   margin: 0 0 18px;
   font-size: clamp(2.4rem, 5vw, 4.6rem);
   line-height: 1.04;
-  letter-spacing: -0.05em;
-  max-width: 12.5ch;
+  letter-spacing: -0.055em;
+  max-width: 12ch;
 }
 
 .hero h2,
@@ -205,7 +236,7 @@ a {
 .card p,
 .workflow-content p,
 .footer p,
-.panel-note {
+.hero-quote p {
   color: var(--text-soft);
 }
 
@@ -229,12 +260,12 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
+  min-height: 50px;
   padding: 0 18px;
   border-radius: 999px;
   font-weight: 600;
   font-size: 0.96rem;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn:hover {
@@ -244,39 +275,40 @@ a {
 .btn-primary {
   background: linear-gradient(135deg, var(--accent), #94ffd7);
   color: var(--accent-dark);
+  box-shadow: 0 12px 28px rgba(116, 242, 211, 0.18);
 }
 
 .btn-secondary {
   background: transparent;
   color: var(--text);
-  border: 1px solid rgba(158, 184, 255, 0.16);
+  border: 1px solid rgba(160, 186, 255, 0.16);
 }
 
-.hero-proof {
+.hero-metrics {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
   margin-top: 10px;
 }
 
-.proof-item {
+.metric-card {
   padding: 18px;
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(158, 184, 255, 0.10);
+  border: 1px solid rgba(160, 186, 255, 0.1);
 }
 
-.proof-value {
+.metric-value {
   display: block;
   margin-bottom: 8px;
-  font-size: 1.9rem;
+  font-size: 1.95rem;
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.05em;
   color: var(--text);
 }
 
-.proof-label {
+.metric-label {
   color: var(--text-soft);
   font-size: 0.92rem;
 }
@@ -304,13 +336,21 @@ a {
   padding: 10px 12px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(158, 184, 255, 0.10);
+  border: 1px solid rgba(160, 186, 255, 0.1);
   color: var(--text);
   font-size: 0.9rem;
 }
 
-.section {
-  margin-bottom: 88px;
+.hero-quote {
+  margin-top: 6px;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(160, 186, 255, 0.08);
+}
+
+.hero-quote p {
+  margin: 0;
 }
 
 .section-heading {
@@ -343,6 +383,10 @@ a {
   grid-template-columns: repeat(4, 1fr);
 }
 
+.workflow-grid {
+  grid-template-columns: 1fr 1fr;
+}
+
 .impact-grid {
   grid-template-columns: 1fr 1fr;
 }
@@ -351,13 +395,12 @@ a {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.card {
+.info-card,
+.solution-card,
+.impact-card,
+.insight-card,
+.final-cta {
   padding: 30px;
-  border-radius: var(--radius-lg);
-}
-
-.soft-card {
-  background: linear-gradient(180deg, rgba(15, 25, 43, 0.94), rgba(11, 20, 36, 0.96));
 }
 
 .card h3,
@@ -377,10 +420,6 @@ a {
   margin-top: 10px;
 }
 
-.solution-card {
-  min-height: 100%;
-}
-
 .icon-dot {
   display: inline-flex;
   width: 14px;
@@ -391,13 +430,9 @@ a {
   box-shadow: 0 0 0 8px rgba(116, 242, 211, 0.08);
 }
 
-.workflow-grid {
-  grid-template-columns: 1fr 1fr;
-}
-
 .workflow-card {
   overflow: hidden;
-  border-radius: var(--radius-lg);
+  padding: 0;
 }
 
 .image-frame {
@@ -429,22 +464,16 @@ a {
   font-weight: 700;
 }
 
-.impact-card,
-.insight-card {
-  background: linear-gradient(180deg, rgba(15, 25, 43, 0.96), rgba(10, 19, 33, 0.96));
-}
-
 .final-cta-section {
   margin-bottom: 50px;
 }
 
 .final-cta {
-  padding: 42px;
   text-align: center;
   border-radius: var(--radius-xl);
   background:
     radial-gradient(circle at top, rgba(116, 242, 211, 0.08), transparent 35%),
-    linear-gradient(180deg, rgba(15, 25, 43, 0.98), rgba(10, 19, 33, 0.98));
+    linear-gradient(180deg, rgba(18, 31, 53, 0.98), rgba(10, 19, 33, 0.98));
 }
 
 .final-cta p {
@@ -479,7 +508,7 @@ a {
     max-width: 100%;
   }
 
-  .hero-proof {
+  .hero-metrics {
     grid-template-columns: 1fr;
   }
 }
@@ -505,7 +534,10 @@ a {
 
   .hero-copy,
   .hero-panel,
-  .card,
+  .info-card,
+  .solution-card,
+  .impact-card,
+  .insight-card,
   .workflow-content,
   .final-cta {
     padding: 24px;
