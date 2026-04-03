@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mina.Flow | Automated Lead Capture System - Case Study</title>
+  <title>Mina JK | Automated Lead Capture System - Case Study</title>
   <meta name="description" content="Automated lead capture system that reduced response time to under 10 seconds, saved 3.5+ hours monthly, and achieved 100% lead capture reliability." />
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,6 +23,7 @@
       background: linear-gradient(135deg, #0a0a1a 0%, #12102a 50%, #1a1535 100%);
       color: #ffffff;
       line-height: 1.5;
+      overflow-x: hidden;
     }
 
     .container {
@@ -31,7 +32,7 @@
       padding: 0 32px;
     }
 
-    /* Navigacija */
+    /* ===== NAVIGACIJA ===== */
     .navbar {
       padding: 24px 0;
       border-bottom: 1px solid rgba(139, 92, 246, 0.2);
@@ -91,9 +92,15 @@
       padding: 10px 24px;
       border-radius: 999px;
       color: white !important;
+      transition: all 0.3s ease;
     }
 
-    /* Hero */
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.8), 0 0 40px rgba(139, 92, 246, 0.4);
+    }
+
+    /* ===== HERO ===== */
     .hero {
       padding: 80px 0 60px;
     }
@@ -148,10 +155,148 @@
       margin-top: 6px;
     }
 
-    /* Metadata */
+    /* ===== KARTICE - PODIZANJE I LJUBIČASTA IVICA ===== */
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 24px;
+      padding: 32px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #a855f7;
+      box-shadow: 0 20px 40px -15px rgba(139, 92, 246, 0.5);
+      background: rgba(139, 92, 246, 0.08);
+    }
+
+    /* ===== DUGMAD - GLOW EFEKAT ===== */
+    .btn-primary, .btn-secondary {
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #8b5cf6, #a855f7);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.8), 0 0 40px rgba(139, 92, 246, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(139, 92, 246, 0.5);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+      border-color: #a855f7;
+      background: rgba(139, 92, 246, 0.1);
+    }
+
+    /* ===== MODAL ZA SLIKE (LIGHTBOX) ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.active {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal-img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 16px;
+      box-shadow: 0 0 50px rgba(139, 92, 246, 0.5);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .modal-close:hover {
+      color: #a855f7;
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ===== PROOF KARTICE SA SLIKAMA ===== */
+    .proof-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .proof-card:hover {
+      transform: translateY(-8px);
+      border-color: #a855f7;
+      box-shadow: 0 20px 40px -15px rgba(139, 92, 246, 0.5);
+    }
+
+    .proof-img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .proof-card:hover .proof-img {
+      transform: scale(1.02);
+    }
+
+    .proof-content {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .proof-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    /* ===== METADATA ===== */
     .metadata-card {
       background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(139, 92, 246, 0.2);
       border-radius: 24px;
       padding: 28px;
       margin: 40px 0;
@@ -181,7 +326,12 @@
       margin-bottom: 6px;
     }
 
-    /* RACI */
+    .metadata-value {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* ===== RACI ===== */
     .raci-section {
       background: rgba(0,0,0,0.2);
       border-radius: 24px;
@@ -208,13 +358,13 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    /* Flowchart */
+    /* ===== FLOWCHART ===== */
     .flowchart-diagram {
       background: linear-gradient(135deg, #0f0c1f, #120e28);
       border-radius: 32px;
       padding: 48px;
       margin: 48px 0;
-      border: 1px solid rgba(139, 92, 246, 0.2);
+      border: 1px solid rgba(139, 92, 246, 0.3);
     }
 
     .flow-steps {
@@ -231,7 +381,14 @@
       border-radius: 20px;
       padding: 24px 20px;
       text-align: center;
-      min-width: 160px;
+      min-width: 140px;
+      transition: all 0.3s ease;
+    }
+
+    .flow-step:hover {
+      transform: translateY(-5px);
+      border-color: #a855f7;
+      background: rgba(139, 92, 246, 0.2);
     }
 
     .step-icon {
@@ -250,7 +407,7 @@
       color: #8b5cf6;
     }
 
-    /* Proof grid - slike */
+    /* ===== OSTALO ===== */
     .proof-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -258,30 +415,6 @@
       margin: 48px 0;
     }
 
-    .proof-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 24px;
-      overflow: hidden;
-    }
-
-    .proof-img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-    }
-
-    .proof-content {
-      padding: 20px;
-      text-align: center;
-    }
-
-    .proof-title {
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    /* Sekcije */
     .section {
       padding: 60px 0;
     }
@@ -309,20 +442,22 @@
       margin-bottom: 16px;
     }
 
-    .grid-2, .grid-3, .grid-4 {
+    .grid-2 {
       display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 24px;
     }
 
-    .grid-2 { grid-template-columns: repeat(2, 1fr); }
-    .grid-3 { grid-template-columns: repeat(3, 1fr); }
-    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
 
-    .card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 24px;
-      padding: 32px;
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
     }
 
     .card-icon {
@@ -341,7 +476,6 @@
       font-size: 14px;
     }
 
-    /* Compare */
     .compare-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -355,8 +489,13 @@
       padding: 32px;
     }
 
-    .compare-card.before { border-left: 4px solid #ef4444; }
-    .compare-card.after { border-left: 4px solid #10b981; }
+    .compare-card.before {
+      border-left: 4px solid #ef4444;
+    }
+
+    .compare-card.after {
+      border-left: 4px solid #10b981;
+    }
 
     .compare-list {
       list-style: none;
@@ -370,7 +509,6 @@
       color: #a5a0c0;
     }
 
-    /* Tech stack */
     .tech-stack {
       display: flex;
       flex-wrap: wrap;
@@ -390,13 +528,13 @@
       font-weight: 600;
     }
 
-    /* CTA */
     .cta {
       text-align: center;
       background: linear-gradient(135deg, #1a1535, #0f0c1f);
       border-radius: 32px;
       padding: 64px 48px;
       margin: 48px 0;
+      border: 1px solid rgba(139, 92, 246, 0.3);
     }
 
     .cta-buttons {
@@ -405,27 +543,6 @@
       justify-content: center;
       flex-wrap: wrap;
       margin-top: 32px;
-    }
-
-    .btn-primary, .btn-secondary {
-      padding: 14px 32px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #8b5cf6, #a855f7);
-      color: white;
-    }
-
-    .btn-secondary {
-      background: transparent;
-      border: 1px solid rgba(139, 92, 246, 0.5);
-      color: white;
     }
 
     .footer {
@@ -445,16 +562,23 @@
       .flow-steps { flex-direction: column; }
       .arrow { transform: rotate(90deg); }
       .container { padding: 0 20px; }
+      .flowchart-diagram { padding: 24px; }
     }
   </style>
 </head>
 <body>
 
+<!-- MODAL ZA SLIKE (LIGHTBOX) -->
+<div id="imageModal" class="modal" onclick="closeModal()">
+  <span class="modal-close" onclick="closeModal()">&times;</span>
+  <img class="modal-img" id="modalImage" src="" alt="Full size">
+</div>
+
 <nav class="navbar">
   <div class="container nav-inner">
     <a href="#" class="logo">
-      <img src="assets/mina-logo.png" alt="Mina.Flow logo" class="logo-img" onerror="this.src='https://placehold.co/44x44/8b5cf6/white?text=M'">
-      <span>Mina.Flow</span>
+      <img src="assets/mina-logo.png" alt="Mina JK logo" class="logo-img" onerror="this.src='https://placehold.co/44x44/8b5cf6/white?text=M'">
+      <span>Mina</span>
     </a>
     <div class="nav-links">
       <a href="#challenge">Challenge</a>
@@ -490,7 +614,7 @@
         <div class="metadata-item"><div class="metadata-icon"><i class="fas fa-code-branch"></i></div><div class="metadata-label">Version</div><div class="metadata-value">v2.0</div></div>
         <div class="metadata-item"><div class="metadata-icon"><i class="fas fa-user-cog"></i></div><div class="metadata-label">Owner</div><div class="metadata-value">No-Code Specialist</div></div>
         <div class="metadata-item"><div class="metadata-icon"><i class="fas fa-users"></i></div><div class="metadata-label">Custodian</div><div class="metadata-value">Sales & Operations</div></div>
-        <div class="metadata-item"><div class="metadata-icon"><i class="fas fa-pen-fancy"></i></div><div class="metadata-label">Author</div><div class="metadata-value">Mina.Flow</div></div>
+        <div class="metadata-item"><div class="metadata-icon"><i class="fas fa-pen-fancy"></i></div><div class="metadata-label">Author</div><div class="metadata-value">Mina JK</div></div>
       </div>
     </div>
 
@@ -514,9 +638,9 @@
       </div>
       <div class="grid-2">
         <div class="card"><div class="card-icon"><i class="fas fa-hourglass-half"></i></div><h3>Lost leads</h3><p>Delayed responses cause prospects to go cold before first contact.</p></div>
-        <div class="card"><div class="card-icon"><i class="fas fa-keyboard"></i></div><h3>Manual data entry</h3><p>Hours wasted copying data between tools.</p></div>
-        <div class="card"><div class="card-icon"><i class="fas fa-bug"></i></div><h3>Inconsistent data</h3><p>Copy-paste errors lead to duplicate records.</p></div>
-        <div class="card"><div class="card-icon"><i class="fas fa-eye-slash"></i></div><h3>No visibility</h3><p>Silent failures mean leads fall through cracks.</p></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-keyboard"></i></div><h3>Manual data entry</h3><p>Hours wasted copying data between tools instead of selling.</p></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-bug"></i></div><h3>Inconsistent data</h3><p>Copy-paste errors lead to duplicate records and lost information.</p></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-eye-slash"></i></div><h3>No visibility</h3><p>Silent failures mean leads fall through cracks unnoticed.</p></div>
       </div>
     </div>
   </section>
@@ -548,13 +672,25 @@
       <div class="section-header">
         <span class="section-tag"><i class="fas fa-image"></i> Visual Proof</span>
         <h2>See the system in action</h2>
-        <p>Real screenshots from the actual automation workflow I built</p>
+        <p>Click on any screenshot to view full size</p>
       </div>
       <div class="proof-grid">
-        <div class="proof-card"><img src="assets/webflow-form.png" alt="Webflow form" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Webflow+Form'"><div class="proof-content"><div class="proof-title"><i class="fas fa-globe"></i> Step 1: Lead Capture</div></div></div>
-        <div class="proof-card"><img src="assets/make-scenario.png" alt="Make.com scenario" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Make.com+Scenario'"><div class="proof-content"><div class="proof-title"><i class="fas fa-code-branch"></i> Step 2: Automation Logic</div></div></div>
-        <div class="proof-card"><img src="assets/google-sheets.png" alt="Google Sheets" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Google+Sheets'"><div class="proof-content"><div class="proof-title"><i class="fas fa-database"></i> Step 3: Structured Storage</div></div></div>
-        <div class="proof-card"><img src="assets/slack-alert.png" alt="Slack alert" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Slack+Alert'"><div class="proof-content"><div class="proof-title"><i class="fab fa-slack"></i> Step 4: Real-time Alert</div></div></div>
+        <div class="proof-card" onclick="openModal('assets/webflow-form.png')">
+          <img src="assets/webflow-form.png" alt="Webflow form" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Webflow+Form'">
+          <div class="proof-content"><div class="proof-title"><i class="fas fa-globe"></i> Step 1: Lead Capture</div><div class="proof-desc">Webflow form - clean entry point</div></div>
+        </div>
+        <div class="proof-card" onclick="openModal('assets/make-scenario.png')">
+          <img src="assets/make-scenario.png" alt="Make.com scenario" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Make.com+Scenario'">
+          <div class="proof-content"><div class="proof-title"><i class="fas fa-code-branch"></i> Step 2: Automation Logic</div><div class="proof-desc">Make.com handles routing</div></div>
+        </div>
+        <div class="proof-card" onclick="openModal('assets/google-sheets.png')">
+          <img src="assets/google-sheets.png" alt="Google Sheets" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Google+Sheets'">
+          <div class="proof-content"><div class="proof-title"><i class="fas fa-database"></i> Step 3: Structured Storage</div><div class="proof-desc">Google Sheets database</div></div>
+        </div>
+        <div class="proof-card" onclick="openModal('assets/slack-alert.png')">
+          <img src="assets/slack-alert.png" alt="Slack alert" class="proof-img" onerror="this.src='https://placehold.co/600x240/1a1535/8b5cf6?text=Slack+Alert'">
+          <div class="proof-content"><div class="proof-title"><i class="fab fa-slack"></i> Step 4: Real-time Alert</div><div class="proof-desc">Slack notification - instant team alert</div></div>
+        </div>
       </div>
     </div>
   </section>
@@ -587,8 +723,8 @@
       </div>
 
       <div class="compare-grid">
-        <div class="compare-card before"><div class="compare-title"><i class="fas fa-times-circle"></i> Before</div><ul class="compare-list"><li><i class="fas fa-inbox"></i> Leads lost in inbox</li><li><i class="fas fa-pen"></i> Manual replies</li><li><i class="fas fa-brush"></i> Messy data</li></ul></div>
-        <div class="compare-card after"><div class="compare-title"><i class="fas fa-check-circle"></i> After</div><ul class="compare-list"><li><i class="fas fa-database"></i> Leads in Google Sheets</li><li><i class="fas fa-robot"></i> Auto-response</li><li><i class="fas fa-chart-line"></i> Clean data</li></ul></div>
+        <div class="compare-card before"><div class="compare-title"><i class="fas fa-times-circle"></i> Before</div><ul class="compare-list"><li><i class="fas fa-inbox"></i> Leads lost in inbox</li><li><i class="fas fa-pen"></i> Manual replies</li><li><i class="fas fa-brush"></i> Messy data</li><li><i class="fas fa-skull"></i> Silent failures</li></ul></div>
+        <div class="compare-card after"><div class="compare-title"><i class="fas fa-check-circle"></i> After</div><ul class="compare-list"><li><i class="fas fa-database"></i> Leads in Google Sheets</li><li><i class="fas fa-robot"></i> Auto-response</li><li><i class="fas fa-chart-line"></i> Clean data</li><li><i class="fas fa-bell"></i> Slack error alerts</li></ul></div>
       </div>
     </div>
   </section>
@@ -616,7 +752,7 @@
         <p>Let's eliminate manual work and build a system that scales.</p>
         <div class="cta-buttons">
           <a href="#" class="btn-primary"><i class="fab fa-linkedin"></i> Connect on LinkedIn</a>
-          <a href="#" class="btn-secondary"><i class="fas fa-envelope"></i> hello@minaflow.com</a>
+          <a href="#" class="btn-secondary"><i class="fas fa-envelope"></i> hello@minajk.com</a>
         </div>
       </div>
     </div>
@@ -625,9 +761,29 @@
 
 <footer class="footer">
   <div class="container">
-    <p>© 2026 Mina.Flow — Automated Lead Capture & Response System v2.0</p>
+    <p>© 2026 Mina JK — Automated Lead Capture & Response System v2.0</p>
   </div>
 </footer>
+
+<script>
+  function openModal(imgSrc) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    modal.classList.add('active');
+    modalImg.src = imgSrc;
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.remove('active');
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+</script>
 
 </body>
 </html>
