@@ -9,32 +9,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
   <style>
-    /* ============================================
-       MASTER WEB ARHITEKTA - CASE STUDY STYLE
-       Profesionalni SaaS dizajn po specifikaciji
-    ============================================ */
-    
     :root {
-      /* Glavne boje - sinhronizuj sa svojim Webflow portfoliom */
-      --primary: #2563eb;      /* Tvoja glavna boja - PROMENI PO POTREBI */
-      --primary-dark: #1d4ed8;
-      --primary-light: #60a5fa;
-      --secondary: #10b981;
-      --text-dark: #1e293b;
-      --text-gray: #475569;
-      --text-light: #94a3b8;
-      --bg-white: #ffffff;
-      --bg-gray: #f8fafc;
-      --bg-dark: #0f172a;
-      --border-light: #e2e8f0;
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 20px;
-      --radius-xl: 28px;
+      --bg: #070510;
+      --bg-soft: #0d0a1a;
+      --surface: rgba(16, 12, 32, 0.78);
+      --surface-strong: rgba(19, 14, 38, 0.96);
+      --surface-light: rgba(255, 255, 255, 0.04);
+      --border: rgba(197, 174, 255, 0.12);
+      --border-strong: rgba(189, 126, 255, 0.28);
+      --text: #f8f6ff;
+      --text-soft: #c5bfd8;
+      --text-muted: #9c95b3;
+      --primary: #8b5cf6;
+      --primary-2: #a855f7;
+      --primary-3: #6366f1;
+      --pink: #ec4899;
+      --white: #ffffff;
+      --shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.18);
+      --shadow-md: 0 18px 40px rgba(0, 0, 0, 0.25);
+      --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.38);
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --radius-xl: 36px;
+      --max: 1200px;
     }
 
     * {
@@ -43,317 +41,596 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--text-dark);
+      color: var(--text);
       line-height: 1.5;
-      background: var(--bg-white);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(168, 85, 247, 0.18), transparent 22%),
+        radial-gradient(circle at 80% 8%, rgba(99, 102, 241, 0.18), transparent 20%),
+        radial-gradient(circle at 50% 45%, rgba(236, 72, 153, 0.08), transparent 20%),
+        linear-gradient(180deg, #06040d 0%, #0a0714 38%, #070510 100%);
+      overflow-x: hidden;
     }
 
-    /* Kontejner - ograničena širina za bolju čitljivost */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(circle at center, black 35%, transparent 80%);
+      z-index: 0;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
     .container {
-      max-width: 1200px;
+      width: min(var(--max), calc(100% - 32px));
       margin: 0 auto;
-      padding: 0 24px;
+      position: relative;
+      z-index: 1;
     }
 
-    /* Tipografija */
     h1 {
-      font-size: clamp(48px, 6vw, 64px);
+      font-size: clamp(40px, 6vw, 64px);
       font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      color: var(--text-dark);
-      margin-bottom: 24px;
+      line-height: 1.03;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      margin-bottom: 22px;
+      max-width: 11ch;
     }
 
     h2 {
-      font-size: clamp(28px, 4vw, 36px);
+      font-size: clamp(28px, 4vw, 40px);
       font-weight: 700;
-      letter-spacing: -0.01em;
-      color: var(--text-dark);
-      margin-bottom: 16px;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 14px;
+      line-height: 1.1;
     }
 
     h3 {
       font-size: 18px;
       font-weight: 600;
-      color: var(--text-dark);
+      color: var(--white);
       margin-bottom: 8px;
+      letter-spacing: -0.02em;
     }
 
-    /* Navigacija */
+    p {
+      color: var(--text-soft);
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #d7ccff;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+    }
+
+    .card {
+      background:
+        linear-gradient(180deg, rgba(24, 18, 44, 0.96), rgba(12, 9, 24, 0.96));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(12px);
+    }
+
     .navbar {
       position: sticky;
-      top: 0;
-      background: rgba(255,255,255,0.98);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border-light);
-      padding: 16px 0;
+      top: 16px;
       z-index: 100;
+      padding-top: 18px;
     }
 
     .nav-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 20px;
+      padding: 14px 18px;
+      background: rgba(10, 8, 20, 0.72);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow-sm);
     }
 
     .logo {
-      font-size: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 18px;
       font-weight: 800;
-      color: var(--primary);
-      text-decoration: none;
+      color: var(--white);
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.1);
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .logo-mark img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
     }
 
     .nav-links {
       display: flex;
-      gap: 32px;
+      gap: 18px;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .nav-links a {
-      text-decoration: none;
-      color: var(--text-gray);
+      color: var(--text-soft);
       font-weight: 500;
-      transition: color 0.2s;
+      font-size: 14px;
+      transition: color 0.2s ease, transform 0.2s ease;
     }
 
     .nav-links a:hover {
-      color: var(--primary);
+      color: var(--white);
+      transform: translateY(-1px);
     }
 
     .nav-cta {
-      background: var(--primary);
-      color: white !important;
-      padding: 8px 20px;
+      padding: 10px 16px;
       border-radius: 999px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white !important;
+      box-shadow: 0 10px 24px rgba(139, 92, 246, 0.3);
     }
 
-    /* Hero sekcija */
     .hero {
-      padding: 80px 0 64px;
+      padding: 54px 0 44px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 24px;
+      align-items: stretch;
     }
 
-    /* Tech stack tags */
+    .hero-copy {
+      padding: 42px;
+      min-height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      right: -100px;
+      top: -100px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.2), transparent 70%);
+      pointer-events: none;
+    }
+
     .tech-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 24px;
+      gap: 10px;
+      margin-bottom: 20px;
     }
 
     .tag {
-      background: var(--bg-gray);
-      padding: 6px 14px;
+      background: rgba(255,255,255,0.05);
+      padding: 8px 14px;
       border-radius: 999px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--primary);
+      font-size: 12px;
+      font-weight: 600;
+      color: #ddd4ff;
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
     .hero-summary {
       font-size: 18px;
-      color: var(--text-gray);
-      line-height: 1.6;
-      margin-bottom: 32px;
+      color: var(--text-soft);
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: 58ch;
     }
 
     .hero-stats {
-      display: flex;
-      gap: 40px;
-      margin-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 28px;
     }
 
     .hero-stat {
-      text-align: left;
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
     }
 
     .hero-stat-number {
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 800;
-      color: var(--primary);
+      color: var(--white);
+      letter-spacing: -0.04em;
+      margin-bottom: 6px;
     }
 
     .hero-stat-label {
       font-size: 13px;
-      color: var(--text-light);
+      color: var(--text-muted);
     }
 
-    .hero-image {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-radius: var(--radius-xl);
-      padding: 48px;
+    .hero-visual {
+      padding: 20px;
+      display: grid;
+      grid-template-rows: auto auto;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: auto auto -120px -80px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(236, 72, 153, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-main-image {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-lg);
+      background: #120d22;
+      min-height: 300px;
+    }
+
+    .hero-main-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .hero-mini-card {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #120d22;
+      min-height: 150px;
+    }
+
+    .hero-mini-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .section {
+      padding: 28px 0 42px;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin: 0 auto 34px;
       text-align: center;
-      box-shadow: var(--shadow-xl);
-      min-height: 320px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
-    .hero-image-placeholder {
-      color: white;
-      font-weight: 600;
+    .section-heading p {
+      font-size: 16px;
+      line-height: 1.7;
     }
 
-    /* Challenge sekcija - siva pozadina za "bol" */
     .challenge {
-      background: var(--bg-gray);
-      padding: 80px 0;
+      padding-top: 12px;
     }
 
     .challenge-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 40px;
-      margin-top: 48px;
+      gap: 18px;
+      margin-top: 10px;
     }
 
     .challenge-card {
-      background: white;
-      padding: 32px;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--border-light);
+      padding: 28px;
+      min-height: 100%;
+      position: relative;
+    }
+
+    .challenge-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      pointer-events: none;
     }
 
     .challenge-icon {
-      font-size: 28px;
-      margin-bottom: 16px;
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 24px;
+      margin-bottom: 18px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
     }
 
     .challenge-card p {
-      color: var(--text-gray);
-      line-height: 1.6;
+      line-height: 1.7;
+      color: var(--text-soft);
     }
 
-    /* Solution sekcija */
     .solution {
-      padding: 80px 0;
+      padding-top: 24px;
     }
 
     .solution-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      margin-top: 48px;
+      gap: 22px;
+      align-items: stretch;
     }
 
     .solution-features {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
+      padding: 34px;
+    }
+
+    .solution-features > div:first-child {
+      margin-bottom: 10px;
     }
 
     .feature-item {
       display: flex;
       gap: 16px;
+      padding: 18px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .feature-item:first-of-type {
+      border-top: none;
     }
 
     .feature-check {
-      width: 28px;
-      height: 28px;
-      background: var(--secondary);
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
       border-radius: 999px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 16px;
+      font-size: 15px;
       flex-shrink: 0;
+      margin-top: 2px;
+      box-shadow: 0 10px 20px rgba(139, 92, 246, 0.25);
     }
 
     .feature-text h4 {
       font-size: 18px;
       font-weight: 600;
       margin-bottom: 6px;
+      color: var(--white);
+      letter-spacing: -0.02em;
     }
 
     .feature-text p {
-      color: var(--text-gray);
+      color: var(--text-soft);
       font-size: 14px;
+      line-height: 1.7;
     }
 
     .solution-image {
-      background: #1e1b4b;
-      border-radius: var(--radius-xl);
-      padding: 40px;
-      box-shadow: var(--shadow-xl);
-      min-height: 360px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 20px;
+      display: grid;
+      gap: 14px;
+      align-content: start;
     }
 
-    .solution-image span {
-      color: white;
-      font-weight: 500;
+    .solution-image-large,
+    .solution-image-small {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #120d22;
     }
 
-    /* Impact sekcija - BROJEVI koji prodaju */
+    .solution-image-large {
+      min-height: 300px;
+    }
+
+    .solution-image-small {
+      min-height: 180px;
+    }
+
+    .solution-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .impact {
-      padding: 80px 0;
-      background: var(--bg-white);
+      padding-top: 32px;
     }
 
     .impact-header {
       text-align: center;
-      max-width: 600px;
-      margin: 0 auto 64px;
+      max-width: 640px;
+      margin: 0 auto 38px;
+    }
+
+    .impact-header p {
+      color: var(--text-soft);
+      font-size: 16px;
     }
 
     .impact-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
+      gap: 18px;
     }
 
     .impact-card {
+      padding: 28px 22px;
       text-align: center;
-      padding: 32px 24px;
-      background: var(--bg-gray);
-      border-radius: var(--radius-lg);
-      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
     }
 
-    .impact-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
+    .impact-card::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary-2), transparent);
+      opacity: 0.7;
     }
 
     .impact-number {
-      font-size: 56px;
+      font-size: 52px;
       font-weight: 800;
-      color: var(--primary);
+      color: var(--white);
       line-height: 1;
       margin-bottom: 12px;
+      letter-spacing: -0.05em;
     }
 
     .impact-label {
       font-size: 15px;
-      font-weight: 500;
-      color: var(--text-dark);
+      font-weight: 600;
+      color: var(--white);
       margin-bottom: 8px;
+      line-height: 1.4;
     }
 
     .impact-desc {
       font-size: 13px;
-      color: var(--text-gray);
+      color: var(--text-soft);
+      line-height: 1.6;
     }
 
-    /* CTA sekcija - Dark mode za kontrast */
+    .visual-proof {
+      padding-top: 20px;
+      padding-bottom: 48px;
+    }
+
+    .visual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .visual-card {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .visual-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 280px;
+    }
+
+    .visual-card-caption {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(10, 8, 20, 0.72);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
     .cta {
-      background: var(--bg-dark);
-      padding: 100px 0;
+      padding: 54px 0 80px;
+    }
+
+    .cta-box {
       text-align: center;
+      padding: 56px 28px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.18), transparent 35%),
+        linear-gradient(180deg, rgba(18, 13, 35, 0.98), rgba(8, 6, 18, 0.98));
+      border: 1px solid rgba(197, 174, 255, 0.16);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .cta-box::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      left: -80px;
+      top: -80px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.18), transparent 70%);
+      pointer-events: none;
     }
 
     .cta h2 {
@@ -362,79 +639,112 @@
     }
 
     .cta p {
-      color: var(--text-light);
-      max-width: 500px;
-      margin: 0 auto 32px;
+      color: var(--text-soft);
+      max-width: 560px;
+      margin: 0 auto 30px;
+      line-height: 1.7;
     }
 
     .cta-button {
-      display: inline-block;
-      background: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
       color: white;
-      padding: 16px 40px;
+      padding: 16px 34px;
       border-radius: 999px;
       text-decoration: none;
       font-weight: 600;
       font-size: 16px;
-      transition: all 0.2s;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 16px 34px rgba(139, 92, 246, 0.32);
+      position: relative;
+      z-index: 1;
     }
 
     .cta-button:hover {
-      background: var(--primary-dark);
       transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 20px 36px rgba(139, 92, 246, 0.36);
     }
 
-    /* Footer */
     .footer {
-      padding: 48px 0;
+      padding: 12px 0 42px;
       text-align: center;
-      border-top: 1px solid var(--border-light);
-      color: var(--text-light);
+      color: var(--text-muted);
       font-size: 14px;
     }
 
-    /* Razmaci između sekcija */
-    .section-spacing {
-      margin-bottom: 0;
+    .footer .container {
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.06);
     }
 
-    /* Responsive */
-    @media (max-width: 900px) {
-      .hero-grid, .challenge-grid, .solution-grid, .impact-grid {
+    @media (max-width: 980px) {
+      .hero-grid,
+      .challenge-grid,
+      .solution-grid,
+      .impact-grid,
+      .visual-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
       }
-      
-      .impact-grid {
-        grid-template-columns: repeat(2, 1fr);
+
+      .hero-stats {
+        grid-template-columns: 1fr;
       }
-      
-      .hero {
-        padding: 48px 0;
+
+      h1 {
+        max-width: 100%;
       }
-      
-      .challenge, .solution, .impact {
-        padding: 60px 0;
+
+      .hero-copy,
+      .hero-visual,
+      .solution-features,
+      .solution-image,
+      .challenge-card,
+      .impact-card {
+        padding-left: 24px;
+        padding-right: 24px;
       }
     }
-    
-    @media (max-width: 600px) {
-      .impact-grid {
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(var(--max), calc(100% - 20px));
+      }
+
+      .nav-inner {
+        border-radius: 28px;
+        padding: 16px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        width: 100%;
+        gap: 12px;
+      }
+
+      .hero {
+        padding-top: 30px;
+      }
+
+      .hero-copy,
+      .hero-visual,
+      .solution-features,
+      .solution-image,
+      .challenge-card,
+      .impact-card,
+      .cta-box {
+        padding: 22px;
+      }
+
+      .hero-mini-grid {
         grid-template-columns: 1fr;
       }
-      
-      .nav-links {
-        gap: 16px;
-      }
-      
-      .hero-stats {
-        flex-direction: column;
-        gap: 20px;
-      }
-      
-      .container {
-        padding: 0 20px;
+
+      .cta-box {
+        padding-top: 42px;
+        padding-bottom: 42px;
       }
     }
   </style>
@@ -443,7 +753,13 @@
 
 <nav class="navbar">
   <div class="container nav-inner">
-    <a href="#" class="logo">Mina.Flow</a>
+    <a href="#" class="logo">
+      <span class="logo-mark">
+        <img src="mina-logo.png" alt="Mina.Flow logo" />
+      </span>
+      <span>Mina.Flow</span>
+    </a>
+
     <div class="nav-links">
       <a href="#challenge">Challenge</a>
       <a href="#solution">Solution</a>
@@ -454,69 +770,85 @@
 </nav>
 
 <main>
-  <!-- HERO SEKCIJA - Executive Summary -->
   <section class="hero">
     <div class="container hero-grid">
-      <div>
+      <div class="hero-copy card">
         <div class="tech-tags">
           <span class="tag">Make.com</span>
           <span class="tag">Webflow</span>
           <span class="tag">Google Sheets</span>
           <span class="tag">Slack API</span>
         </div>
+
         <h1>Scalable Lead Capture Architecture</h1>
+
         <p class="hero-summary">
           I engineered an end-to-end automation system that reduced response time by 95%, 
           reclaimed 40+ hours monthly, and eliminated manual data entry across the sales funnel.
         </p>
+
         <div class="hero-stats">
           <div class="hero-stat">
             <div class="hero-stat-number">95%</div>
             <div class="hero-stat-label">Faster response</div>
           </div>
+
           <div class="hero-stat">
             <div class="hero-stat-number">40+</div>
             <div class="hero-stat-label">Hours reclaimed</div>
           </div>
+
           <div class="hero-stat">
             <div class="hero-stat-number">100%</div>
             <div class="hero-stat-label">Data accuracy</div>
           </div>
         </div>
       </div>
-      <div class="hero-image">
-        <div class="hero-image-placeholder">
-          🏗️ Architecture Preview<br>
-          Make.com → Sheets → Slack
+
+      <div class="hero-visual card">
+        <div class="hero-main-image">
+          <img src="make-scenario.png" alt="Architecture preview showing Make.com automation blueprint" />
+        </div>
+
+        <div class="hero-mini-grid">
+          <div class="hero-mini-card">
+            <img src="webflow-form.png" alt="Webflow lead capture form" />
+          </div>
+          <div class="hero-mini-card">
+            <img src="slack-alert.png" alt="Slack alert showing instant lead notification" />
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CHALLENGE SEKCIJA - Problem (siva pozadina = "bol") -->
-  <section id="challenge" class="challenge">
+  <section id="challenge" class="challenge section">
     <div class="container">
-      <div style="text-align: center; max-width: 600px; margin: 0 auto 48px;">
-        <span class="tag" style="background: #fee2e2; color: #dc2626;">⚠️ THE PROBLEM</span>
-        <h2 style="margin-top: 16px;">The bottlenecks were killing conversion</h2>
+      <div class="section-heading">
+        <span class="section-label">⚠ The Problem</span>
+        <h2>The bottlenecks were killing conversion</h2>
       </div>
+
       <div class="challenge-grid">
-        <div class="challenge-card">
+        <div class="challenge-card card">
           <div class="challenge-icon">⏱️</div>
           <h3>Time-to-First-Call</h3>
           <p>Manual lead routing meant 2-4 hour delays before sales could respond. Prospects went cold before first touch.</p>
         </div>
-        <div class="challenge-card">
+
+        <div class="challenge-card card">
           <div class="challenge-icon">📋</div>
           <h3>Data Inconsistency</h3>
           <p>Copy-paste errors between CRM, sheets, and email caused lost information and frustrated teams.</p>
         </div>
-        <div class="challenge-card">
+
+        <div class="challenge-card card">
           <div class="challenge-icon">🔄</div>
           <h3>Repetitive Admin Work</h3>
           <p>Team members spent 10+ hours weekly on manual data entry instead of selling.</p>
         </div>
-        <div class="challenge-card">
+
+        <div class="challenge-card card">
           <div class="challenge-icon">👻</div>
           <h3>Leaked Leads</h3>
           <p>No visibility into lead flow meant submissions occasionally fell through the cracks entirely.</p>
@@ -525,14 +857,14 @@
     </div>
   </section>
 
-  <!-- SOLUTION SEKCIJA - Engineering rešenje -->
-  <section id="solution" class="solution">
+  <section id="solution" class="solution section">
     <div class="container solution-grid">
-      <div class="solution-features">
+      <div class="solution-features card">
         <div>
-          <span class="tag" style="background: #dcfce7; color: #16a34a;">⚙️ THE ENGINEERING SOLUTION</span>
-          <h2 style="margin-top: 16px;">Zero-touch lead processing pipeline</h2>
+          <span class="section-label">⚙ The Engineering Solution</span>
+          <h2>Zero-touch lead processing pipeline</h2>
         </div>
+
         <div class="feature-item">
           <div class="feature-check">✓</div>
           <div class="feature-text">
@@ -540,6 +872,7 @@
             <p>Webflow form submits directly to Make.com webhook → sub-10ms trigger time.</p>
           </div>
         </div>
+
         <div class="feature-item">
           <div class="feature-check">✓</div>
           <div class="feature-text">
@@ -547,6 +880,7 @@
             <p>Lead source, priority, and territory determined automatically without human intervention.</p>
           </div>
         </div>
+
         <div class="feature-item">
           <div class="feature-check">✓</div>
           <div class="feature-text">
@@ -554,6 +888,7 @@
             <p>Google Sheets append with timestamp, source metadata, and structured fields.</p>
           </div>
         </div>
+
         <div class="feature-item">
           <div class="feature-check">✓</div>
           <div class="feature-text">
@@ -562,37 +897,46 @@
           </div>
         </div>
       </div>
-      <div class="solution-image">
-        <span>🔧 Make.com automation blueprint<br>Webflow → Router → Sheets → Slack</span>
+
+      <div class="solution-image card">
+        <div class="solution-image-large">
+          <img src="make-scenario.png" alt="Make.com automation blueprint showing workflow routing" />
+        </div>
+        <div class="solution-image-small">
+          <img src="google-sheets.png" alt="Google Sheets structured data storage for lead capture" />
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- IMPACT SEKCIJA - BROJEVI koji prodaju (OVO JE KLJUČNO) -->
-  <section id="impact" class="impact">
+  <section id="impact" class="impact section">
     <div class="container">
       <div class="impact-header">
-        <span class="tag" style="background: #dbeafe; color: #2563eb;">📊 THE IMPACT</span>
-        <h2 style="margin-top: 16px;">What the business gained</h2>
-        <p style="color: var(--text-gray);">Measurable results after 30 days of production</p>
+        <span class="section-label">📊 The Impact</span>
+        <h2>What the business gained</h2>
+        <p>Measurable results after 30 days of production</p>
       </div>
+
       <div class="impact-grid">
-        <div class="impact-card">
+        <div class="impact-card card">
           <div class="impact-number">95%</div>
           <div class="impact-label">Reduction in Response Time</div>
           <div class="impact-desc">From 4 hours → under 10 seconds</div>
         </div>
-        <div class="impact-card">
+
+        <div class="impact-card card">
           <div class="impact-number">40+</div>
           <div class="impact-label">Hours Reclaimed Monthly</div>
           <div class="impact-desc">Previously lost to manual data entry</div>
         </div>
-        <div class="impact-card">
+
+        <div class="impact-card card">
           <div class="impact-number">100%</div>
           <div class="impact-label">Data Accuracy</div>
           <div class="impact-desc">Zero copy-paste errors since deployment</div>
         </div>
-        <div class="impact-card">
+
+        <div class="impact-card card">
           <div class="impact-number">0</div>
           <div class="impact-label">Maintenance Required</div>
           <div class="impact-desc">Set it and forget it architecture</div>
@@ -601,12 +945,44 @@
     </div>
   </section>
 
-  <!-- CTA SEKCIJA - Dark mode za vizuelni šok -->
+  <section class="visual-proof section">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-label">Visual Proof</span>
+        <h2>The workflow in action</h2>
+      </div>
+
+      <div class="visual-grid">
+        <div class="visual-card card">
+          <img src="webflow-form.png" alt="Webflow form used for lead collection" />
+          <div class="visual-card-caption">Lead Capture</div>
+        </div>
+
+        <div class="visual-card card">
+          <img src="make-scenario.png" alt="Make.com scenario used to automate routing" />
+          <div class="visual-card-caption">Automation Logic</div>
+        </div>
+
+        <div class="visual-card card">
+          <img src="google-sheets.png" alt="Google Sheets dashboard storing lead data" />
+          <div class="visual-card-caption">Structured Storage</div>
+        </div>
+
+        <div class="visual-card card">
+          <img src="slack-alert.png" alt="Slack alert notifying the sales team in real time" />
+          <div class="visual-card-caption">Real-Time Alerts</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="contact" class="cta">
     <div class="container">
-      <h2>Ready to scale your lead operation?</h2>
-      <p>Let's discuss how I can architect a similar system for your business.</p>
-      <a href="#" class="cta-button">Let's Talk →</a>
+      <div class="cta-box">
+        <h2>Ready to scale your lead operation?</h2>
+        <p>Let's discuss how I can architect a similar system for your business.</p>
+        <a href="#" class="cta-button">Let's Talk →</a>
+      </div>
     </div>
   </section>
 </main>
